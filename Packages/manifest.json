@@ -1,10 +1,17 @@
 {
   "dependencies": {
+    "com.meta.xr.mrutilitykit": "file:../LocalPackages/com.meta.xr.mrutilitykit-60.0.0.tgz",
+    "com.meta.xr.sdk.audio": "60.0.0",
+    "com.meta.xr.sdk.core": "60.0.0",
+    "com.meta.xr.sdk.haptics": "60.0.0",
+    "com.meta.xr.sdk.interaction": "file:../LocalPackages/com.meta.xr.sdk.interaction-60.0.0.tgz",
+    "com.meta.xr.sdk.interaction.ovr": "60.0.0",
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.feature.development": "1.0.2",
     "com.unity.timeline": "1.8.6",
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.8.0",
+    "com.unity.xr.oculus": "4.1.2",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
