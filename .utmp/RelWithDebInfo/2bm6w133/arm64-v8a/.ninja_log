@@ -1,0 +1,11 @@
+# ninja log v5
+86	519	7265091914595219	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	f0863fdfb41f70fb
+521	809	7265091916703747	C:/Users/Mathias/dev/billiards-mixhibit/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2bm6w133/obj/arm64-v8a/libswappywrapper.so	b56a91897f68d4e
+38	1727	7265091926603260	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	776136908a53e3a9
+2	1731	7265091926613346	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	b21d235e746652ce
+29	1811	7265091927443986	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	d76039fdec95ce6e
+69	1929	7265091928643999	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	495b4fef9861b38e
+20	2036	7265091929741732	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	acd0e13d45561f36
+51	2351	7265091932908139	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	9edc8152924083ad
+12	2458	7265091933951031	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	220892eb6bbe630b
+2459	2641	7265091935283945	C:/Users/Mathias/dev/billiards-mixhibit/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/2bm6w133/obj/arm64-v8a/libgame.so	b865ae64526a3233
