@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Billiards Mixhibit.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/MetaSDKWithXRI.unity
+    guid: 9fa8a7ce923b9e44cb3ad3b15350ae60
+  - enabled: 0
+    path: Assets/Samples/XR Interaction Toolkit/2.5.2/AR Starter Assets/ARDemoScene.unity
+    guid: da4db6c21a88243878fecfe160c1be3b
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: d791eb24934c54d469fab2c469ec6506, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0f8d249ac0e287840bd3232256b72cd6, type: 2}
