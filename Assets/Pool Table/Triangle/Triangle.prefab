@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8135375298870285452}
-  - component: {fileID: 1841213633545424252}
+  - component: {fileID: 4246780355417078207}
   m_Layer: 0
   m_Name: Vertex Collider
   m_TagString: Untagged
@@ -32,8 +32,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8410717207993157586}
   m_LocalEulerAnglesHint: {x: 0, y: 150, z: 0}
---- !u!65 &1841213633545424252
-BoxCollider:
+--- !u!136 &4246780355417078207
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -50,9 +50,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0000005, y: 1.0000001, z: 1.0000005}
-  m_Center: {x: 0.0000038146973, y: 0, z: -0.00000023003668}
+  serializedVersion: 2
+  m_Radius: 0.14731206
+  m_Height: 0.6621999
+  m_Direction: 1
+  m_Center: {x: -0.04899332, y: -0.16889904, z: -0.000000005939742}
 --- !u!1 &2924188769532082276
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +64,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4200816350966575447}
-  - component: {fileID: 1210652452006843840}
+  - component: {fileID: 5684797288529010017}
   m_Layer: 0
   m_Name: Vertex Collider
   m_TagString: Untagged
@@ -79,14 +81,14 @@ Transform:
   m_GameObject: {fileID: 2924188769532082276}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9659259, z: -0, w: -0.2588189}
-  m_LocalPosition: {x: -0.3859, y: 0.028574992, z: 0.0232}
+  m_LocalPosition: {x: -0.3879, y: 0.028574992, z: 0.0243}
   m_LocalScale: {x: 0.015, y: 0.05715, z: 0.048440598}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8410717207993157586}
   m_LocalEulerAnglesHint: {x: 0, y: 210, z: 0}
---- !u!65 &1210652452006843840
-BoxCollider:
+--- !u!136 &5684797288529010017
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,9 +105,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0000005, y: 1.0000001, z: 1.0000005}
-  m_Center: {x: 0.0000038146973, y: 0, z: -0.00000023003668}
+  serializedVersion: 2
+  m_Radius: 0.14731206
+  m_Height: 0.6621999
+  m_Direction: 1
+  m_Center: {x: -0.04899332, y: -0.16889904, z: -0.000000005939742}
 --- !u!1 &5752283988732646155
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,8 +136,8 @@ Transform:
   m_GameObject: {fileID: 5752283988732646155}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9659258, z: 0, w: 0.2588191}
-  m_LocalPosition: {x: -0.3307, y: 0.0288, z: -0.1092}
-  m_LocalScale: {x: 0.015, y: 0.05715, z: 0.26}
+  m_LocalPosition: {x: -0.3333, y: 0.0194, z: -0.1107}
+  m_LocalScale: {x: 0.015, y: 0.0381, z: 0.26}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8410717207993157586}
@@ -287,7 +291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4380884281307845314}
-  - component: {fileID: 3579627081050802601}
+  - component: {fileID: 5923412940367333993}
   m_Layer: 0
   m_Name: Vertex Collider
   m_TagString: Untagged
@@ -304,14 +308,14 @@ Transform:
   m_GameObject: {fileID: 7641402000994919935}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071066, z: -0, w: 0.70710707}
-  m_LocalPosition: {x: -0.241, y: 0.028574992, z: -0.231}
+  m_LocalPosition: {x: -0.241, y: 0.028574992, z: -0.2327}
   m_LocalScale: {x: 0.015, y: 0.05715, z: 0.048440598}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8410717207993157586}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &3579627081050802601
-BoxCollider:
+--- !u!136 &5923412940367333993
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -328,9 +332,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0000005, y: 1.0000001, z: 1.0000005}
-  m_Center: {x: 0.0000038146973, y: 0, z: -0.00000023003668}
+  serializedVersion: 2
+  m_Radius: 0.14731206
+  m_Height: 0.6621999
+  m_Direction: 1
+  m_Center: {x: -0.04899332, y: -0.16889904, z: -0.000000005939742}
 --- !u!1 &8052464625474118157
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,8 +363,8 @@ Transform:
   m_GameObject: {fileID: 8052464625474118157}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.2457, y: 0.028574992, z: 0.0396}
-  m_LocalScale: {x: 0.015, y: 0.05715, z: 0.26}
+  m_LocalPosition: {x: -0.2457, y: 0.0192, z: 0.0396}
+  m_LocalScale: {x: 0.015, y: 0.0381, z: 0.26}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8410717207993157586}
@@ -410,8 +416,8 @@ Transform:
   m_GameObject: {fileID: 8457437379948264973}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.2588191, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: -0.1534, y: 0.0288, z: -0.1143}
-  m_LocalScale: {x: 0.015, y: 0.05715, z: 0.26}
+  m_LocalPosition: {x: -0.1534, y: 0.0194, z: -0.1143}
+  m_LocalScale: {x: 0.015, y: 0.0381, z: 0.26}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8410717207993157586}
