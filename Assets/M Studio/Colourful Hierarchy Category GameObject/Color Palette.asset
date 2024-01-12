@@ -34,7 +34,7 @@ MonoBehaviour:
     textAlignment: 4
     fontStyle: 1
   - keyChar: $
-    textColor: {r: 1, g: 1, b: 1, a: 1}
-    backgroundColor: {r: 0.5903926, g: 0.12967247, b: 0.8867924, a: 1}
+    textColor: {r: 0.64722097, g: 0, b: 0.866, a: 1}
+    backgroundColor: {r: 0.15686275, g: 0.13176471, b: 0.16470589, a: 1}
     textAlignment: 4
-    fontStyle: 0
+    fontStyle: 3
