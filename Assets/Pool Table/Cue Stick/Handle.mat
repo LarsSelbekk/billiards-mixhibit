@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Stick1
+  m_Name: Handle
   m_Shader: {fileID: 4800000, guid: 2221ee746b40d6148990630d2f8d9c5b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
