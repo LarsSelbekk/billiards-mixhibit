@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - TableAnchor
+  - SceneAnchor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ignore Scene
   - Water
   - UI
   - 

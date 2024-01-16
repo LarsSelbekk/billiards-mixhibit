@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 3308435919099820880}
   - component: {fileID: 5348085605986217188}
   - component: {fileID: 4279403776740266990}
-  - component: {fileID: 55386012093510703}
   m_Layer: 0
   m_Name: Chusion
   m_TagString: Untagged
@@ -180,28 +179,6 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2341273778850918469}
   m_Material: {fileID: 13400000, guid: e74623427436eee41895ca3721bef740, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1990228267592655449, guid: 2d3fcbd264f978e418949fa885c9b305, type: 3}
---- !u!64 &55386012093510703
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2341273778850918469}
-  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
