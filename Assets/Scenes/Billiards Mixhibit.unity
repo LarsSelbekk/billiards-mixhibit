@@ -1055,6 +1055,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a5d0311b4889aa6438b96f98525709ea, type: 2}
+    - target: {fileID: 9129009154871975478, guid: c3c5e9946d138824c9da7bef9fdd42b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1323,7 +1327,7 @@ GameObject:
   - component: {fileID: 1828601337}
   - component: {fileID: 1828601338}
   m_Layer: 0
-  m_Name: TablePlacer
+  m_Name: TableRelocator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1362,6 +1366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   table: {fileID: 2116539455}
+  tableBoundsParent: {fileID: 892963975}
 --- !u!1 &1837958431
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,7 +1480,7 @@ PrefabInstance:
       objectReference: {fileID: 2477490319276024255, guid: e9e32e70554e26345be231832127cce9, type: 3}
     - target: {fileID: 747806495401477012, guid: c813208e672e3074bbe118e1a9ee94fd, type: 3}
       propertyPath: PrefabOverrides.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 747806495401477012, guid: c813208e672e3074bbe118e1a9ee94fd, type: 3}
       propertyPath: PrefabOverrides.Array.data[0].Prefab
@@ -1484,7 +1489,7 @@ PrefabInstance:
     - target: {fileID: 747806495401477012, guid: c813208e672e3074bbe118e1a9ee94fd, type: 3}
       propertyPath: PrefabOverrides.Array.data[1].Prefab
       value: 
-      objectReference: {fileID: 2477490319276024255, guid: e9e32e70554e26345be231832127cce9, type: 3}
+      objectReference: {fileID: 1532249503432715775, guid: 7860eb0afeb7f0f45816b84a2d0942de, type: 3}
     - target: {fileID: 747806495401477012, guid: c813208e672e3074bbe118e1a9ee94fd, type: 3}
       propertyPath: PrefabOverrides.Array.data[0].ClassificationLabel
       value: GLOBAL_MESH
@@ -1577,7 +1582,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.76570773, z: 0.99993825}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 867233670}
   - {fileID: 910595400}

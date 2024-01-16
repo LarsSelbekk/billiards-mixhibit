@@ -19,13 +19,14 @@
  */
 
 using System.Collections.Generic;
+using FurnitureSpawner;
 using UnityEngine;
 
-namespace FurnitureSpawner
+namespace SceneAnchorSpawner
 {
     [RequireComponent(typeof(OVRSceneAnchor))]
     [DefaultExecutionOrder(30)]
-    public class FurnitureSpawner : MonoBehaviour
+    public class AnchorSpawner : MonoBehaviour
     {
         [Tooltip("Add a point at ceiling.")]
         public GameObject RoomLightPrefab;

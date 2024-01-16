@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2477490319276024255}
   - component: {fileID: -4428730867884191148}
   m_Layer: 0
-  m_Name: FurnitureSpawner
+  m_Name: AnchorSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomLightPrefab: {fileID: 0}
   FallbackPrefab: {fileID: 1991404218269302958, guid: ae624157a641aae4a843e34b77c1eeb6, type: 3}
-  SpawnablePrefabs:
-  - ResizablePrefab: {fileID: 1991404218269302958, guid: d1ecd357f9fad484eb951cb97910db4c, type: 3}
-    ClassificationLabel: TABLE
-    _editorClassificationIndex: 13
+  SpawnablePrefabs: []
