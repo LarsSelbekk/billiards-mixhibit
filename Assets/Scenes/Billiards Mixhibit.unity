@@ -1353,22 +1353,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2116539456}
     m_Modifications:
-    - target: {fileID: 914725210282426886, guid: 2f3ed8817f236bb428354a811b8bc788, type: 3}
-      propertyPath: m_Drag
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 914725210282426886, guid: 2f3ed8817f236bb428354a811b8bc788, type: 3}
-      propertyPath: m_Mass
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 914725210282426886, guid: 2f3ed8817f236bb428354a811b8bc788, type: 3}
-      propertyPath: m_AngularDrag
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 914725210282426886, guid: 2f3ed8817f236bb428354a811b8bc788, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1307618864454866643, guid: 2f3ed8817f236bb428354a811b8bc788, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4707
