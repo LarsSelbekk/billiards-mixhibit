@@ -30,7 +30,14 @@ public class TableRelocator : MonoBehaviour
         if (!_tableAnchor)
         {
             _tableAnchor = GameObject.FindGameObjectWithTag("TableAnchor");
-            _tableAnchorPlane = _tableAnchor.GetComponent<OVRScenePlane>();
+            try
+            {
+                _tableAnchorPlane = _tableAnchor.GetComponent<OVRScenePlane>();
+            }
+            catch (NullReferenceException)
+            {
+
+            }
         }
         if (!_tableAnchor || !_tableAnchorPlane) return;
         PlaceOnPhysicalTable();
