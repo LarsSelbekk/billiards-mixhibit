@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Utils;
 
 public class TableRelocator : MonoBehaviour
 {
@@ -12,20 +13,18 @@ public class TableRelocator : MonoBehaviour
     private OVRScenePlane _tableAnchorPlane;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        if (!table || !tableBoundsParent) return;
+        if (!table) return;
         _tableOriginalScale = table.transform.localScale;
-        _tableBounds = tableBoundsParent.GetComponent<Renderer>()?.bounds ?? new Bounds();
-        foreach (var render in tableBoundsParent.GetComponentsInChildren<Renderer>())
-        {
-            _tableBounds.Encapsulate(render.bounds);
-        }
+        _tableBounds = BoundUtils.GetObjectAndChildrenComponentBounds<Renderer>(
+            tableBoundsParent != null ? tableBoundsParent : table
+        );
     }
 
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!table) return;
         if (!_tableAnchor)
@@ -33,10 +32,14 @@ public class TableRelocator : MonoBehaviour
             _tableAnchor = GameObject.FindGameObjectWithTag("TableAnchor");
             _tableAnchorPlane = _tableAnchor.GetComponent<OVRScenePlane>();
         }
-
         if (!_tableAnchor || !_tableAnchorPlane) return;
+        PlaceOnPhysicalTable();
+    }
+
+    private void PlaceOnPhysicalTable()
+    {
         table.transform.position = _tableAnchor.transform.position;
-        var anchorRotation = Quaternion.LookRotation(-_tableAnchor.transform.up, Vector3.up);
+        var anchorRotation = Quaternion.LookRotation(-_tableAnchor.transform.up);
         float requiredScaling;
         var shouldRotate90 = _tableAnchorPlane.Height > _tableAnchorPlane.Width;
         if (shouldRotate90)
@@ -57,7 +60,6 @@ public class TableRelocator : MonoBehaviour
                     _tableAnchorPlane.Height / _tableBounds.size.z
                 );
         }
-
         table.transform.localScale = _tableOriginalScale * requiredScaling;
     }
 }
