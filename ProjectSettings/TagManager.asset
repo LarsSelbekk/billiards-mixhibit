@@ -14,9 +14,9 @@ TagManager:
   - Ignore Scene
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Non-Ball Collision
+  - Ball-Only Collision
+  - Ball
   - 
   - 
   - 
