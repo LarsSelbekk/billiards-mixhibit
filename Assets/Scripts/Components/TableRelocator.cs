@@ -26,20 +26,14 @@ public class TableRelocator : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (!table) return;
-        if (!_tableAnchor)
+        if (table == null) return;
+        if (_tableAnchor == null)
         {
             _tableAnchor = GameObject.FindGameObjectWithTag("TableAnchor");
-            try
-            {
-                _tableAnchorPlane = _tableAnchor.GetComponent<OVRScenePlane>();
-            }
-            catch (NullReferenceException)
-            {
-
-            }
+            if (!_tableAnchor) return;
+            _tableAnchorPlane = _tableAnchor.GetComponent<OVRScenePlane>();
         }
-        if (!_tableAnchor || !_tableAnchorPlane) return;
+        if (_tableAnchor == null || _tableAnchorPlane == null) return;
         PlaceOnPhysicalTable();
     }
 

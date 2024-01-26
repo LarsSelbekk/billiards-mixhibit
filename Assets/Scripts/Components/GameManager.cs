@@ -1,9 +1,12 @@
+﻿using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
     private static GameManager Instance { get; set; }
+
+    public static event Action OnReset;
 
     private void Awake()
     {
@@ -20,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public void Reset()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        OnReset?.Invoke();
     }
+    
 }

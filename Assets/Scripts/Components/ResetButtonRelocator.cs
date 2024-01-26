@@ -40,7 +40,8 @@ public class ResetButtonRelocator : MonoBehaviour
         var wallAnchors = GameObject.FindGameObjectsWithTag("WallAnchor");
         var wallAnchorPlanes = wallAnchors
             .Select(a => a.GetComponent<OVRScenePlane>())
-            .Where(p => p != null);
+            .Where(p => p != null).ToArray();
+        if (!wallAnchorPlanes.Any()) return;
         // choose the widest wall
         _wallAnchorPlane = wallAnchorPlanes.Aggregate((agg, next) => next.Width > agg.Width ? next : agg);
         _wallAnchor = _wallAnchorPlane.gameObject;
