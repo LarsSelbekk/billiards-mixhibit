@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class GameManager : MonoBehaviour
     private static GameManager Instance { get; set; }
 
     public static event Action OnReset;
-
+    
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public void Reset()
     {
         OnReset?.Invoke();
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
 }

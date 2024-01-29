@@ -14,11 +14,11 @@ using Color = UnityEngine.Color;
 [RequireComponent(typeof(LineRenderer))]
 public class PathPredictorTrainingWheels : MonoBehaviour
 {
-    public MeshFilter cueTip;
+    private MeshFilter _cueTip;
     public LayerMask cueRayLayerMask;
     public LayerMask cueBallRayLayerMask;
     public LayerMask cueBallLayerMask;
-    public MeshCollider tableSurface;
+    private MeshCollider _tableSurface;
 
     [Min(0), Tooltip("Number of bounces after which to stop predicting path. Set to 0 for unlimited.")]
     public int maxBounces = 3;
@@ -62,16 +62,35 @@ public class PathPredictorTrainingWheels : MonoBehaviour
     private void OnEnable()
     {
         _lineRenderer = GetComponent<LineRenderer>();
-        _cueTipTransform = cueTip.transform;
-        _cueTipMesh = cueTip.mesh;
 
 #if DEBUG_TRAINING_WHEELS
         _cylinderMesh = UnityEngine.Resources.GetBuiltinResource<Mesh>("Cylinder.fbx");
 #endif
     }
 
+    private void TryFindTableComponentsIfMissing()
+    {
+        if (_tableSurface != null && _cueTip != null)
+        {
+            // required components already found, no further actions required
+            return;
+        }
+
+        _tableSurface = GameObject.FindGameObjectWithTag("TableSlate").GetComponent<MeshCollider>();
+        _cueTip = GameObject.FindGameObjectWithTag("CueTip").GetComponent<MeshFilter>();
+        if (_tableSurface == null || _cueTip == null)
+        {
+            // still missing
+            return;
+        };
+        _cueTipTransform = _cueTip.transform;
+        _cueTipMesh = _cueTip.mesh;
+    }
+
     private void FixedUpdate()
     {
+        TryFindTableComponentsIfMissing();
+        
         _scaledBallRadius = TransformScalar(ballRadius);
         _scaledMaxHorizontalDistanceToCueBall = TransformScalar(maxHorizontalDistanceToCueBall);
         _scaledMaxVerticalDistanceToCueBall = TransformScalar(maxVerticalDistanceToCueBall);
@@ -103,7 +122,7 @@ public class PathPredictorTrainingWheels : MonoBehaviour
         );
 
         // Collider bounds are axis-aligned and in world coords, so do not need to be transformed
-        var tableSurfaceBounds = tableSurface.bounds;
+        var tableSurfaceBounds = _tableSurface.bounds;
         var heightCorrectedCueTipPosition = new Vector3(
             cueTipPosition.x,
             tableSurfaceBounds.center.y + tableSurfaceBounds.extents.y + _scaledBallRadius,

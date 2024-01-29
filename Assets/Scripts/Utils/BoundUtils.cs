@@ -2,7 +2,7 @@
 
 namespace Utils
 {
-    public class BoundUtils
+    public static class BoundUtils
     {
         public static Bounds GetObjectAndChildrenComponentBounds<T>(GameObject obj)
         {
@@ -14,7 +14,7 @@ namespace Utils
 
         private static Bounds GetObjectAndChildrenRendererBounds(GameObject obj)
         {
-            var bounds = obj.GetComponent<Renderer>()?.bounds ?? new Bounds();
+            var bounds = new Bounds();
             foreach (var c in obj.GetComponentsInChildren<Renderer>())
             {
                 bounds.Encapsulate(c.bounds);
@@ -25,7 +25,7 @@ namespace Utils
 
         private static Bounds GetObjectAndChildrenMeshBounds(GameObject obj)
         {
-            var bounds = obj.GetComponent<Mesh>()?.bounds ?? new Bounds();
+            var bounds = new Bounds();
             foreach (var c in obj.GetComponentsInChildren<Mesh>())
             {
                 bounds.Encapsulate(c.bounds);
@@ -36,7 +36,7 @@ namespace Utils
 
         private static Bounds GetObjectAndChildrenColliderBounds(GameObject obj)
         {
-            var bounds = obj.GetComponent<Collider>()?.bounds ?? new Bounds();
+            var bounds = new Bounds();
             foreach (var c in obj.GetComponentsInChildren<Collider>())
             {
                 bounds.Encapsulate(c.bounds);

@@ -22,7 +22,6 @@ public class TableRelocator : MonoBehaviour
         );
     }
 
-
     // Update is called once per frame
     private void Update()
     {
@@ -33,6 +32,7 @@ public class TableRelocator : MonoBehaviour
             if (!_tableAnchor) return;
             _tableAnchorPlane = _tableAnchor.GetComponent<OVRScenePlane>();
         }
+
         if (_tableAnchor == null || _tableAnchorPlane == null) return;
         PlaceOnPhysicalTable();
     }
@@ -61,6 +61,7 @@ public class TableRelocator : MonoBehaviour
                     _tableAnchorPlane.Height / _tableBounds.size.z
                 );
         }
+
         table.transform.localScale = _tableOriginalScale * requiredScaling;
     }
 }

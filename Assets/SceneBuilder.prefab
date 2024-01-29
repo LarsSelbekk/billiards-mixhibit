@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5369514677430808469}
-  - component: {fileID: 3749045933357163557}
+  - component: {fileID: 4353712406178588363}
+  - component: {fileID: 7822760649371596194}
   m_Layer: 0
   m_Name: SceneBuilder
   m_TagString: Untagged
@@ -26,13 +27,33 @@ Transform:
   m_GameObject: {fileID: 1146699924307449972}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.026071668, y: 0.676051, z: 0.99993825}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3749045933357163557
+--- !u!114 &4353712406178588363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146699924307449972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1161638241
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 0
+--- !u!114 &7822760649371596194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,4 +65,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4dd1d4ac0e1079479573cb5a4866713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TablePrefab: {fileID: 0}
+  tableReference: {fileID: 2030412564784014614, guid: c181a04973d20084fbb358ad2531bd4b, type: 3}
+  tableParts:
+  - {fileID: 4313180098087592122, guid: b83c2ff2b29168044a8e5fc30bd6fb85, type: 3}
+  - {fileID: 6198787342843146226, guid: 2f3ed8817f236bb428354a811b8bc788, type: 3}
+  - {fileID: 6097799285801467369, guid: 0b68aa1570b4e5941a5f0c1238d4e792, type: 3}
+  - {fileID: 2962111892450230528, guid: 96e3d24c97a61a149a7777d8274eacdc, type: 3}
+  - {fileID: 906411321895696759, guid: 6c2125f2c46f903478d2bac5fe5fd210, type: 3}
+  - {fileID: 7160578538381212338, guid: 4058b179818dcc8479144b418856ccad, type: 3}
+  - {fileID: 7160578538381212338, guid: 56dbf7ca304d47c49bc657607e29a49b, type: 3}
+  - {fileID: 7160578538381212338, guid: aa69b1a788d172d449bb89f5e7297a6b, type: 3}
+  - {fileID: 7160578538381212338, guid: e4438ac8f9c646542b6577de89a06580, type: 3}
+  - {fileID: 7160578538381212338, guid: 6ddad408ef276394f8d6b91f35681ea8, type: 3}
+  - {fileID: 7160578538381212338, guid: baf5fb4770d4dbd4eaeb4c2e49549b11, type: 3}
+  - {fileID: 7160578538381212338, guid: e78b498d0c0ded348a37fc5b138c08c5, type: 3}
+  - {fileID: 7160578538381212338, guid: 865b02da065e4d247910d40065c366a7, type: 3}
+  - {fileID: 7160578538381212338, guid: 3c870f1e1a8c4204ba4e3980181ba9cc, type: 3}
+  - {fileID: 7160578538381212338, guid: 2dacc545544698d418a9f3a0d0b57131, type: 3}
+  - {fileID: 7160578538381212338, guid: 947c36c16d1f70149b95a5783cd0eba0, type: 3}
+  - {fileID: 7160578538381212338, guid: 4d4893439bd18bc4a920a9f598280879, type: 3}
+  - {fileID: 7160578538381212338, guid: 84c52d19977fb0741b3ee62781201bd8, type: 3}
+  - {fileID: 5972089699669510483, guid: 6451bc2dfa0cbd34c8f6773d4dabb685, type: 3}
+  - {fileID: 4055878467107577637, guid: c3c5e9946d138824c9da7bef9fdd42b6, type: 3}
+  tableHolder: {fileID: 6741826109109845322, guid: ec6eff33948f9224e9ab11bf3ba589b8, type: 3}
+  resetButton: {fileID: 8273211446339589601, guid: a397a485d45b09c4dbdfed06fbef5bd1, type: 3}

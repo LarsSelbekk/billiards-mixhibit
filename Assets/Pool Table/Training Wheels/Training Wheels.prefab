@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 365910867471270540}
   - component: {fileID: 5457617285220920853}
   - component: {fileID: 5717655426426133204}
+  - component: {fileID: 1820586074571200308}
   m_Layer: 2
   m_Name: Training Wheels
   m_TagString: Untagged
@@ -154,7 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8a915a671bb524b9c66a4e32eebca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cueTip: {fileID: 0}
   cueRayLayerMask:
     serializedVersion: 2
     m_Bits: 897
@@ -164,9 +164,28 @@ MonoBehaviour:
   cueBallLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  tableSurface: {fileID: 0}
   maxBounces: 3
   maxHorizontalDistanceToCueBall: 0.5
   maxVerticalDistanceToCueBall: 0.5
   maxCueBallRollDistance: 3
   ballRadius: 0.028575
+--- !u!114 &1820586074571200308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668290336698634722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3763923003
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

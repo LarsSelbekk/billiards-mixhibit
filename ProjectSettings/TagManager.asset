@@ -8,8 +8,12 @@ TagManager:
   - SceneAnchor
   - WallAnchor
   - Table
+  - GameManager
+  - TableHolder
   - CueBall
   - CueStick
+  - CueTip
+  - TableSlate
   layers:
   - Default
   - TransparentFX

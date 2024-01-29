@@ -16,10 +16,12 @@ public class ResetButtonRelocator : MonoBehaviour
     private void Start()
     {
         if (!resetButton) return;
-        var buttonBounds = BoundUtils.GetObjectAndChildrenComponentBounds<Renderer>(
+        var buttonBounds = BoundUtils.GetObjectAndChildrenComponentBounds<Collider>(
             resetButtonBoundsParent != null ? resetButtonBoundsParent : resetButton
         );
-        _outFromWallOffset = buttonBounds.size.y;
+        // TODO: figure out why the below does not work
+        // _outFromWallOffset = buttonBounds.size.y;   
+        _outFromWallOffset = 0.1f;
     }
 
     // Update is called once per frame
@@ -56,6 +58,6 @@ public class ResetButtonRelocator : MonoBehaviour
             wallPosition.x,
             1.5f,
             wallPosition.z
-        ) + _outFromWallOffset * resetButton.transform.up;
+        ) + _outFromWallOffset * resetButton.transform.up.normalized;
     }
 }
