@@ -8,6 +8,8 @@ TagManager:
   - SceneAnchor
   - WallAnchor
   - Table
+  - CueBall
+  - CueStick
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Non-Ball Collision
   - Ball-Only Collision
   - Ball
-  - 
+  - Glow
   - 
   - 
   - 
