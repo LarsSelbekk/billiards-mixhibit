@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3216892826011347906}
   - component: {fileID: -8827988309238336997}
   - component: {fileID: 4771804348449670141}
+  - component: {fileID: -5157515689880088114}
   m_Layer: 8
   m_Name: Ball
   m_TagString: Untagged
@@ -303,3 +304,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slowdownAngularSpeedThreshold: 8
   slowdownPerSecond: 1.75
+--- !u!114 &-5157515689880088114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3216892826011347896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed38eb93181d475983ea9d2f0b15f997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleFactor: 0.005
+  minAngularVelocity: 0.01
+  minVelocity: 0.01
