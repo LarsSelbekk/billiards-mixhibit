@@ -1409,7 +1409,7 @@ GameObject:
   - component: {fileID: 7406633427148918130}
   - component: {fileID: 5084171434739620575}
   - component: {fileID: 2973286771035889647}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Slate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

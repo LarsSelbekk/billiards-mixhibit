@@ -157,6 +157,9 @@ MonoBehaviour:
   cueTip: {fileID: 0}
   cueRayLayerMask:
     serializedVersion: 2
+    m_Bits: 897
+  cueBallRayLayerMask:
+    serializedVersion: 2
     m_Bits: 385
   tableSurface: {fileID: 0}
   maxHorizontalDistanceToCueBall: 0.5

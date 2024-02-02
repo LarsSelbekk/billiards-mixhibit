@@ -1,37 +1,46 @@
 // #define DEBUG_TRAINING_WHEELS
 
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Utils;
+
+#if DEBUG_TRAINING_WHEELS
+using System;
+using System.Linq;
 using Color = UnityEngine.Color;
+#endif
 
 [RequireComponent(typeof(LineRenderer))]
 public class PathPredictorTrainingWheels : MonoBehaviour
 {
     public MeshFilter cueTip;
     public LayerMask cueRayLayerMask;
+    public LayerMask cueBallRayLayerMask;
     public MeshCollider tableSurface;
     public float maxHorizontalDistanceToCueBall = 1.0f;
     public float maxVerticalDistanceToCueBall = 0.5f;
     public float maxCueBallRollDistance = 1f;
     public float ballRadius = 0.05715f / 2;
 
-    private const int RaycastHitsBufferSize = 100;
-
     private LineRenderer _lineRenderer;
     private Transform _cueTipTransform;
     private Mesh _cueTipMesh;
     private Bounds _tableSurfaceBounds;
+    private float _scaledBallRadius;
+    private float _scaledMaxHorizontalDistanceToCueBall;
+    private float _scaledMaxVerticalDistanceToCueBall;
+    private float _scaledMaxCueBallRollDistance;
 
 #if DEBUG_TRAINING_WHEELS
     private struct DebugPoint
     {
         public Vector3 Position;
         public Color? Color;
+        public bool IsOnPredictedPath;
     }
 
     private readonly List<DebugPoint> _debugPoints = new();
+    private Mesh _cylinderMesh;
 #endif
 
     private void OnEnable()
@@ -40,18 +49,22 @@ public class PathPredictorTrainingWheels : MonoBehaviour
         _cueTipTransform = cueTip.transform;
         _cueTipMesh = cueTip.mesh;
         _tableSurfaceBounds = tableSurface.bounds;
+
+#if DEBUG_TRAINING_WHEELS
+        _cylinderMesh = UnityEngine.Resources.GetBuiltinResource<Mesh>("Cylinder.fbx");
+#endif
     }
 
     private void FixedUpdate()
     {
-        var scaledBallRadius = TransformScalar(ballRadius);
-        var scaledMaxHorizontalDistanceToCueBall = TransformScalar(maxHorizontalDistanceToCueBall);
-        var scaledMaxVerticalDistanceToCueBall = Mathf.Pow(TransformScalar(maxVerticalDistanceToCueBall), 2);
-        var scaledMaxCueBallRollDistance = TransformScalar(maxCueBallRollDistance);
+        _scaledBallRadius = TransformScalar(ballRadius);
+        _scaledMaxHorizontalDistanceToCueBall = TransformScalar(maxHorizontalDistanceToCueBall);
+        _scaledMaxVerticalDistanceToCueBall = TransformScalar(maxVerticalDistanceToCueBall);
+        _scaledMaxCueBallRollDistance = TransformScalar(maxCueBallRollDistance);
 
         // Reset line renderer
         _lineRenderer.positionCount = 0;
-        _lineRenderer.startWidth = scaledBallRadius * 2;
+        _lineRenderer.startWidth = _scaledBallRadius * 2;
 
         var cueTipPosition = _cueTipTransform.TransformPoint(
             _cueTipMesh.bounds.center + _cueTipMesh.bounds.extents.z * Vector3.forward
@@ -60,11 +73,11 @@ public class PathPredictorTrainingWheels : MonoBehaviour
         // Collider bounds are axis-aligned and in world coords, so do not need to be transformed
         var heightCorrectedCueTipPosition = new Vector3(
             cueTipPosition.x,
-            _tableSurfaceBounds.center.y + _tableSurfaceBounds.extents.y + scaledBallRadius,
+            _tableSurfaceBounds.center.y + _tableSurfaceBounds.extents.y + _scaledBallRadius,
             cueTipPosition.z
         );
         var cueDirection =
-            _cueTipTransform.forward.AlignedToXZPlane().normalized * scaledMaxHorizontalDistanceToCueBall;
+            _cueTipTransform.forward.AlignedToXZPlane().normalized * _scaledMaxHorizontalDistanceToCueBall;
 
 #if DEBUG_TRAINING_WHEELS
         _debugPoints.Clear();
@@ -76,7 +89,7 @@ public class PathPredictorTrainingWheels : MonoBehaviour
             heightCorrectedCueTipPosition,
             cueDirection,
             out var cueRayHit,
-            scaledMaxHorizontalDistanceToCueBall,
+            _scaledMaxHorizontalDistanceToCueBall,
             cueRayLayerMask
         );
         if (!didRaycastFindObjects) return;
@@ -98,13 +111,13 @@ public class PathPredictorTrainingWheels : MonoBehaviour
 
         // Only show training wheels if cue tip is close enough to cue ball
         if (Mathf.Abs(_cueTipTransform.position.y - heightCorrectedCueTipPosition.y)
-            > scaledMaxVerticalDistanceToCueBall)
+            > _scaledMaxVerticalDistanceToCueBall)
         {
             return;
         }
 
         var predictedPath = GetPredictedBallPath(
-            scaledMaxCueBallRollDistance,
+            _scaledMaxCueBallRollDistance,
             cueDirection,
             cueBallRigidbody
         );
@@ -128,36 +141,51 @@ public class PathPredictorTrainingWheels : MonoBehaviour
         var nextDirection = initialDirection.normalized;
         var nextPosition = ballRigidbody.position;
         var points = new List<Vector3> { nextPosition };
-        var hits = new RaycastHit[RaycastHitsBufferSize];
 
-        // TODO: account for radius of ball - send multiple rays
+#if DEBUG_TRAINING_WHEELS
+        _debugPoints.Add(new DebugPoint { Position = nextPosition, IsOnPredictedPath = true });
+#endif
+
         while (remainingDistance > 0f)
         {
-            var numHits =
-                Physics.RaycastNonAlloc(nextPosition, nextDirection, hits, remainingDistance, cueRayLayerMask);
-            var potentialHit = hits[..numHits]
-                .OrderBy(raycastHit => raycastHit.distance)
-                .Where(raycastHit => raycastHit.rigidbody != ballRigidbody)
-                .Cast<RaycastHit?>()
-                .FirstOrDefault();
+            var didHit = Physics.SphereCast(
+                nextPosition,
+                _scaledBallRadius,
+                nextDirection,
+                out var hit,
+                remainingDistance,
+                cueBallRayLayerMask
+            );
 
-            if (potentialHit is { } hit)
+            if (didHit)
             {
+                var newCenter = nextPosition + nextDirection * hit.distance;
+
 #if DEBUG_TRAINING_WHEELS
-                Debug.DrawRay(nextPosition, nextDirection.normalized * hit.distance, Color.yellow);
-                Debug.DrawRay(nextPosition, nextDirection.normalized * hit.distance, Color.yellow);
+                Debug.DrawRay(nextPosition, nextDirection * hit.distance, Color.yellow);
+                _debugPoints.Add(
+                    new DebugPoint { Position = newCenter, Color = Color.blue, IsOnPredictedPath = true }
+                );
                 _debugPoints.Add(new DebugPoint { Position = hit.point, Color = Color.red });
 #endif
 
-                points.Add(hit.point);
+                points.Add(newCenter);
                 remainingDistance -= hit.distance;
                 nextDirection = Vector3.Reflect(nextDirection, hit.normal).AlignedToXZPlane().normalized;
-                nextPosition = hit.point;
+                nextPosition = newCenter;
             }
             else
             {
 #if DEBUG_TRAINING_WHEELS
-                Debug.DrawRay(nextPosition, nextDirection.normalized * remainingDistance, Color.yellow);
+                Debug.DrawRay(nextPosition, nextDirection * remainingDistance, Color.yellow);
+                _debugPoints.Add(
+                    new DebugPoint
+                    {
+                        Position = nextPosition + nextDirection * remainingDistance,
+                        Color = Color.red,
+                        IsOnPredictedPath = true
+                    }
+                );
 #endif
 
                 points.Add(nextPosition + nextDirection * remainingDistance);
@@ -180,6 +208,24 @@ public class PathPredictorTrainingWheels : MonoBehaviour
         {
             Gizmos.color = debugPoint.Color ?? Color.yellow;
             Gizmos.DrawCube(debugPoint.Position, Vector3.one * 0.005f);
+        }
+
+        var pathPoints = _debugPoints.Where(p => p.IsOnPredictedPath).Select(p => p.Position).ToArray();
+
+        foreach (var (startPoint, endPoint) in pathPoints
+                     .SkipLast(1)
+                     .Zip(pathPoints.Skip(1), Tuple.Create)
+                )
+        {
+            Gizmos.color = Color.gray;
+
+            Gizmos.DrawWireMesh(
+                _cylinderMesh,
+                startPoint + (endPoint - startPoint) / 2,
+                Quaternion.FromToRotation(Vector3.up, endPoint - startPoint),
+                new Vector3(_scaledBallRadius, (endPoint - startPoint).magnitude / 2, _scaledBallRadius)
+            );
+            Gizmos.DrawWireSphere(endPoint, _scaledBallRadius);
         }
     }
 #endif

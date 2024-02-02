@@ -13,6 +13,10 @@ PrefabInstance:
       value: BallCue
       objectReference: {fileID: 0}
     - target: {fileID: 3216892826011347896, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216892826011347896, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
       propertyPath: m_TagString
       value: CueBall
       objectReference: {fileID: 0}
