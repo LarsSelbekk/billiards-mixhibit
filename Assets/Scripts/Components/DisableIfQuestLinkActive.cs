@@ -1,9 +1,8 @@
-using System.Collections;
 using UnityEngine;
 
 public class DisableIfQuestLinkActive : MonoBehaviour
 {
-    void Start()
+    void Awake()
     {
         if (OVRPlugin.GetSystemHeadsetType() is OVRPlugin.SystemHeadset.Oculus_Link_Quest or OVRPlugin.SystemHeadset
                 .Oculus_Link_Quest_2 or OVRPlugin.SystemHeadset.Meta_Link_Quest_Pro
