@@ -18,10 +18,21 @@ public class BallRotationFrictionifier : MonoBehaviour
 
     public void FixedUpdate()
     {
-        // TODO: handle scaling
-        if (_rigidbody.angularVelocity.magnitude > minAngularVelocity && _rigidbody.velocity.magnitude > minVelocity)
+        var scaledMinVelocity = TransformScalar(minVelocity);
+        if (_rigidbody.angularVelocity.magnitude > minAngularVelocity
+            && _rigidbody.velocity.magnitude > scaledMinVelocity)
         {
-            _rigidbody.AddForce((Vector3.Cross(_rigidbody.velocity, _rigidbody.angularVelocity) * scaleFactor).AlignedToXZPlane());
+            _rigidbody.AddForce(
+                (Vector3.Cross(
+                     _rigidbody.angularVelocity,
+                     transform.TransformVector(_rigidbody.velocity)
+                 ) * scaleFactor).AlignedToXZPlane()
+            );
         }
+    }
+
+    private float TransformScalar(float scalar)
+    {
+        return transform.TransformVector(Vector3.forward * scalar).magnitude;
     }
 }
