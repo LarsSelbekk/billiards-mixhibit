@@ -159,6 +159,9 @@ MonoBehaviour:
   cueBallRayLayerMask:
     serializedVersion: 2
     m_Bits: 385
+  cueBallLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
   tableSurface: {fileID: 0}
   maxHorizontalDistanceToCueBall: 0.5
   maxVerticalDistanceToCueBall: 0.5

@@ -1,12 +1,13 @@
 // #define DEBUG_TRAINING_WHEELS
 
 using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 using Utils;
 
 #if DEBUG_TRAINING_WHEELS
 using System;
-using System.Linq;
 using Color = UnityEngine.Color;
 #endif
 
@@ -16,6 +17,7 @@ public class PathPredictorTrainingWheels : MonoBehaviour
     public MeshFilter cueTip;
     public LayerMask cueRayLayerMask;
     public LayerMask cueBallRayLayerMask;
+    public LayerMask cueBallLayerMask;
     public MeshCollider tableSurface;
     public float maxHorizontalDistanceToCueBall = 1.0f;
     public float maxVerticalDistanceToCueBall = 0.5f;
@@ -25,11 +27,16 @@ public class PathPredictorTrainingWheels : MonoBehaviour
     private LineRenderer _lineRenderer;
     private Transform _cueTipTransform;
     private Mesh _cueTipMesh;
-    private Bounds _tableSurfaceBounds;
     private float _scaledBallRadius;
     private float _scaledMaxHorizontalDistanceToCueBall;
     private float _scaledMaxVerticalDistanceToCueBall;
     private float _scaledMaxCueBallRollDistance;
+
+    private struct FindCueBallResult
+    {
+        public Vector3 CueDirection;
+        public Rigidbody CueBallRigidbody;
+    }
 
 #if DEBUG_TRAINING_WHEELS
     private struct DebugPoint
@@ -40,15 +47,17 @@ public class PathPredictorTrainingWheels : MonoBehaviour
     }
 
     private readonly List<DebugPoint> _debugPoints = new();
+    private ValueTuple<Vector3, float, Color>? _debugOverlapSphere;
+
     private Mesh _cylinderMesh;
 #endif
+
 
     private void OnEnable()
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _cueTipTransform = cueTip.transform;
         _cueTipMesh = cueTip.mesh;
-        _tableSurfaceBounds = tableSurface.bounds;
 
 #if DEBUG_TRAINING_WHEELS
         _cylinderMesh = UnityEngine.Resources.GetBuiltinResource<Mesh>("Cylinder.fbx");
@@ -66,25 +75,98 @@ public class PathPredictorTrainingWheels : MonoBehaviour
         _lineRenderer.positionCount = 0;
         _lineRenderer.startWidth = _scaledBallRadius * 2;
 
+        if (FindCueBall() is not { } findCueBallResult) return;
+
+        var predictedPath = GetPredictedBallPath(
+            _scaledMaxCueBallRollDistance,
+            findCueBallResult.CueDirection,
+            findCueBallResult.CueBallRigidbody
+        );
+
+        // Update line renderer
+        _lineRenderer.positionCount = predictedPath.Length;
+        _lineRenderer.SetPositions(predictedPath);
+    }
+
+    private FindCueBallResult? FindCueBall()
+    {
         var cueTipPosition = _cueTipTransform.TransformPoint(
             _cueTipMesh.bounds.center + _cueTipMesh.bounds.extents.z * Vector3.forward
         );
 
         // Collider bounds are axis-aligned and in world coords, so do not need to be transformed
+        var tableSurfaceBounds = tableSurface.bounds;
         var heightCorrectedCueTipPosition = new Vector3(
             cueTipPosition.x,
-            _tableSurfaceBounds.center.y + _tableSurfaceBounds.extents.y + _scaledBallRadius,
+            tableSurfaceBounds.center.y + tableSurfaceBounds.extents.y + _scaledBallRadius,
             cueTipPosition.z
         );
+
+        // Only show training wheels if cue tip is close enough to cue ball
+        if (Mathf.Abs(_cueTipTransform.position.y - heightCorrectedCueTipPosition.y)
+            > _scaledMaxVerticalDistanceToCueBall)
+        {
+            return null;
+        }
+
         var cueDirection =
             _cueTipTransform.forward.AlignedToXZPlane().normalized * _scaledMaxHorizontalDistanceToCueBall;
 
 #if DEBUG_TRAINING_WHEELS
         _debugPoints.Clear();
+        _debugOverlapSphere = null;
         Debug.DrawRay(heightCorrectedCueTipPosition, cueDirection, Color.green);
 #endif
 
-        // Shoot a ray from the height-corrected cue tip position to see if we're pointing at a cue ball
+        if ((
+                FindOverlappingCueBall(heightCorrectedCueTipPosition)
+                ?? FindPointedAtCueBall(heightCorrectedCueTipPosition, cueDirection)
+            ) is not { } cueBallRigidbody)
+        {
+            return null;
+        }
+
+        return new FindCueBallResult
+        {
+            CueDirection = cueDirection,
+            CueBallRigidbody = cueBallRigidbody
+        };
+    }
+
+    /**
+     * Check if cue tip (height-corrected) is inside a cue ball
+     */
+    [CanBeNull]
+    private Rigidbody FindOverlappingCueBall(Vector3 heightCorrectedCueTipPosition)
+    {
+        var collidingObjects = new Collider[1];
+        var numOverlapping = Physics.OverlapSphereNonAlloc(
+            heightCorrectedCueTipPosition,
+            TransformScalar(0.1f),
+            collidingObjects,
+            cueBallLayerMask
+        );
+
+#if DEBUG_TRAINING_WHEELS
+        _debugOverlapSphere = ValueTuple.Create(
+            heightCorrectedCueTipPosition,
+            TransformScalar(0.1f),
+            numOverlapping
+            > 0
+                ? Color.green
+                : Color.red
+        );
+#endif
+
+        return numOverlapping > 0 ? collidingObjects.First().attachedRigidbody : null;
+    }
+
+    /**
+     * Shoot a ray from the height-corrected cue tip position to see if we're pointing at a cue ball
+     */
+    [CanBeNull]
+    private Rigidbody FindPointedAtCueBall(Vector3 heightCorrectedCueTipPosition, Vector3 cueDirection)
+    {
         var didRaycastFindObjects = Physics.Raycast(
             heightCorrectedCueTipPosition,
             cueDirection,
@@ -92,7 +174,8 @@ public class PathPredictorTrainingWheels : MonoBehaviour
             _scaledMaxHorizontalDistanceToCueBall,
             cueRayLayerMask
         );
-        if (!didRaycastFindObjects) return;
+
+        if (!didRaycastFindObjects) return null;
 
 #if DEBUG_TRAINING_WHEELS
         _debugPoints.Add(
@@ -106,25 +189,7 @@ public class PathPredictorTrainingWheels : MonoBehaviour
         );
 #endif
 
-        if (!cueRayHit.transform.gameObject.CompareTag("CueBall")) return;
-        var cueBallRigidbody = cueRayHit.rigidbody;
-
-        // Only show training wheels if cue tip is close enough to cue ball
-        if (Mathf.Abs(_cueTipTransform.position.y - heightCorrectedCueTipPosition.y)
-            > _scaledMaxVerticalDistanceToCueBall)
-        {
-            return;
-        }
-
-        var predictedPath = GetPredictedBallPath(
-            _scaledMaxCueBallRollDistance,
-            cueDirection,
-            cueBallRigidbody
-        );
-
-        // Update line renderer
-        _lineRenderer.positionCount = predictedPath.Length;
-        _lineRenderer.SetPositions(predictedPath);
+        return cueRayHit.transform.gameObject.CompareTag("CueBall") ? cueRayHit.rigidbody : null;
     }
 
     /**
@@ -226,6 +291,12 @@ public class PathPredictorTrainingWheels : MonoBehaviour
                 new Vector3(_scaledBallRadius, (endPoint - startPoint).magnitude / 2, _scaledBallRadius)
             );
             Gizmos.DrawWireSphere(endPoint, _scaledBallRadius);
+        }
+
+        if (_debugOverlapSphere is { } sphere)
+        {
+            Gizmos.color = sphere.Item3;
+            Gizmos.DrawWireSphere(sphere.Item1, sphere.Item2);
         }
     }
 #endif
