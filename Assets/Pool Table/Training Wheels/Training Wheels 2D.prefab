@@ -163,6 +163,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   tableSurface: {fileID: 0}
+  maxBounces: 3
   maxHorizontalDistanceToCueBall: 0.5
   maxVerticalDistanceToCueBall: 0.5
   maxCueBallRollDistance: 3

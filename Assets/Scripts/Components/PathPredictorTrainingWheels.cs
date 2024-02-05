@@ -19,6 +19,10 @@ public class PathPredictorTrainingWheels : MonoBehaviour
     public LayerMask cueBallRayLayerMask;
     public LayerMask cueBallLayerMask;
     public MeshCollider tableSurface;
+
+    [Min(0), Tooltip("Number of bounces after which to stop predicting path. Set to 0 for unlimited.")]
+    public int maxBounces = 3;
+
     public float maxHorizontalDistanceToCueBall = 1.0f;
     public float maxVerticalDistanceToCueBall = 0.5f;
     public float maxCueBallRollDistance = 1f;
@@ -31,6 +35,8 @@ public class PathPredictorTrainingWheels : MonoBehaviour
     private float _scaledMaxHorizontalDistanceToCueBall;
     private float _scaledMaxVerticalDistanceToCueBall;
     private float _scaledMaxCueBallRollDistance;
+    private static readonly int Scale = Shader.PropertyToID("_Scale");
+    private static readonly int MaxLength = Shader.PropertyToID("_MaxLength");
 
     private struct FindCueBallResult
     {
@@ -86,6 +92,8 @@ public class PathPredictorTrainingWheels : MonoBehaviour
         // Update line renderer
         _lineRenderer.positionCount = predictedPath.Length;
         _lineRenderer.SetPositions(predictedPath);
+        _lineRenderer.material.SetFloat(Scale, TransformScalar(1.0f));
+        _lineRenderer.material.SetFloat(MaxLength, _scaledMaxCueBallRollDistance);
     }
 
     private FindCueBallResult? FindCueBall()
@@ -206,12 +214,13 @@ public class PathPredictorTrainingWheels : MonoBehaviour
         var nextDirection = initialDirection.normalized;
         var nextPosition = ballRigidbody.position;
         var points = new List<Vector3> { nextPosition };
+        var remainingBounces = maxBounces == 0 ? int.MaxValue : maxBounces;
 
 #if DEBUG_TRAINING_WHEELS
         _debugPoints.Add(new DebugPoint { Position = nextPosition, IsOnPredictedPath = true });
 #endif
 
-        while (remainingDistance > 0f)
+        while (remainingDistance > 0f && remainingBounces-- > 0)
         {
             var didHit = Physics.SphereCast(
                 nextPosition,
