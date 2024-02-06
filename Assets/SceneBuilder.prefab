@@ -87,5 +87,6 @@ MonoBehaviour:
   - {fileID: 7160578538381212338, guid: 84c52d19977fb0741b3ee62781201bd8, type: 3}
   - {fileID: 5972089699669510483, guid: 6451bc2dfa0cbd34c8f6773d4dabb685, type: 3}
   - {fileID: 4055878467107577637, guid: c3c5e9946d138824c9da7bef9fdd42b6, type: 3}
-  tableHolder: {fileID: 6741826109109845322, guid: ec6eff33948f9224e9ab11bf3ba589b8, type: 3}
+  - {fileID: 5668290336698634722, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
+  tableHolder: {fileID: 7611338698995758149, guid: ec6eff33948f9224e9ab11bf3ba589b8, type: 3}
   resetButton: {fileID: 8273211446339589601, guid: a397a485d45b09c4dbdfed06fbef5bd1, type: 3}
