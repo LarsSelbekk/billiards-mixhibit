@@ -576,42 +576,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5457617285220920853, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
-      propertyPath: m_Parameters.textureMode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457617285220920853, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
-      propertyPath: m_Parameters.textureScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457617285220920853, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
-      propertyPath: m_Parameters.textureScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457617285220920853, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
-      propertyPath: m_Positions.Array.data[1].x
-      value: -0.44022185
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457617285220920853, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
-      propertyPath: m_Positions.Array.data[1].z
-      value: 1.0012498
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457617285220920853, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
-      propertyPath: m_Positions.Array.data[3].x
-      value: 0.5962701
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457617285220920853, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
-      propertyPath: m_Positions.Array.data[3].z
-      value: 0.5574238
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457617285220920853, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
-      propertyPath: m_Positions.Array.data[4].x
-      value: 0.64969313
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457617285220920853, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
-      propertyPath: m_Positions.Array.data[4].z
-      value: 0.81543535
-      objectReference: {fileID: 0}
     - target: {fileID: 5668290336698634722, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
       propertyPath: m_Name
       value: Training Wheels

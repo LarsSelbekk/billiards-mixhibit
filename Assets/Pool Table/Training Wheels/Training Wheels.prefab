@@ -79,11 +79,10 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -0.75247884, y: 0.80055183, z: 1.0001874}
-  - {x: 0.20884965, y: 0.8005518, z: 0.9601951}
-  - {x: 0.2980529, y: 0.8005518, z: 0.3920055}
-  - {x: 0.48682746, y: 0.8005518, z: 0.8581183}
-  - {x: 0.98270345, y: 0.8005518, z: 0.39442995}
+  - {x: -0.7210983, y: 0.008477271, z: 0.015092075}
+  - {x: 0.39320773, y: 0.036738098, z: -0.14080286}
+  - {x: -0.15200305, y: 0.017705038, z: -0.60518706}
+  - {x: -1.235637, y: 0.036398113, z: 0.15616924}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -181,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3763923003
+  GlobalObjectIdHash: 423589795
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 0
   ActiveSceneSynchronization: 0
