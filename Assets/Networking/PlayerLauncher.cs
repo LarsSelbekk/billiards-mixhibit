@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.Collections;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
@@ -25,8 +26,10 @@ namespace Networking
 
         public StartType editorStartType = StartType.Server;
         public StartType nonEditorStartType = StartType.Client;
+        public bool automaticallyLaunch;
 
         private NetworkManager _networkManager;
+        private UnityTransport _unityTransport;
 
         private void Start()
         {
@@ -35,22 +38,26 @@ namespace Networking
             {
                 throw new MissingComponentException("Missing NetworkManager component");
             }
-            var unityTransport = GetComponent<UnityTransport>();
-            if (unityTransport == null)
+
+            _unityTransport = GetComponent<UnityTransport>();
+            if (_unityTransport == null)
             {
                 throw new MissingComponentException("Missing UnityTransport component");
             }
 
-            _hostIP = unityTransport.ConnectionData.Address;
+            _hostIP = _unityTransport.ConnectionData.Address;
 
-            LaunchPlayer();
+            if (automaticallyLaunch)
+            {
+                LaunchPlayer();
+            }
         }
 
         private void LaunchPlayer()
         {
 #if UNITY_EDITOR
-            if (ClonesManager.IsClone() &&
-                Enum.TryParse(ClonesManager.GetArgument(), true, out StartType argumentStartType))
+            if (ClonesManager.IsClone()
+                && Enum.TryParse(ClonesManager.GetArgument(), true, out StartType argumentStartType))
             {
                 LaunchPlayerAs(argumentStartType);
                 return;
@@ -65,9 +72,17 @@ namespace Networking
             LaunchPlayerAs(Application.isEditor ? editorStartType : nonEditorStartType);
         }
 
-        private void LaunchPlayerAs(StartType startType)
+        public void Shutdown()
         {
+            _networkManager.Shutdown();
+        }
+
+        public bool LaunchPlayerAs(StartType startType)
+        {
+            Shutdown();
+
             Debug.Log($"Launching player as '{startType}'");
+            Debug.Log($"Server URL: {_unityTransport.ConnectionData.Address}");
 #pragma warning disable CS8524 // The switch expression does not handle some values of its input type (it is not exhaustive) involving an unnamed enum value.
             var success = startType switch
 #pragma warning restore CS8524 // The switch expression does not handle some values of its input type (it is not exhaustive) involving an unnamed enum value.
@@ -85,6 +100,13 @@ namespace Networking
             {
                 Debug.LogError($"Failed to launch player as {startType}");
             }
+
+            return success;
+        }
+
+        public void SetServerUrl(string serverUrl)
+        {
+            _unityTransport.ConnectionData.Address = serverUrl;
         }
     }
 }

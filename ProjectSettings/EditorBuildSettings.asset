@@ -5,10 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Billiards Mixhibit.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Spectator View.unity
+    guid: 1d5d6a037559258479acc8e1f4a4d903
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: d791eb24934c54d469fab2c469ec6506, type: 2}
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 8cc9adeb2603c1348b68b70651b4d41e, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: dfaca445dfcaac94d93cf1b9eb4cb70b, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0f8d249ac0e287840bd3232256b72cd6, type: 2}
   m_UseUCBPForAssetBundles: 0

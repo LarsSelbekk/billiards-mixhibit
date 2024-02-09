@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Move: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_UIScroll: {fileID: 2464016903823916871, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_SmoothMotionEnabled: 1
-  m_SmoothTurnEnabled: 0
+  m_SmoothTurnEnabled: 1
   m_UIScrollingEnabled: 1
   m_RayInteractorChanged:
     m_PersistentCalls:
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_StartingGroupMembers:
   - {fileID: 4343660526480754339}
   - {fileID: 2434299456458490401}
-  - {fileID: 285389467476424711}
+  - {fileID: 0}
   m_StartingInteractionOverridesMap:
   - groupMember: {fileID: 4343660526480754339}
     overrideGroupMembers:
@@ -387,8 +387,8 @@ MonoBehaviour:
   m_SnapTurn: {fileID: -8525429354371678379, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_Move: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_UIScroll: {fileID: -6756787485274679044, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_SmoothMotionEnabled: 0
-  m_SmoothTurnEnabled: 0
+  m_SmoothMotionEnabled: 1
+  m_SmoothTurnEnabled: 1
   m_UIScrollingEnabled: 1
   m_RayInteractorChanged:
     m_PersistentCalls:
