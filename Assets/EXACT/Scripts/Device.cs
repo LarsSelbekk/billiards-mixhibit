@@ -237,5 +237,10 @@ namespace Exact
                 deviceComponents[component].OnValue(variable, payload);
             }
         }
+
+        public override string ToString()
+        {
+            return $"[{deviceId}, {deviceName}, {deviceType}]";
+        }
     }
 }

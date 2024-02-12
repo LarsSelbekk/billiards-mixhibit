@@ -58,6 +58,7 @@ namespace Exact
             {
                 devices.Add(device);
                 mqttHandler.AddDevice(device);
+                mqttHandler.SendMessageImediate("exact/all_devices/are_you_connected");
             }
         }
 
