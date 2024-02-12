@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5845766260964558767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5845766260964558754}
+  - component: {fileID: 5845766260964558765}
+  - component: {fileID: 5845766260964558764}
+  - component: {fileID: 5845766260964558755}
+  - component: {fileID: 6248777810409436740}
+  - component: {fileID: 4893909724474844118}
+  - component: {fileID: 1959581977117122854}
+  m_Layer: 0
+  m_Name: RedTile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5845766260964558754
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845766260964558767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5845766260964558765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845766260964558767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae0d276d61c4794eb7e11dfe50deeeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linked: 0
+  OnConnect:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDisconnect:
+    m_PersistentCalls:
+      m_Calls: []
+  deviceId: 
+  useDeviceName: 0
+  deviceName: 
+  useDeviceType: 1
+  deviceType: exactredtile
+--- !u!114 &5845766260964558764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845766260964558767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8051acf93a6eef4d837f6a132d48846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniformColor: {r: 0, g: 0, b: 0, a: 1}
+  intensity: 0.3
+  rotation: 0
+  numLeds: 24
+  colorRing: {fileID: 0}
+--- !u!114 &5845766260964558755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845766260964558767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9ba8b79c9a1a04f9293b89410a0501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 0.975
+  OnTap:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6248777810409436740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845766260964558767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb79c5ed9bca034c92a084d3e84a259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 1
+  sampleRate: 44100
+  waveLengthInSeconds: 2
+--- !u!114 &4893909724474844118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845766260964558767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3694baf0deb3a9643bf01d040004bbea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  readerEnabled: 0
+  OnEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959581977117122854}
+        m_TargetAssemblyTypeName: Exact.Example.DiceDetector, Assembly-CSharp
+        m_MethodName: OnRFIDEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1959581977117122854}
+        m_TargetAssemblyTypeName: Exact.Example.DiceDetector, Assembly-CSharp
+        m_MethodName: OnRFIDExit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1959581977117122854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845766260964558767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94435226489b3a3438d8f70762c1ef10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - 04:71:57:F2:74:4C:80
+  - 04:61:59:F2:74:4C:80
+  - 04:57:59:F2:74:4C:80
+  - 04:65:58:F2:74:4C:80
+  - 04:5C:59:F2:74:4C:80
+  - 04:6C:57:F2:74:4C:80
+  OnDiceUpdate:
+    m_PersistentCalls:
+      m_Calls: []
