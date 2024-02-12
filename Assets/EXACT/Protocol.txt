@@ -1,0 +1,120 @@
+﻿===============================================================================
+	EXACT MQTT protocol
+===============================================================================
+
+This protocol should be robust to lost connections.
+Each device must have a unique mac address <mac>.
+Each device can hava an optional <device_type> and <device_name> to help
+linking with specific twins in Unity.
+
+-------------------------------------------------------------------------------
+	Device
+-------------------------------------------------------------------------------
+
+On startup, keep looking until you find the broker: 
+  - Device connects to MQTT broker with 
+	Last Will topic = "exact/disconnected/<mac>" 
+	Last will time  = 2 seconds
+	
+  - Subscribe to relevant topics
+	Subscribe: "exact/<mac>/#"          # Messages to this device only.
+	Subscribe: "exact/all_devices/#"    # Messages to all devices.
+  
+  - Attempt to connect to Unity.
+	Publish:
+		Topic:   "exact/connected/<mac>/<device_type>/<device_name>"
+
+On lost connection to broker: 
+  Reset all components, like the led ring and sound.
+  Keep looking until detected. Then do as startup above.
+
+Unity asks add devices to connect:
+	Incomming message:
+		Topic:   "exact/all_devices/are_you_connected"
+	Publish:
+		Topic:   "exact/connected/<mac>/<device_type>/<device_name>" 
+
+Ping:
+	Incomming message:
+		Topic:   "exact/<mac>/ping":
+	Publish:
+		Topic:   "exact/ping_ack/<mac>"
+
+Unity game ended:
+	Incomming message:
+		Topic:   "exact/all_devices/reset_all_components"
+	Reset all components, e.g. led ring and sound.
+
+Unity wants the device to perform an action: 
+	Incomming message:
+		Topic:   "exact/<mac>/action/<component>/<action_name>"
+		Payload: <action_data>
+	Decode the action data and do the action on the component.
+
+Unity wants to know the value of a variable on the device: 
+	Incomming message:
+		Topic:   "exact/<mac>/get/<component>/<variable_name>"  
+	Get data value from the component.
+	Publish: 
+		Topic:   "exact/device_message/<mac>/value/<component>/<variable_name>"
+		Payload: <value>
+
+On an event happening on the device, e.g. a button being pressed:
+	Publish: 
+		Topic:   "exact/device_message/<mac>/event/<component>/<event_name>"
+		Payload: <event_data>
+
+-------------------------------------------------------------------------------
+	UNITY
+-------------------------------------------------------------------------------
+
+On startup, keep looking until you find the broker: 
+  - Unity connects to MQTT broker with 
+	Last Will topic = "exact/all_devices/reset_all_components"
+  
+  - Subscribe to relevant topics
+	"exact/connected/#"
+	"exact/disconnected/#"
+	"exact/device_message/#"
+  
+  - Tell all devices connected to report back who they are, type and id.
+	Publish:
+		Topic:   "exact/all_devices/are_you_connected"  
+
+Device wants to connect:
+	Incomming message: 
+		Topic:   "exact/connected/<mac>/<device_type>/<device_name>"
+	Find the right twin object and link it to the physical device.
+
+A device lost connection:
+	Incomming message:
+		Topic:   "exact/disconnected/<mac>"
+	This is the last will from broker.
+	Set this device twin to not be linked to a physical device.
+
+To perform an action on a physical object: 
+	Publish:
+		Topic:   "exact/<mac>/action/<component>/<action_name>"
+		Payload: <action_data>
+  
+To request a value from a physical object: 
+	Publish:
+		Topic:   "exact/<mac>/get/<component>/<variable_name>"  
+
+To recieve a value from a physical object:
+	Incomming message: 
+		Topic:   "exact/device_message/<mac>/value/<component>/<variable_name>"
+		Payload: <variable_value>
+	Set that value in the twin object
+
+An event happening on a physical object: 
+	Publish:
+		Topic:   "exact/device_message/<mac>/event/<component>/<event_name>"
+		Payload: <event_data>
+		
+-------------------------------------------------------------------------------
+	Contributors
+-------------------------------------------------------------------------------
+
+Dag Svanaes, 2019
+Eivind Vold Aunebakk, 2022

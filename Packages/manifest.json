@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.dbrizov.naughtyattributes": "https://github.com/dbrizov/NaughtyAttributes.git#upm",
     "com.meta.xr.depthapi": "https://github.com/oculus-samples/Unity-DepthAPI.git?path=/Packages/com.meta.xr.depthapi",
     "com.meta.xr.depthapi.urp": "https://github.com/oculus-samples/Unity-DepthAPI.git?path=/Packages/com.meta.xr.depthapi.urp",
     "com.meta.xr.mrutilitykit": "file:../LocalPackages/com.meta.xr.mrutilitykit-60.0.0.tgz",
@@ -12,9 +13,9 @@
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.device-simulator.devices": "1.0.0",
     "com.unity.feature.development": "1.0.2",
+    "com.unity.netcode.gameobjects": "1.7.1",
     "com.unity.render-pipelines.universal": "16.0.4",
     "com.unity.shadergraph": "16.0.4",
-    "com.unity.netcode.gameobjects": "1.7.1",
     "com.unity.timeline": "1.8.6",
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.8.0",
