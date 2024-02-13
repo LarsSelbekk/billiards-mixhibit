@@ -60,7 +60,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pocketPrefab: {fileID: -1886958261731361093, guid: d61ea0eaef5a1804a90aee10551ef574, type: 3}
   connectedPulseTime: 10
-  scoredFadeTime: 3
+  scoredPulseTime: 2
+  endPulseTime: 1
+  scoredFadeTime: 10
+  scoredIntensity: 0.5
+  scoredSegments: 8
   deviceConfigs:
   - type: 0
     value: 007

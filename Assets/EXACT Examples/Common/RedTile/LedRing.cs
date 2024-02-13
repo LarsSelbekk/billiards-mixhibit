@@ -20,8 +20,7 @@ namespace Exact.Example
         [SerializeField, OnValueChanged("OnRotationChanged"), Range(0, 360)]
         int rotation = 0;
 
-        [SerializeField]
-        int numLeds = 24;
+        public int NumLeds { get; protected set; } = 24;
 
         [SerializeField]
         ColorRingBase colorRing;
@@ -30,7 +29,7 @@ namespace Exact.Example
         {
             base.Awake();
 
-            colorRing.SetNumberOfSegments(numLeds);
+            colorRing.SetNumberOfSegments(NumLeds);
             colorRing.SetUniformColor(uniformColor);
             colorRing.SetIntensity(intensity);
         }
