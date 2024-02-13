@@ -68,21 +68,21 @@ MonoBehaviour:
     pocketLocation: 0
   - type: 0
     value: 021
-    connectedColor: {r: 0, g: 0.018923283, b: 1, a: 0}
+    connectedColor: {r: 0.0107040405, g: 0, b: 1, a: 0}
     pocketLocation: 2
   - type: 0
     value: 022
-    connectedColor: {r: 0.26230907, g: 1, b: 0, a: 0}
+    connectedColor: {r: 0, g: 1, b: 0.89932394, a: 0}
     pocketLocation: 3
   - type: 1
     value: dicebase2
-    connectedColor: {r: 1, g: 0.9725491, b: 0, a: 0}
+    connectedColor: {r: 0.97264934, g: 1, b: 0, a: 0}
     pocketLocation: 5
   - type: 1
     value: dicebase2
-    connectedColor: {r: 1, g: 0, b: 0.8431373, a: 0}
-    pocketLocation: 3
+    connectedColor: {r: 0, g: 1, b: 0.06666667, a: 0}
+    pocketLocation: 1
   - type: 1
     value: dicebase2
-    connectedColor: {r: 1, g: 0.5686275, b: 0, a: 0}
-    pocketLocation: 3
+    connectedColor: {r: 1, g: 0, b: 0.8163533, a: 0}
+    pocketLocation: 4

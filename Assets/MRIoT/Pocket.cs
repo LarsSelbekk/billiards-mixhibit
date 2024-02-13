@@ -20,6 +20,8 @@ namespace MRIoT
         [SerializeField] private Color disconnectedColor = Color.gray;
         [SerializeField] private float disconnectedIntensity = 0.5f;
 
+        [SerializeField, ReadOnlyInInspector] private PocketEnum pocketLocation;
+
         private void Awake()
         {
             Device = GetComponent<Device>();
@@ -30,10 +32,11 @@ namespace MRIoT
             }
         }
 
-        public void SetConnectedColorAndPulseTime(Color newColor, float newConnectedPulseTime)
+        public void Initialize(Color newColor, float newConnectedPulseTime, PocketEnum newPocketLocation)
         {
             connectedColor = newColor;
             connectedPulseTime = newConnectedPulseTime;
+            pocketLocation = newPocketLocation;
             if (Device.GetLinkStatus())
             {
                 Connected();
@@ -43,11 +46,31 @@ namespace MRIoT
         public void Connected()
         {
             LedRing.StartPulsing(connectedColor, 0, 1, connectedPulseTime);
+            var detectors = FindObjectsByType<PocketDetector>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            PocketDetector? selected = null;
+            foreach (var e in detectors)
+            {
+                if (e.GetPocketLocation() != pocketLocation) continue;
+                selected = e;
+                e.SetColor(connectedColor);
+                break;
+            }
+            Debug.LogWarning($"Pocket Connected called SetColor on {selected}");
         }
 
         public void Disconnected()
         {
             LedRing.SetColorAndIntensity(disconnectedColor, disconnectedIntensity);
+            var detectors = FindObjectsByType<PocketDetector>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            PocketDetector? selected = null;
+            foreach (var e in detectors)
+            {
+                if (e.GetPocketLocation() != pocketLocation) continue;
+                selected = e;
+                e.SetColor(disconnectedColor);
+                break;
+            }
+            Debug.LogWarning($"Pocket Disconnected called SetColor on {selected}");
         }
     }
 }

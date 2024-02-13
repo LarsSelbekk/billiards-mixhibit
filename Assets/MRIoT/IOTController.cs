@@ -65,6 +65,7 @@ namespace MRIoT
                             throw new ArgumentException("Device Type must be set in the prefab due to missing functionality in the API");
                         }
                         pocket.Device.useDeviceType = true;
+                        // TODO: Implement properly
                         // pocket.Device.SetDeviceType(config.value);
                         break;
                     case DeviceConfigType.DeviceName:
@@ -77,7 +78,7 @@ namespace MRIoT
                 _pockets.Add(config.pocketLocation, pocket);
 
                 pocket.LedRing.SetColor(config.connectedColor);
-                pocket.SetConnectedColorAndPulseTime(config.connectedColor, connectedPulseTime);
+                pocket.Initialize(config.connectedColor, connectedPulseTime, config.pocketLocation);
             }
         }
 
