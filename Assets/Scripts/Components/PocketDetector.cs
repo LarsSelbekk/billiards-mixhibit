@@ -29,7 +29,7 @@ public class PocketDetector : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var ball = other.gameObject;
-        var substring = ball.name.Substring("Ball".Length, 2); 
+        var substring = ball.name.Substring("Ball".Length, 2);
         var index = ball.name.Contains("BallCue") ? 0 : int.Parse(substring);
 
         var iotController = FindFirstObjectByType<IOTController>();
@@ -45,7 +45,7 @@ public class PocketDetector : MonoBehaviour
 
     public void SetColor(Color color)
     {
-        Debug.LogWarning($"PocketDetector SetColor called with color {color}");
+        Debug.Log($"PocketDetector SetColor called with color {color}");
         _meshRenderer.material = defaultMaterial;
         _meshRenderer.material.color = color;
     }

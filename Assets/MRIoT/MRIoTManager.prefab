@@ -59,34 +59,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pocketPrefab: {fileID: -1886958261731361093, guid: d61ea0eaef5a1804a90aee10551ef574, type: 3}
-  connectedPulseTime: 10
-  scoredPulseTime: 2
-  endPulseTime: 1
-  scoredFadeTime: 10
-  scoredIntensity: 0.5
-  scoredSegments: 8
-  deviceConfigs:
-  - type: 0
-    value: 007
+  pocketsCommonConfig:
+    connectedAnimationTime: 10
+    connectedMinIntensity: 0.3
+    connectedMaxIntensity: 1
+    endAnimationTime: 1
+    endMinIntensity: 0.2
+    endMaxIntensity: 1
+    scoredFadeTime: 10
+    scoredSegments: 8
+    scoredAnimationTime: 2
+    scoredMinIntensity: 0
+    scoredMaxIntensity: 0.5
+  pocketsDeviceConfigs:
+  - pairingType: 0
+    pairingValue: 007
     connectedColor: {r: 1, g: 0, b: 0, a: 0}
     pocketLocation: 0
-  - type: 0
-    value: 021
+  - pairingType: 0
+    pairingValue: 021
     connectedColor: {r: 0.0107040405, g: 0, b: 1, a: 0}
     pocketLocation: 2
-  - type: 0
-    value: 022
+  - pairingType: 0
+    pairingValue: 022
     connectedColor: {r: 0, g: 1, b: 0.89932394, a: 0}
     pocketLocation: 3
-  - type: 1
-    value: dicebase2
+  - pairingType: 1
+    pairingValue: dicebase2
     connectedColor: {r: 0.97264934, g: 1, b: 0, a: 0}
     pocketLocation: 5
-  - type: 1
-    value: dicebase2
+  - pairingType: 1
+    pairingValue: dicebase2
     connectedColor: {r: 0, g: 1, b: 0.06666667, a: 0}
     pocketLocation: 1
-  - type: 1
-    value: dicebase2
+  - pairingType: 1
+    pairingValue: dicebase2
     connectedColor: {r: 1, g: 0, b: 0.8163533, a: 0}
     pocketLocation: 4
