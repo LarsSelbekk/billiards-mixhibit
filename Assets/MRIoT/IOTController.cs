@@ -2,9 +2,7 @@
 
 using System;
 using System.Collections.Generic;
-using Attributes;
 using Exact;
-using Exact.Example;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -13,21 +11,31 @@ namespace MRIoT
     [RequireComponent(typeof(ExactManager))]
     public class IOTController : MonoBehaviour
     {
-        [SerializeField, Required] private Hole prefab = null!;
+        private enum DeviceConfigType
+        {
+            DeviceName,
+            DeviceType,
+        }
+        [Serializable]
+        private class DeviceConfig
+        {
+            public DeviceConfigType type;
+            public string value = null!;
+            public Color connectedColor;
+            public PocketEnum pocketLocation;
+        }
 
-        [SerializeField] private int scoreFadeTime = 3;
-
-        [SerializeField, ReadOnlyInInspector] private List<Hole> holes = new();
-
-        [SerializeField] private string[] deviceNames = { };
-
-        [SerializeField] private Color[] connectColors = { };
+        [SerializeField, Required] private Pocket pocketPrefab = null!;
+        [SerializeField] private int connectedPulseTime = 10;
+        [SerializeField] private int scoredFadeTime = 3;
+        [SerializeField] private DeviceConfig[] deviceConfigs = { };
 
         private ExactManager _exactManager = null!;
+        private readonly Dictionary<PocketEnum, Pocket> _pockets = new();
 
         private void Awake()
         {
-            if (prefab == null)
+            if (pocketPrefab == null)
             {
                 throw new ArgumentNullException();
             }
@@ -38,51 +46,67 @@ namespace MRIoT
                 throw new MissingComponentException();
             }
 
-            if (deviceNames.Length < PocketDefinition.PocketDefinitions.Length)
+            if (deviceConfigs.Length < PocketDefinition.PocketDefinitions.Length)
             {
-                Debug.LogError($"At least {PocketDefinition.PocketDefinitions.Length} devices required");
-                // throw new ArgumentException($"At least {PocketDefinition.PocketDefinitions.Length} devices required");
+                Debug.LogWarning($"{PocketDefinition.PocketDefinitions.Length} devices recommended, only {deviceConfigs.Length} configured");
             }
         }
 
         private void Start()
         {
-            foreach (var id in deviceNames)
+            foreach (var config in deviceConfigs)
             {
-                var hole = Instantiate(prefab);
-                hole.Device.SetDeviceName(id);
-                _exactManager.AddDevice(hole.Device);
-                if (hole == null)
+                var pocket = Instantiate(pocketPrefab);
+                switch (config.type)
                 {
-                    throw new MissingComponentException();
+                    case DeviceConfigType.DeviceType:
+                        if (config.value != pocket.Device.GetDeviceType())
+                        {
+                            throw new ArgumentException("Device Type must be set in the prefab due to missing functionality in the API");
+                        }
+                        pocket.Device.useDeviceType = true;
+                        // pocket.Device.SetDeviceType(config.value);
+                        break;
+                    case DeviceConfigType.DeviceName:
+                        pocket.Device.SetDeviceName(config.value);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
-                holes.Add(hole);
-            }
+                _exactManager.AddDevice(pocket.Device);
+                _pockets.Add(config.pocketLocation, pocket);
 
-            for (var i = 0; i < holes.Count; i++)
-            {
-                var hole = holes[i];
-                // Set color to the corresponding index, wrapping if necessary
-                var color = connectColors[i % connectColors.Length];
-                hole.LedRing.SetColor(color);
-                // hole.LedRing.SetColorPartial(color, (i + 1) / holes.Count)
-
-                hole.SetConnectedColor(color);
+                pocket.LedRing.SetColor(config.connectedColor);
+                pocket.SetConnectedColorAndPulseTime(config.connectedColor, connectedPulseTime);
             }
         }
 
-        public void Scored(BallDefinition ball, PocketDefinition pocket)
+        public void Scored(BallEnum ballEnum, PocketEnum pocketEnum)
         {
-            Debug.Log($"IoTController Scored: {ball.Name} shot down in {pocket.Name}");
-            if (holes.Count >= pocket.Index)
+            var ballDefinition = BallDefinition.BallDefinitions[(int)ballEnum];
+            var pocketDefinition = PocketDefinition.PocketDefinitions[(int)pocketEnum];
+            Debug.Log($"IOTController Scored: {ballDefinition.Name} shot down in {pocketDefinition.Name}");
+            if (pocketDefinition.Index >= _pockets.Count)
             {
-                Debug.LogError($"IoTController Scored: {pocket.Index} out of bounds for {holes.Count} devices");
+                Debug.LogError($"IOTController Scored: {pocketDefinition.Index} out of bounds for {_pockets.Count} devices");
                 return;
             }
 
-            var ledRing = holes[pocket.Index].GetComponent<LedRing>();
-            var lowestIntensity = ball.IsStriped ? 0f : 0.3f;
-            ledRing.StartFading(ball.Color, lowestIntensity, 1f, scoreFadeTime);
+            var pocket = _pockets[pocketEnum];
+            if (pocket == null)
+            {
+                Debug.LogWarning($"IOTController Scored in pocket {pocketDefinition.Index} with no configured device, ignoring");
+                return;
+            }
+
+            if (!pocket.Device.linked)
+            {
+                Debug.LogError($"IOTController Scored in pocket {pocketDefinition.Index} with no connected device");
+                return;
+            }
+
+            var lowestIntensity = ballDefinition.IsStriped ? 0f : 0.3f;
+            pocket.LedRing.StartPulsing(ballDefinition.Color, lowestIntensity, 1f, scoredFadeTime);
         }
     }
 }

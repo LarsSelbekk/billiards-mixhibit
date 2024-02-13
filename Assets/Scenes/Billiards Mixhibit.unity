@@ -958,22 +958,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8842316071657061776, guid: 7e1acc1ab71224045908dc86b6130b5e, type: 3}
-      propertyPath: colors.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: -8842316071657061776, guid: 7e1acc1ab71224045908dc86b6130b5e, type: 3}
-      propertyPath: colors.Array.data[6].b
-      value: 0.32414198
-      objectReference: {fileID: 0}
-    - target: {fileID: -8842316071657061776, guid: 7e1acc1ab71224045908dc86b6130b5e, type: 3}
-      propertyPath: colors.Array.data[6].g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8842316071657061776, guid: 7e1acc1ab71224045908dc86b6130b5e, type: 3}
-      propertyPath: colors.Array.data[6].r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2453538066575805596, guid: 7e1acc1ab71224045908dc86b6130b5e, type: 3}
       propertyPath: m_Name
       value: MRIoTManager

@@ -9,15 +9,16 @@ namespace MRIoT
 {
     [RequireComponent(typeof(Device))]
     [RequireComponent(typeof(LedRing))]
-    public class Hole : MonoBehaviour
+    public class Pocket : MonoBehaviour
     {
         public Device Device { get; private set; } = null!;
         public LedRing LedRing {get; private set; } = null!;
 
         [SerializeField, ReadOnlyInInspector] private Color connectedColor = Color.white;
+        [SerializeField, ReadOnlyInInspector] private float connectedPulseTime = 10;
+
         [SerializeField] private Color disconnectedColor = Color.gray;
         [SerializeField] private float disconnectedIntensity = 0.5f;
-        [SerializeField] private float connectedPulseTime = 10;
 
         private void Awake()
         {
@@ -29,9 +30,10 @@ namespace MRIoT
             }
         }
 
-        public void SetConnectedColor(Color newColor)
+        public void SetConnectedColorAndPulseTime(Color newColor, float newConnectedPulseTime)
         {
             connectedColor = newColor;
+            connectedPulseTime = newConnectedPulseTime;
             if (Device.GetLinkStatus())
             {
                 Connected();

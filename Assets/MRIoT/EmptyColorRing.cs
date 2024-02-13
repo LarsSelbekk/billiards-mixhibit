@@ -33,7 +33,7 @@ namespace MRIoT
 
         protected override void SetSegmentColorInternal(int segment, Color color)
         {
-            Debug.Log("EmptyColorRing set segment color internal ignored");
+            // Debug.Log("EmptyColorRing set segment color internal ignored");
         }
     }
 }

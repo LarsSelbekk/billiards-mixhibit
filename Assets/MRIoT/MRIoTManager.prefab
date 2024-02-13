@@ -58,17 +58,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c4f1d45bd9069439be73f7b3fb9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: -3801812854875476532, guid: d61ea0eaef5a1804a90aee10551ef574, type: 3}
-  scoreFadeTime: 3
-  holes: []
-  deviceNames:
-  - 007
-  - 010
-  - 021
-  connectColors:
-  - {r: 1, g: 0, b: 0.035470963, a: 0}
-  - {r: 0, g: 0.03994465, b: 1, a: 0}
-  - {r: 0.14536881, g: 1, b: 0, a: 0}
-  - {r: 1, g: 0.97236645, b: 0, a: 0}
-  - {r: 1, g: 0, b: 0.84460163, a: 0}
-  - {r: 1, g: 0.56914705, b: 0, a: 0}
+  pocketPrefab: {fileID: -1886958261731361093, guid: d61ea0eaef5a1804a90aee10551ef574, type: 3}
+  connectedPulseTime: 10
+  scoredFadeTime: 3
+  deviceConfigs:
+  - type: 0
+    value: 007
+    connectedColor: {r: 1, g: 0, b: 0, a: 0}
+    pocketLocation: 0
+  - type: 0
+    value: 021
+    connectedColor: {r: 0, g: 0.018923283, b: 1, a: 0}
+    pocketLocation: 2
+  - type: 0
+    value: 022
+    connectedColor: {r: 0.26230907, g: 1, b: 0, a: 0}
+    pocketLocation: 3
+  - type: 1
+    value: dicebase2
+    connectedColor: {r: 1, g: 0.9725491, b: 0, a: 0}
+    pocketLocation: 5
+  - type: 1
+    value: dicebase2
+    connectedColor: {r: 1, g: 0, b: 0.8431373, a: 0}
+    pocketLocation: 3
+  - type: 1
+    value: dicebase2
+    connectedColor: {r: 1, g: 0.5686275, b: 0, a: 0}
+    pocketLocation: 3

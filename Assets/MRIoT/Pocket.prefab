@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: -9201549809769295386}
   - component: {fileID: -1136982424727063077}
   - component: {fileID: -5942702803013887335}
-  - component: {fileID: -3801812854875476532}
+  - component: {fileID: -1886958261731361093}
   m_Layer: 0
-  m_Name: Hole
+  m_Name: Pocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,8 +51,8 @@ MonoBehaviour:
   OnConnect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3801812854875476532}
-        m_TargetAssemblyTypeName: MRIoT.Tile, Assembly-CSharp
+      - m_Target: {fileID: -1886958261731361093}
+        m_TargetAssemblyTypeName: MRIoT.Pocket, Assembly-CSharp
         m_MethodName: Connected
         m_Mode: 1
         m_Arguments:
@@ -66,8 +66,8 @@ MonoBehaviour:
   OnDisconnect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -3801812854875476532}
-        m_TargetAssemblyTypeName: MRIoT.Tile, Assembly-CSharp
+      - m_Target: {fileID: -1886958261731361093}
+        m_TargetAssemblyTypeName: MRIoT.Pocket, Assembly-CSharp
         m_MethodName: Disconnected
         m_Mode: 1
         m_Arguments:
@@ -82,7 +82,7 @@ MonoBehaviour:
   useDeviceName: 0
   deviceName: 
   useDeviceType: 0
-  deviceType: 
+  deviceType: dicebase2
 --- !u!114 &-1136982424727063077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be70fb05fe6dfd74aa9a63ef724b6c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3801812854875476532
+--- !u!114 &-1886958261731361093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,5 +125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedColor: {r: 1, g: 1, b: 1, a: 1}
+  connectedPulseTime: 10
   disconnectedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   disconnectedIntensity: 0.5
