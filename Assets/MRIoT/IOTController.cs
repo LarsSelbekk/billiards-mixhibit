@@ -19,7 +19,7 @@ namespace MRIoT
         private ExactManager _exactManager = null!;
         private readonly Dictionary<PocketEnum, Pocket> _pockets = new();
         private readonly Dictionary<PocketEnum, Coroutine> _coroutines = new();
-        private BallDefinition? _lastBall = null;
+        private BallDefinition? _lastBall; // = null;
 
         private void Awake()
         {
@@ -66,6 +66,7 @@ namespace MRIoT
                 if (ballDefinition.Enum == BallEnum.Black)
                 {
                     StopAllCoroutines();
+                    _coroutines.Clear();
                 }
                 // If scored after black, reset all pockets
                 else if(_lastBall?.Enum == BallEnum.Black)
@@ -79,10 +80,11 @@ namespace MRIoT
                 else if (_coroutines.Remove(pocketDefinition.Enum, out var previous))
                 {
                     Debug.Log($"IOTController Scored stopping old coroutine {previous}");
-                    StopCoroutine(previous);
+                    if (previous != null)
+                        StopCoroutine(previous);
                 }
 
-                var coroutine = StartCoroutine(ScoredCoroutine(pocketDefinition, ballDefinition, _lastBall));
+                var coroutine = StartCoroutine(ScoredCoroutine(pocketDefinition, ballDefinition));
                 _lastBall = ballDefinition;
                 Debug.Log($"IOTController Scored adding coroutine {coroutine}");
                 _coroutines.Add(pocketDefinition.Enum, coroutine);
@@ -95,13 +97,14 @@ namespace MRIoT
             yield break;
         }
 
-        private IEnumerator ScoredCoroutine(PocketDefinition pocketDefinition, BallDefinition ballDefinition, BallDefinition? lastBall)
+        private IEnumerator ScoredCoroutine(PocketDefinition pocketDefinition, BallDefinition ballDefinition)
         {
             Debug.Log("IOTController Coroutine entered");
 
             // Scored black: Set state for all pockets, then break
             if (ballDefinition.Enum == BallEnum.Black)
             {
+                Debug.Log("IOTController Coroutine scored black");
                 foreach (var e in _pockets.Values)
                 {
                     e.ScoreBlack();
@@ -120,6 +123,7 @@ namespace MRIoT
             // Update pocket, break if aborted (returned false)
             if (!pocket.Scored(ballDefinition))
             {
+                Debug.Log("IOTController Coroutine pocket.Scored aborted, breaking");
                 yield break;
             }
 

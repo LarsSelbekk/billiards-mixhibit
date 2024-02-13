@@ -171,6 +171,7 @@ namespace MRIoT
 
         public bool Scored(BallDefinition ballDefinition)
         {
+            Debug.Log($"Pocket Scored {ballDefinition.Name} in pocket {_pocketLocation}");
             lock (_lastBall)
             {
                 _lastBall.Value = ballDefinition.Enum;
