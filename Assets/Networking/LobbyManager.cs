@@ -10,11 +10,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using Utils;
+using Application = UnityEngine.Device.Application;
+
+#if UNITY_EDITOR
+using ParrelSync;
+#endif
 
 namespace Networking
 {
     public class LobbyManager : MonoBehaviour
     {
+        [Serializable]
+        public class AutoStartArgs
+        {
+            public bool autoStart;
+            public string? hostAddress;
+            public StartType deviceStartType;
+            public StartType editorStartType;
+        }
+
         private const string LastServerUrlPrefKey = "lastServerUrl";
 
         [SerializeField, Required] private PlayerLauncher playerLauncher = null!;
@@ -23,6 +37,7 @@ namespace Networking
         [SerializeField] private List<XRRayInteractor> rayInteractors = new();
         [SerializeField, Required] private IotNetworkProxy iotNetworkProxy = null!;
         [SerializeField, Required] private Toggle iotToggle = null!;
+        [SerializeField] private AutoStartArgs autoStartArgs = null!;
 
         private string _myIpAddress = null!;
         private bool _isUIShown;
@@ -60,6 +75,8 @@ namespace Networking
                 throw new ArgumentNullException(nameof(iotToggle));
             if (iotNetworkProxy == null)
                 throw new ArgumentNullException(nameof(iotNetworkProxy));
+            if (autoStartArgs == null)
+                throw new ArgumentNullException(nameof(autoStartArgs));
         }
 
         private void Start()
@@ -70,7 +87,34 @@ namespace Networking
 
             playerLauncher.OnConnect += HideUI;
             playerLauncher.OnDisconnect += ShowUI;
+
+            if (autoStartArgs.autoStart)
+            {
+                AutoLaunch();
+                HideUI();
+            }
         }
+
+        private void AutoLaunch()
+        {
+#if UNITY_EDITOR
+            if (ClonesManager.IsClone()
+                && Enum.TryParse(ClonesManager.GetArgument(), true, out StartType argumentStartType))
+            {
+                playerLauncher.LaunchPlayerAs(argumentStartType, autoStartArgs.hostAddress ?? _myIpAddress);
+                return;
+            }
+#endif
+            if (autoStartArgs.hostAddress != null && _myIpAddress == autoStartArgs.hostAddress)
+            {
+                playerLauncher.LaunchPlayerAs(StartType.Host, autoStartArgs.hostAddress);
+                return;
+            }
+
+            playerLauncher.LaunchPlayerAs(
+                Application.isEditor ? autoStartArgs.editorStartType : autoStartArgs.deviceStartType,
+                autoStartArgs.hostAddress ?? _myIpAddress);
+         }
 
         private void OnDestroy()
         {
