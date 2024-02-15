@@ -13,6 +13,7 @@ namespace MRIoT
         [SerializeField, Required] private IotController iotPrefab = null!;
 
         private IotController? _iotController;
+        private bool _enableIot; // = false;
 
         private void Awake()
         {
@@ -24,33 +25,34 @@ namespace MRIoT
 
         private void Start()
         {
-            Debug.Log($"{nameof(IotNetworkProxy)} Start");
+            Debug.Log("IOTNetworkProxy Start");
             Initialize();
         }
 
         public override void OnNetworkSpawn()
         {
-            Debug.Log($"{nameof(IotNetworkProxy)} OnNetworkSpawn");
+            Debug.Log("IOTNetworkProxy OnNetworkSpawn");
             Initialize();
             base.OnNetworkSpawn();
         }
 
         private void Initialize()
         {
-            if (!IsServer) return;
-
-            if (_iotController != null)
+            if (!IsServer || !_enableIot || _iotController != null)
             {
-                Debug.Log($"{nameof(IotNetworkProxy)} Initialize {nameof(_iotController)} already initialize, aborting");
+                Debug.Log($"IOTNetworkProxy Initialize aborted, {nameof(IsServer)}: {IsServer}, {nameof(_enableIot)}: {_enableIot}, {nameof(_iotController)}: {_iotController}");
                 return;
             }
 
-            Debug.Log($"{nameof(IotNetworkProxy)} Initialize instantiating {nameof(_iotController)}");
+            Debug.Log($"IOTNetworkProxy Initialize instantiating {nameof(_iotController)}");
             _iotController = Instantiate(iotPrefab);
             if (_iotController == null)
             {
                 throw new ArgumentNullException(nameof(_iotController));
             }
+
+            Debug.Log("IOTNetworkProxy Initialize registering GameManager.OnReset event handler");
+            GameManager.OnReset += OnResetEventHandler;
         }
 
         public void Scored(BallEnum ballEnum, PocketEnum pocketEnum)
@@ -69,6 +71,12 @@ namespace MRIoT
 
         private void ScoredInternal(BallEnum ballEnum, PocketEnum pocketEnum)
         {
+            if (!_enableIot)
+            {
+                Debug.Log("IOTNetworkProxy ScoredInternal IOT disabled");
+                return;
+            }
+
             if (_iotController == null)
             {
                 Debug.LogError("IOTNetworkProxy ScoredInternal called prior to initialization, or init failed...");
@@ -76,6 +84,36 @@ namespace MRIoT
             }
 
             _iotController.Scored(ballEnum, pocketEnum);
+        }
+
+        public void SetEnableIot(bool value)
+        {
+            Debug.Log($"IOTNetworkProxy SetEnableIot {value}");
+            _enableIot = value;
+        }
+
+        private void OnResetEventHandler()
+        {
+            if (IsServer)
+                OnResetInternal();
+            else
+                OnResetServerRpc();
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void OnResetServerRpc()
+        {
+            OnResetInternal();
+        }
+
+        private void OnResetInternal()
+        {
+            if (!IsServer || !_enableIot || _iotController == null)
+            {
+                Debug.LogError($"IOTNetworkProxy OnResetInternal aborted, {nameof(IsServer)}: {IsServer}, {nameof(_enableIot)}: {_enableIot}, {nameof(_iotController)}: {_iotController}");
+                return;
+            }
+            _iotController.ResetIot();
         }
     }
 }

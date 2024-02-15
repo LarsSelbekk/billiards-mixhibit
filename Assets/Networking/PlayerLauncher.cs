@@ -47,9 +47,11 @@ namespace Networking
 
             _hostIP = _unityTransport.ConnectionData.Address;
 
+            // TODO: automaticallyLaunch should probably be moved to LobbyManager instead
             if (automaticallyLaunch)
             {
                 LaunchPlayer();
+                FindFirstObjectByType<LobbyManager>()?.HideUI();
             }
         }
 

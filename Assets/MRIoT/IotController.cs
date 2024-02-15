@@ -132,5 +132,15 @@ namespace MRIoT
             Debug.Log($"IOTController Coroutine for [{pocketDefinition.Name}, {ballDefinition.Name}] resuming and shutting down");
             pocket.ResetScored();
         }
+
+        public void ResetIot()
+        {
+            Debug.Log("IOTController ResetIot called");
+            StopAllCoroutines();
+            foreach (var e in _pockets.Values)
+            {
+                e.ResetScored();
+            }
+        }
     }
 }

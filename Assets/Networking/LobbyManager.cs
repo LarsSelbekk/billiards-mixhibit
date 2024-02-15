@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using MRIoT;
+using NaughtyAttributes;
 using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using Utils;
 
@@ -15,6 +19,8 @@ namespace Networking
         public TMP_InputField serverUrlInputField;
         public TMP_Text myIpTextField;
         public List<XRRayInteractor> rayInteractors;
+        [SerializeField, Required] private IotNetworkProxy iotNetworkProxy = null!;
+        [SerializeField, Required] private Toggle toggleIot = null!;
 
         private bool _isUIShown;
 
@@ -37,6 +43,14 @@ namespace Networking
                     rayInteractor.gameObject.SetActive(value);
                 }
             }
+        }
+
+        private void Awake()
+        {
+            if (toggleIot == null)
+                throw new ArgumentNullException(nameof(toggleIot));
+            if (iotNetworkProxy == null)
+                throw new ArgumentNullException(nameof(iotNetworkProxy));
         }
 
         private void Start()
@@ -66,10 +80,16 @@ namespace Networking
 
         public void LaunchHost()
         {
+            iotNetworkProxy.SetEnableIot(toggleIot.isOn);
             if (playerLauncher.LaunchPlayerAs(StartType.Host))
             {
                 IsUIShown = false;
             }
+        }
+
+        public void HideUI()
+        {
+            IsUIShown = false;
         }
     }
 }
