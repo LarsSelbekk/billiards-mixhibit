@@ -196,21 +196,23 @@ namespace MRIoT
 
         private void ScoredStriped(Color color)
         {
-            // Set base color
-            _ledRing.SetColorAndIntensity(color, _scoredMaxIntensity, true);
-
-            // Set stripes to black
-            for (var i = 0; i < _scoredSegments; i += 2)
-            {
-                for (var j = 0; j < _scoredSegmentSize; j++)
-                {
-                    var led = _scoredSegmentSize * i + j;
-                    _ledRing.SetColor(led, Color.black, true);
-                }
-            }
-
-            // Start rotation animation
-            _ledRing.StartRotating(_scoredAnimationTime);
+            _ledRing.StartPulsing(color, 0f, _scoredMaxIntensity, _scoredAnimationTime);
+            // TODO: Reimplement striped animation once the tiles work correctly
+            // // Set base color
+            // _ledRing.SetColorAndIntensity(color, _scoredMaxIntensity, true);
+            //
+            // // Set stripes to black
+            // for (var i = 0; i < _scoredSegments; i += 2)
+            // {
+            //     for (var j = 0; j < _scoredSegmentSize; j++)
+            //     {
+            //         var led = _scoredSegmentSize * i + j;
+            //         _ledRing.SetColor(led, Color.black, true);
+            //     }
+            // }
+            //
+            // // Start rotation animation
+            // _ledRing.StartRotating(_scoredAnimationTime);
         }
 
         /**

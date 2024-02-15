@@ -68,9 +68,9 @@ MonoBehaviour:
     endMaxIntensity: 1
     scoredFadeTime: 10
     scoredSegments: 8
-    scoredAnimationTime: 2
-    scoredMinIntensity: 0
-    scoredMaxIntensity: 0.5
+    scoredAnimationTime: 1
+    scoredMinIntensity: 0.3
+    scoredMaxIntensity: 1
   pocketsDeviceConfigs:
   - pairingType: 0
     pairingValue: 007
