@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5043710297745428248}
   - component: {fileID: 3481329209525362443}
   m_Layer: 7
-  m_Name: Pocket Collider
+  m_Name: PocketCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5043710297745428248
 MonoBehaviour:
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d3c6c026d859854d9cf800c73243a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pocketEnum: 0
+  pocketLocation: 0
   defaultMaterial: {fileID: 2100000, guid: 4e51a747322d13b4a8319fb53d00e665, type: 2}
 --- !u!23 &3481329209525362443
 MeshRenderer:
@@ -85,7 +85,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1466204043539019878}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

@@ -11,7 +11,7 @@ namespace MRIoT
         East,
         SouthEast,
     }
-    
+
     public struct PocketDefinition
     {
         // Numbered and named clock-wise from the pocket closest to the left of the breaker

@@ -57,6 +57,7 @@ namespace MRIoT
 
         public void Scored(BallEnum ballEnum, PocketEnum pocketEnum)
         {
+            Debug.Log("IOTNetworkProxy Scored called");
             if (IsServer)
                 ScoredInternal(ballEnum, pocketEnum);
             else
@@ -82,6 +83,8 @@ namespace MRIoT
                 Debug.LogError("IOTNetworkProxy ScoredInternal called prior to initialization, or init failed...");
                 return;
             }
+
+            Debug.Log("IOTNetworkProxy ScoredInternal called");
 
             _iotController.Scored(ballEnum, pocketEnum);
         }
