@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8871326246254426111}
   - component: {fileID: 4516110834825950714}
   m_Layer: 0
-  m_Name: IOTNetworkProxy
+  m_Name: IotNetworkProxy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,7 +10,7 @@ using UnityEngine;
 namespace MRIoT
 {
     [RequireComponent(typeof(ExactManager))]
-    public class IOTController : MonoBehaviour
+    public class IotController : MonoBehaviour
     {
         [SerializeField, Required] private Pocket pocketPrefab = null!;
         [SerializeField] private Pocket.PocketCommonConfig pocketsCommonConfig = null!;
@@ -91,7 +91,7 @@ namespace MRIoT
             }
         }
 
-        private IEnumerator ResetBlack(Pocket pocket)
+        private static IEnumerator ResetBlack(Pocket pocket)
         {
             pocket.ResetBlack();
             yield break;

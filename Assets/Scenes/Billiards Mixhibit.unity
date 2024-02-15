@@ -1384,7 +1384,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7057082600567249999, guid: 023bd61e1cadd5144b0f6eafeec2a9d9, type: 3}
       propertyPath: m_Name
-      value: IOTNetworkProxy
+      value: IotNetworkProxy
       objectReference: {fileID: 0}
     - target: {fileID: 8658059125113276854, guid: 023bd61e1cadd5144b0f6eafeec2a9d9, type: 3}
       propertyPath: m_LocalPosition.x

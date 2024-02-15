@@ -8,11 +8,11 @@ using UnityEngine;
 namespace MRIoT
 {
     [RequireComponent(typeof(NetworkObject))]
-    public class IOTNetworkProxy : NetworkBehaviour
+    public class IotNetworkProxy : NetworkBehaviour
     {
-        [SerializeField, Required] private IOTController iotPrefab = null!;
+        [SerializeField, Required] private IotController iotPrefab = null!;
 
-        private IOTController? _iotController;
+        private IotController? _iotController;
 
         private void Awake()
         {
@@ -24,13 +24,13 @@ namespace MRIoT
 
         private void Start()
         {
-            Debug.Log($"{nameof(IOTNetworkProxy)} Start");
+            Debug.Log($"{nameof(IotNetworkProxy)} Start");
             Initialize();
         }
 
         public override void OnNetworkSpawn()
         {
-            Debug.Log($"{nameof(IOTNetworkProxy)} OnNetworkSpawn");
+            Debug.Log($"{nameof(IotNetworkProxy)} OnNetworkSpawn");
             Initialize();
             base.OnNetworkSpawn();
         }
@@ -41,11 +41,11 @@ namespace MRIoT
 
             if (_iotController != null)
             {
-                Debug.Log($"{nameof(IOTNetworkProxy)} Initialize {nameof(_iotController)} already initialize, aborting");
+                Debug.Log($"{nameof(IotNetworkProxy)} Initialize {nameof(_iotController)} already initialize, aborting");
                 return;
             }
 
-            Debug.Log($"{nameof(IOTNetworkProxy)} Initialize instantiating {nameof(_iotController)}");
+            Debug.Log($"{nameof(IotNetworkProxy)} Initialize instantiating {nameof(_iotController)}");
             _iotController = Instantiate(iotPrefab);
             if (_iotController == null)
             {

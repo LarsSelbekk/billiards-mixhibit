@@ -11,7 +11,7 @@ public class PocketDetector : MonoBehaviour
     [SerializeField] private Material defaultMaterial = null!;
 
     private MeshRenderer _meshRenderer = null!;
-    private IOTNetworkProxy _iotNetworkProxy = null!;
+    private IotNetworkProxy _iotNetworkProxy = null!;
 
     private void Awake()
     {
@@ -29,10 +29,10 @@ public class PocketDetector : MonoBehaviour
 
     private void Start()
     {
-        _iotNetworkProxy = FindFirstObjectByType<IOTNetworkProxy>();
+        _iotNetworkProxy = FindFirstObjectByType<IotNetworkProxy>();
         if (_iotNetworkProxy == null)
         {
-            throw new MissingComponentException($"{nameof(IOTNetworkProxy)} not found");
+            throw new MissingComponentException($"{nameof(IotNetworkProxy)} not found");
         }
     }
 
