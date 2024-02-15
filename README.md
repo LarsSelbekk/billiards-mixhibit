@@ -5,21 +5,15 @@ Computer Science students at the Norwegian University of Science and Technology 
 It is a billiards Mixed Reality exhibit for the science center [Vitensenteret i Trondheim](https://vitensenteret.com/),
 allowing youths to explore Mixed Reality in a playful and social environment.
 
+### Hacky modifications of [`XRGrabInteractable.cs`](Packages/com.unity.xr.interaction.toolkit@2.5.2/Runtime/Interaction/Interactables/XRGrabInteractable.cs)
 
-### `XR Grab Interactable` as `NetworkObject`
+The [`XRGrabInteractable.cs`](Packages/com.unity.xr.interaction.toolkit@2.5.2/Runtime/Interaction/Interactables/XRGrabInteractable.cs) from XR Interaction Toolkit has been modified to prevent reparenting of grabbed objects to root (as suggested [here](https://gamedev.stackexchange.com/a/198143)). The reparenting causes problems with world locking. Since the package is modified locally, it has been moved from [`Library/PackageCache`](Library/PackageCache) to [`Packages`](Packages) under version control (as suggested [here](https://forum.unity.com/threads/how-to-locally-modify-source-code-in-a-package.1445890/#post-9064735)). This means that updates must be performed manually!
 
-Since `XR Grab Interactable` is moved to root on grab, and only the server can reparent a `Network Object`, the `Auto Object Parent Sync` option on `Network Object` should be disabled. The alternative would be to [modify XRGrabInteractable.cs](https://gamedev.stackexchange.com/a/198143), which presumably breaks other stuff in non-obvious ways.
+### ~~`XR Grab Interactable` as `NetworkObject`~~
+
+~~Since `XR Grab Interactable` is moved to root on grab, and only the server can reparent a `Network Object`, the `Auto Object Parent Sync` option on `Network Object` should be disabled. The alternative would be to [modify XRGrabInteractable.cs](https://gamedev.stackexchange.com/a/198143), which presumably breaks other stuff in non-obvious ways.~~
 
 
 ### [LocalPackages](LocalPackages)
 
 The packages `com.meta.xr.mrutilitykit-60.0.0` and `com.meta.xr.sdk.interaction-60.0.0` have been added from custom tarballs, to work around a [known issue](https://developer.oculus.com/downloads/package/meta-xr-mr-utility-kit-upm/#known-issues) concerning the dependency on TextMeshPro combined with Unity v2023.2 and above. These modified packages should be replaced with the proper packages from the Unity registry once a fix has been published.
-
-
-## Resources
-
-- **World Locking Tools documentation**
-  https://learn.microsoft.com/en-us/mixed-reality/world-locking-tools/
-
-- **Minimal World Locking Tools (WLT) setup for a world-locked application**
-https://microsoft.github.io/MixedReality-WorldLockingTools-Samples/Tutorial/01_Minimal/01_Minimal.html
