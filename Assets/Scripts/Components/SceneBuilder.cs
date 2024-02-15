@@ -8,35 +8,54 @@ namespace Components
 {
     public class SceneBuilder : NetworkBehaviour
     {
-        public GameObject tableReference;
-
-        // These are the prefabs identified in `tableReference`, which will be used to build the actual table
-        [ReadOnlyInInspector] public GameObject[] tableParts;
-
-        public TableHolder tableHolder;
+        
+        // Holds everything that should be physically collocated between clients
+        public GameObject worldLockParent;
+        private GameObject _worldLockParentInstance;
 
         public GameObject resetButton;
 
-        private static SceneBuilder Instance { get; set; }
+        public TableHolder tableHolder;
+
+        public GameObject tableReference;
+
+        // These are the prefabs identified in `tableReference`, which will be used to build the actual table
+        // TODO: try to use network prefab list override instead
+        [ReadOnlyInInspector] public GameObject[] tableParts;
 
         private void Awake()
         {
-            // If there is an instance, and it's not me, delete myself.
+            GameManager.OnReset += Reset;
+            GameManager.OnClientConnected += _OnClientConnected;
+        }
 
-            if (Instance != null && Instance != this)
+        private void _OnClientConnected(ulong clientId)
+        {
+            if (!IsServer || clientId == NetworkManager.ServerClientId)
             {
-                Destroy(this);
+                // ignore if not server, or if clientId is server (already handled in OnNetworkSpawn)
                 return;
             }
-
-            Instance = this;
-
-            GameManager.OnReset += Reset;
+            SetPlayerParent(clientId, _worldLockParentInstance);
+        }
+        
+        private void SetPlayerParent(ulong clientId, GameObject parent)
+        {
+            if (!IsSpawned || !IsServer) return;
+            if (!NetworkManager.ConnectedClients.ContainsKey(clientId))
+            {
+                Debug.LogError($"[SVANESJO] could not find clientId {clientId} in NetworkManager.ConnectedClients");
+                return;
+            }
+            NetworkManager.ConnectedClients[clientId].PlayerObject.TrySetParent(parent, false);
         }
 
         public override void OnNetworkSpawn()
         {
             if (!IsServer) return;
+            _worldLockParentInstance = Instantiate(worldLockParent);
+            _worldLockParentInstance.GetComponent<NetworkObject>().Spawn();
+            SetPlayerParent(NetworkManager.LocalClientId, _worldLockParentInstance);
             SpawnTable();
             SpawnResetButton();
         }
@@ -75,7 +94,7 @@ namespace Components
                         Destroy(n.gameObject);
                     }
                 }
-                
+
                 foreach (var heldObject in holder.GetComponent<TableHolder>().heldObjects)
                 {
                     if (heldObject == null)
@@ -83,7 +102,7 @@ namespace Components
                         // already destroyed
                         continue;
                     }
-                    
+
                     // most objects are already covered by the above Destroy, but we assume repeated calls won't hurt
                     // since actual destruction is delayed until the end of the current update loop
                     Destroy(heldObject);
@@ -98,10 +117,11 @@ namespace Components
         private void SpawnTable()
         {
             if (!IsServer) return;
-
             var holder = Instantiate(tableHolder);
+            var holderNetworkObject = holder.GetComponent<NetworkObject>();
+            holderNetworkObject.Spawn();
+            holderNetworkObject.TrySetParent(_worldLockParentInstance.transform, false);
             var holderTransform = holder.transform;
-            holder.GetComponent<NetworkObject>().Spawn();
             var heldObjects = new List<GameObject>();
             for (var i = 0; i < tableReference.transform.childCount; i++)
             {
@@ -122,7 +142,9 @@ namespace Components
         private void SpawnResetButton()
         {
             if (!IsServer) return;
-            Instantiate(resetButton).GetComponent<NetworkObject>().Spawn();
+            var resetButtonNetworkObject = Instantiate(resetButton).GetComponent<NetworkObject>();
+            resetButtonNetworkObject.Spawn();
+            resetButtonNetworkObject.TrySetParent(_worldLockParentInstance, false);
         }
     }
 }

@@ -1,58 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public enum PlayerType
+namespace Networking.Player
 {
-    Server,
-    Host,
-    Client
-}
-
-public class PlayerPainter : NetworkBehaviour
-{
-    public Material serverMaterial;
-    public Material hostMaterial;
-    public Material clientMaterial;
-
-    private NetworkVariable<PlayerType> _playerType = new(PlayerType.Client);
-
-    public override void OnNetworkSpawn()
+    public enum PlayerType
     {
-        if (!IsOwner)
+        Server,
+        Host,
+        Client
+    }
+
+    public class PlayerPainter : NetworkBehaviour
+    {
+        public Material serverMaterial;
+        public Material hostMaterial;
+        public Material clientMaterial;
+
+        private readonly NetworkVariable<PlayerType> _playerType = new(PlayerType.Client);
+
+        public override void OnNetworkSpawn()
         {
-            // either player type is ready and we paint,
-            // or we paint default now and repaint when player type is ready
-            PaintPlayer();
-            return;
-        }
-        RegisterPlayerTypeServerRpc(IsHost ? PlayerType.Host : IsServer ? PlayerType.Server : PlayerType.Client);
-    }
-    
-    [ServerRpc(RequireOwnership = false)]
-    void RegisterPlayerTypeServerRpc(PlayerType playerType)
-    {
-        _playerType.Value = playerType;
-        PaintPlayerClientRpc();
-    }
-
-    [ClientRpc]
-    void PaintPlayerClientRpc()
-    {
-        PaintPlayer();
-    }
-
-    private void PaintPlayer()
-    {
-        GetComponent<MeshRenderer>().SetMaterials(new List<Material>
-        {
-            _playerType.Value switch
+            if (!IsOwner)
             {
-                PlayerType.Host => hostMaterial,
-                PlayerType.Server => serverMaterial,
-                _ => clientMaterial
+                // either player type is ready and we paint,
+                // or we paint default now and repaint when player type is ready
+                PaintPlayer();
+                return;
             }
-        });
+
+            RegisterPlayerTypeServerRpc(IsHost ? PlayerType.Host : IsServer ? PlayerType.Server : PlayerType.Client);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        void RegisterPlayerTypeServerRpc(PlayerType playerType)
+        {
+            _playerType.Value = playerType;
+            PaintPlayerClientRpc();
+        }
+
+        [ClientRpc]
+        void PaintPlayerClientRpc()
+        {
+            PaintPlayer();
+        }
+
+        private void PaintPlayer()
+        {
+            var materials = new List<Material>
+            {
+                _playerType.Value switch
+                {
+                    PlayerType.Host => hostMaterial,
+                    PlayerType.Server => serverMaterial,
+                    _ => clientMaterial
+                }
+            };
+            foreach (var mr in GetComponentsInChildren<MeshRenderer>())
+            {
+                mr.SetMaterials(materials);
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using Components;
 using NaughtyAttributes;
 using Unity.Netcode;
 using UnityEngine;

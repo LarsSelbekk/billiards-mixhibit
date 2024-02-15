@@ -1,29 +1,41 @@
 ﻿using System;
+using Unity.Netcode;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace Components
 {
-
-    private static GameManager Instance { get; set; }
-
-    public static event Action OnReset;
-    
-    private void Awake()
+    public class GameManager : MonoBehaviour
     {
-        // If there is an instance, and it's not me, delete myself.
 
-        if (Instance != null && Instance != this)
+        private static GameManager Instance { get; set; }
+
+        public static event Action OnReset;
+
+        public static event Action<ulong> OnClientConnected;
+    
+        private void Awake()
         {
-            Destroy(this);
-            return;
+            // If there is an instance, and it's not me, delete myself.
+
+            if (Instance != null && Instance != this)
+            {
+                Debug.LogWarning("[SVANESJO] attempted to create another GameManager instance");
+                Destroy(this);
+                return;
+            }
+
+            Instance = this;
         }
 
-        Instance = this;
-    }
+        public void Reset()
+        {
+            OnReset?.Invoke();
+        }
 
-    public void Reset()
-    {
-        OnReset?.Invoke();
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        public static void ClientConnected(ulong clientId)
+        {
+            OnClientConnected?.Invoke(clientId);
+        }
+    
     }
 }

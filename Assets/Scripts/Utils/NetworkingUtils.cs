@@ -3,7 +3,7 @@ using System.Net.Sockets;
 
 namespace Utils
 {
-    public class NetworkingUtils
+    public static class NetworkingUtils
     {
         public static string GetLocalIPAddress()
         {
@@ -18,5 +18,6 @@ namespace Utils
 
             throw new System.Exception("No network adapters with an IPv4 address in the system!");
         }
+
     }
 }

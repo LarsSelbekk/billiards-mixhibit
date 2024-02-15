@@ -9,6 +9,7 @@
     "com.meta.xr.sdk.haptics": "60.0.0",
     "com.meta.xr.sdk.interaction": "file:../LocalPackages/com.meta.xr.sdk.interaction-60.0.0.tgz",
     "com.meta.xr.sdk.interaction.ovr": "60.0.0",
+    "com.meta.xr.sdk.platform": "60.0.0",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.device-simulator.devices": "1.0.0",

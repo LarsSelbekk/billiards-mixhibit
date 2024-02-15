@@ -65,6 +65,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4dd1d4ac0e1079479573cb5a4866713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldLockParent: {fileID: 162234676798018935, guid: 13c767573198cc146901140fa8db61ba, type: 3}
+  resetButton: {fileID: 8273211446339589601, guid: a397a485d45b09c4dbdfed06fbef5bd1, type: 3}
+  tableHolder: {fileID: 7611338698995758149, guid: ec6eff33948f9224e9ab11bf3ba589b8, type: 3}
   tableReference: {fileID: 2030412564784014614, guid: c181a04973d20084fbb358ad2531bd4b, type: 3}
   tableParts:
   - {fileID: 4313180098087592122, guid: b83c2ff2b29168044a8e5fc30bd6fb85, type: 3}
@@ -88,5 +91,3 @@ MonoBehaviour:
   - {fileID: 5972089699669510483, guid: 6451bc2dfa0cbd34c8f6773d4dabb685, type: 3}
   - {fileID: 4055878467107577637, guid: c3c5e9946d138824c9da7bef9fdd42b6, type: 3}
   - {fileID: 5668290336698634722, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
-  tableHolder: {fileID: 7611338698995758149, guid: ec6eff33948f9224e9ab11bf3ba589b8, type: 3}
-  resetButton: {fileID: 8273211446339589601, guid: a397a485d45b09c4dbdfed06fbef5bd1, type: 3}

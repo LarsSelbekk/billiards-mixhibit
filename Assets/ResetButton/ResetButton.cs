@@ -1,12 +1,16 @@
 using System.Data;
+using Components;
 using UnityEngine;
 
-public class ResetButton : MonoBehaviour
+namespace ResetButton
 {
-    public void Reset()
+    public class ResetButton : MonoBehaviour
     {
-        var gameManager = GameObject.FindGameObjectWithTag("GameManager")?.GetComponent<GameManager>();
-        if (gameManager == null) throw new NoNullAllowedException("GameManager not found");
-        gameManager.Reset();
+        public void Reset()
+        {
+            var gameManager = GameObject.FindGameObjectWithTag("GameManager")?.GetComponent<GameManager>();
+            if (gameManager == null) throw new NoNullAllowedException("GameManager not found");
+            gameManager.Reset();
+        }
     }
 }

@@ -16,6 +16,8 @@ using Unity.Burst;
 //
 //  modifications are marked with </HACKY MODIFICATION> ... </HACKY MODIFICATION>
 //
+//  TODO: introduce boolean to toggle reparenting to root (instead of commenting it out...)
+//
 ////////////////////////////////////////////////////////////////////////////////////////
 
 namespace UnityEngine.XR.Interaction.Toolkit
