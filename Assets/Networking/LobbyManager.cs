@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using MRIoT;
 using NaughtyAttributes;
@@ -15,13 +17,14 @@ namespace Networking
     {
         private const string LastServerUrlPrefKey = "lastServerUrl";
 
-        public PlayerLauncher playerLauncher;
-        public TMP_InputField serverUrlInputField;
-        public TMP_Text myIpTextField;
-        public List<XRRayInteractor> rayInteractors;
+        [SerializeField, Required] private PlayerLauncher playerLauncher = null!;
+        [SerializeField, Required] private TMP_InputField serverUrlInputField = null!;
+        [SerializeField, Required] private TMP_Text myIpTextField = null!;
+        [SerializeField] private List<XRRayInteractor> rayInteractors = new();
         [SerializeField, Required] private IotNetworkProxy iotNetworkProxy = null!;
-        [SerializeField, Required] private Toggle toggleIot = null!;
+        [SerializeField, Required] private Toggle iotToggle = null!;
 
+        private string _myIpAddress = null!;
         private bool _isUIShown;
 
         private bool IsUIShown
@@ -47,8 +50,14 @@ namespace Networking
 
         private void Awake()
         {
-            if (toggleIot == null)
-                throw new ArgumentNullException(nameof(toggleIot));
+            if (playerLauncher == null)
+                throw new ArgumentNullException(nameof(playerLauncher));
+            if (serverUrlInputField == null)
+                throw new ArgumentNullException(nameof(serverUrlInputField));
+            if (myIpTextField == null)
+                throw new ArgumentNullException(nameof(myIpTextField));
+            if (iotToggle == null)
+                throw new ArgumentNullException(nameof(iotToggle));
             if (iotNetworkProxy == null)
                 throw new ArgumentNullException(nameof(iotNetworkProxy));
         }
@@ -56,7 +65,11 @@ namespace Networking
         private void Start()
         {
             serverUrlInputField.text = PlayerPrefs.GetString(LastServerUrlPrefKey);
-            myIpTextField.text = $"My IP: {NetworkingUtils.GetLocalIPAddress()}";
+            _myIpAddress = NetworkingUtils.GetLocalIPAddress();
+            myIpTextField.text = $"My IP: {_myIpAddress}";
+
+            playerLauncher.OnConnect += HideUI;
+            playerLauncher.OnDisconnect += ShowUI;
         }
 
         private void OnDestroy()
@@ -71,23 +84,28 @@ namespace Networking
 
         public void LaunchClient(string serverUrl)
         {
-            playerLauncher.SetServerUrl(serverUrl.Trim());
-            if (!playerLauncher.LaunchPlayerAs(StartType.Client)) return;
+            var hostAddress = serverUrl.Trim();
+            if (!playerLauncher.LaunchPlayerAs(StartType.Client, hostAddress)) return;
 
             PlayerPrefs.SetString(LastServerUrlPrefKey, serverUrl.Trim());
-            IsUIShown = false;
+            HideUI();
         }
 
         public void LaunchHost()
         {
-            iotNetworkProxy.SetEnableIot(toggleIot.isOn);
-            if (playerLauncher.LaunchPlayerAs(StartType.Host))
+            iotNetworkProxy.SetEnableIot(iotToggle.isOn);
+            if (playerLauncher.LaunchPlayerAs(StartType.Host, _myIpAddress))
             {
-                IsUIShown = false;
+                HideUI();
             }
         }
 
-        public void HideUI()
+        private void ShowUI()
+        {
+            IsUIShown = true;
+        }
+
+        private void HideUI()
         {
             IsUIShown = false;
         }

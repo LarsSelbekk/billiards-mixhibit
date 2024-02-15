@@ -276,7 +276,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   iotNetworkProxy: {fileID: 0}
-  toggleIot: {fileID: 6233623762953626256}
+  iotToggle: {fileID: 6233623762953626256}
 --- !u!223 &4583278409889504737
 Canvas:
   m_ObjectHideFlags: 0

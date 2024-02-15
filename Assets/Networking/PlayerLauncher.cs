@@ -1,14 +1,10 @@
-﻿using System;
-using Unity.Collections;
+﻿#nullable enable
+
+using System;
+using System.Collections;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
-using Utils;
-using Application = UnityEngine.Device.Application;
-
-#if UNITY_EDITOR
-using ParrelSync;
-#endif
 
 namespace Networking
 {
@@ -16,99 +12,100 @@ namespace Networking
     {
         Server,
         Host,
-        Client
+        Client,
     }
 
     [RequireComponent(typeof(NetworkManager), typeof(UnityTransport))]
     public class PlayerLauncher : MonoBehaviour
     {
-        private string _hostIP;
+        [SerializeField] private int recheckNotClient = 120;
+        [SerializeField] private int delayedDisconnect = 60;
 
-        public StartType editorStartType = StartType.Server;
-        public StartType nonEditorStartType = StartType.Client;
-        public bool automaticallyLaunch;
+        public event Action? OnConnect;
+        public event Action? OnDisconnect;
 
-        private NetworkManager _networkManager;
-        private UnityTransport _unityTransport;
+        private NetworkManager _networkManager = null!;
+        private UnityTransport _unityTransport = null!;
 
         private void Start()
         {
             _networkManager = GetComponent<NetworkManager>();
             if (_networkManager == null)
-            {
                 throw new MissingComponentException("Missing NetworkManager component");
-            }
 
             _unityTransport = GetComponent<UnityTransport>();
             if (_unityTransport == null)
-            {
                 throw new MissingComponentException("Missing UnityTransport component");
-            }
 
-            _hostIP = _unityTransport.ConnectionData.Address;
-
-            // TODO: automaticallyLaunch should probably be moved to LobbyManager instead
-            if (automaticallyLaunch)
-            {
-                LaunchPlayer();
-                FindFirstObjectByType<LobbyManager>()?.HideUI();
-            }
+            StartCoroutine(CheckConnection());
         }
 
-        private void LaunchPlayer()
-        {
-#if UNITY_EDITOR
-            if (ClonesManager.IsClone()
-                && Enum.TryParse(ClonesManager.GetArgument(), true, out StartType argumentStartType))
-            {
-                LaunchPlayerAs(argumentStartType);
-                return;
-            }
-#endif
-            if (_hostIP != null && NetworkingUtils.GetLocalIPAddress() == _hostIP)
-            {
-                LaunchPlayerAs(StartType.Host);
-                return;
-            }
-
-            LaunchPlayerAs(Application.isEditor ? editorStartType : nonEditorStartType);
-        }
-
-        public void Shutdown()
+        private void ShutdownPlayer()
         {
             _networkManager.Shutdown();
+            OnDisconnect?.Invoke();
         }
 
-        public bool LaunchPlayerAs(StartType startType)
+        public bool LaunchPlayerAs(StartType startType, string hostAddress)
         {
-            Shutdown();
+            Debug.Log($"PlayerLauncher LaunchPlayerAs({startType}, {hostAddress})");
+            ShutdownPlayer();
+            _unityTransport.ConnectionData.Address = hostAddress;
 
-            Debug.Log($"Launching player as '{startType}'");
-            Debug.Log($"Server URL: {_unityTransport.ConnectionData.Address}");
-#pragma warning disable CS8524 // The switch expression does not handle some values of its input type (it is not exhaustive) involving an unnamed enum value.
             var success = startType switch
-#pragma warning restore CS8524 // The switch expression does not handle some values of its input type (it is not exhaustive) involving an unnamed enum value.
             {
                 StartType.Host => _networkManager.StartHost(),
                 StartType.Server => _networkManager.StartServer(),
                 StartType.Client => _networkManager.StartClient(),
+                _ => throw new IndexOutOfRangeException(nameof(startType)),
             };
 
             if (success)
             {
+                OnConnect?.Invoke();
                 Debug.Log($"Player launched successfully as {startType}");
             }
             else
             {
+                OnDisconnect?.Invoke();
                 Debug.LogError($"Failed to launch player as {startType}");
             }
 
             return success;
         }
 
-        public void SetServerUrl(string serverUrl)
+        private IEnumerator CheckConnection()
         {
-            _unityTransport.ConnectionData.Address = serverUrl;
+            Debug.Log("PlayerLauncher CheckConnection coroutine started");
+            while (true)
+            {
+                if (!_networkManager.IsClient)
+                {
+                    Debug.Log($"PlayerLauncher CheckConnection not a client... rechecking in {recheckNotClient} seconds");
+                    yield return new WaitForSeconds(recheckNotClient);
+                    continue;
+                }
+
+                var connected = _networkManager.IsConnectedClient;
+                if (!connected)
+                {
+                    Debug.Log($"PlayerLauncher CheckConnection not connected, rechecking in {delayedDisconnect} seconds");
+                    yield return new WaitForSeconds(delayedDisconnect);
+                    connected = _networkManager.IsConnectedClient;
+                    if (!connected)
+                    {
+                        Debug.Log("PlayerLauncher CheckConnection still not connected, returning to lobby");
+                        ShutdownPlayer();
+                        continue;
+                    }
+                }
+                else
+                {
+                    Debug.Log("PlayerLauncher CheckConnection connected, rechecking in 10 seconds");
+                }
+
+                yield return new WaitForSeconds(10);
+            }
         }
     }
 }
