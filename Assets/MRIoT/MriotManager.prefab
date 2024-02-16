@@ -73,26 +73,26 @@ MonoBehaviour:
     scoredMaxIntensity: 1
   pocketsDeviceConfigs:
   - pairingType: 0
-    pairingValue: 007
+    pairingValue: 003
     connectedColor: {r: 1, g: 0, b: 0, a: 0}
     pocketLocation: 0
   - pairingType: 0
-    pairingValue: 021
+    pairingValue: 005
     connectedColor: {r: 0.0107040405, g: 0, b: 1, a: 0}
     pocketLocation: 2
   - pairingType: 0
-    pairingValue: 022
+    pairingValue: 007
     connectedColor: {r: 0, g: 1, b: 0.89932394, a: 0}
     pocketLocation: 3
-  - pairingType: 1
-    pairingValue: dicebase2
+  - pairingType: 0
+    pairingValue: 008
     connectedColor: {r: 0.97264934, g: 1, b: 0, a: 0}
     pocketLocation: 5
-  - pairingType: 1
-    pairingValue: dicebase2
+  - pairingType: 0
+    pairingValue: 009
     connectedColor: {r: 0, g: 1, b: 0.06666667, a: 0}
     pocketLocation: 1
-  - pairingType: 1
-    pairingValue: dicebase2
+  - pairingType: 0
+    pairingValue: 020
     connectedColor: {r: 1, g: 0, b: 0.8163533, a: 0}
     pocketLocation: 4

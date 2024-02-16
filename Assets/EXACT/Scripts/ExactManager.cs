@@ -21,7 +21,7 @@ namespace Exact
 
        //     foreach (Device device in FindObjectsOfType<Device>()) // DS 030123. Obsolete Warning CS0618
             foreach (Device device in FindObjectsByType<Device>(FindObjectsSortMode.None))
-                {
+            {
                 Debug.Log(device);
                 devices.Add(device);
                 mqttHandler.AddDevice(device);
@@ -58,8 +58,13 @@ namespace Exact
             {
                 devices.Add(device);
                 mqttHandler.AddDevice(device);
-                mqttHandler.SendMessageImediate("exact/all_devices/are_you_connected");
             }
+        }
+
+        public void RequestReconnect()
+        {
+            Debug.Log("ExactManager RequestReconnect called");
+            mqttHandler.SendMessageImediate("exact/all_devices/are_you_connected");
         }
 
         /// <summary>

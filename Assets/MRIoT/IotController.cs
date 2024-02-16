@@ -48,6 +48,7 @@ namespace MRIoT
                 pocket.Initialize(config, pocketsCommonConfig, _exactManager);
                 _pockets.Add(config.pocketLocation, pocket);
             }
+            _exactManager.RequestReconnect();
         }
 
         public void Scored(BallEnum ballEnum, PocketEnum pocketEnum)

@@ -83,7 +83,7 @@ MonoBehaviour:
   useDeviceName: 0
   deviceName: 
   useDeviceType: 0
-  deviceType: dicebase2
+  deviceType: exactredtile
 --- !u!114 &-1886958261731361093
 MonoBehaviour:
   m_ObjectHideFlags: 0

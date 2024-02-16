@@ -106,6 +106,8 @@ namespace MRIoT
 
         public void ResetModifications()
         {
+            Debug.Log("ModifiedLedRing ResetModifications called");
+
             // Reset dynamic first
             if (IsFading)
                 _ledRing.StopFading();
@@ -119,6 +121,13 @@ namespace MRIoT
                 _ledRing.SetColorAndIntensity(defaultColor, defaultIntensity);
             if (HasRotation)
                 _ledRing.SetRotation(0);
+
+            IsFading = false;
+            IsPulsing = false;
+            IsRotating = false;
+            HasColor = false;
+            HasIntensity = false;
+            HasRotation = false;
         }
 
         public int GetNumLeds()

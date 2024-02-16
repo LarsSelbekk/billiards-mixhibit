@@ -178,7 +178,9 @@ namespace MRIoT
             }
 
             // Reset and check connection state
-            if (!ResetScored())
+            // TODO: ResetScored will be necessary once we have rotation, but not for now
+            // if (!ResetScored())
+            if (!IsConnected())
                 return false;
 
             if (ballDefinition.IsStriped)
@@ -215,6 +217,14 @@ namespace MRIoT
             // _ledRing.StartRotating(_scoredAnimationTime);
         }
 
+        public bool IsConnected()
+        {
+            var connected = _device.GetLinkStatus();
+            // TODO: debug, not an error
+            Debug.LogWarning($"Pocket IsConnected: {connected}");
+            return connected;
+        }
+
         /**
          * Resets the pocket from score.
          *
@@ -222,6 +232,7 @@ namespace MRIoT
          */
         public bool ResetScored()
         {
+            Debug.Log("Pocket ResetScored called");
             if (!_device.GetLinkStatus())
             {
                 Debug.LogWarning($"Pocket ResetScored pocket {_pocketLocation} has no connected device");
@@ -234,6 +245,7 @@ namespace MRIoT
 
         public void ScoreBlack()
         {
+            Debug.Log("Pocket ScoreBlack called");
             lock (_lastBall)
             {
                 _lastBall.Value = BallEnum.Black;
@@ -243,6 +255,7 @@ namespace MRIoT
 
         public void ResetBlack()
         {
+            Debug.Log("Pocket ResetBlack called");
             lock (_lastBall)
             {
                 if (_lastBall.Value != BallEnum.Black) return;
@@ -250,6 +263,17 @@ namespace MRIoT
                 _lastBall.Value = null;
                 ResetScored();
             }
+        }
+
+        public void OnConnect()
+        {
+            // TODO: debug, not an error
+            Debug.LogError("Pocket OnConnect called");
+        }
+        public void OnDisconnect()
+        {
+            // TODO: debug, not an error
+            Debug.LogError("Pocket OnDisconnect called");
         }
     }
 }
