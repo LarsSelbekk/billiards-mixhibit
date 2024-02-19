@@ -159,6 +159,7 @@ namespace SSA
 
         private void Update()
         {
+            if (!IsSpawned) return;
             if (Time.time > _nextAlignTime)
             {
                 _nextAlignTime = Time.time + alignIntervalSeconds;
