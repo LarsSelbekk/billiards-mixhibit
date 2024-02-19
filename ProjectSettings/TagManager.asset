@@ -15,6 +15,7 @@ TagManager:
   - CueTip
   - TableSlate
   - WorldLockParent
+  - ARSession
   layers:
   - Default
   - TransparentFX
