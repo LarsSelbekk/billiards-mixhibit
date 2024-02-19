@@ -66,14 +66,8 @@ namespace Networking
             {
                 OnConnect?.Invoke();
                 Debug.Log($"Player launched successfully as {startType}");
-
-                // if (startType is not StartType.Client)
-                // {
-                    // https://docs-multiplayer.unity3d.com/netcode/current/basics/scenemanagement/scene-events/#when-is-it-ok-to-subscribe
-                    // https://docs-multiplayer.unity3d.com/netcode/current/advanced-topics/networkobject-parenting/#in-scene-object-parenting-and-player-objects
-                    // https://docs-multiplayer.unity3d.com/netcode/current/basics/scenemanagement/scene-events/#synchronization
-                    NetworkManager.Singleton.SceneManager.OnSynchronizeComplete += GameManager.ClientConnected;
-                // }
+                
+                NetworkManager.Singleton.OnClientConnectedCallback += GameManager.ClientConnected;
             }
             else
             {
