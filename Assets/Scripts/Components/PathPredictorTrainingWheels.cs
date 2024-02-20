@@ -3,15 +3,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine;
 using Utils;
-
 #if DEBUG_TRAINING_WHEELS
 using System;
 using Color = UnityEngine.Color;
 #endif
 
-[RequireComponent(typeof(LineRenderer))]
+[RequireComponent(typeof(TrainingWheelsLineRenderer))]
 public class PathPredictorTrainingWheels : MonoBehaviour
 {
     private MeshFilter _cueTip;
@@ -25,18 +26,19 @@ public class PathPredictorTrainingWheels : MonoBehaviour
 
     public float maxHorizontalDistanceToCueBall = 1.0f;
     public float maxVerticalDistanceToCueBall = 0.5f;
+
+    [OnValueChanged(nameof(UpdateMaxLength))]
     public float maxCueBallRollDistance = 1f;
+
     public float ballRadius = 0.05715f / 2;
 
-    private LineRenderer _lineRenderer;
+    private TrainingWheelsLineRenderer _lineRenderer;
     private Transform _cueTipTransform;
     private Mesh _cueTipMesh;
     private float _scaledBallRadius;
     private float _scaledMaxHorizontalDistanceToCueBall;
     private float _scaledMaxVerticalDistanceToCueBall;
     private float _scaledMaxCueBallRollDistance;
-    private static readonly int Scale = Shader.PropertyToID("_Scale");
-    private static readonly int MaxLength = Shader.PropertyToID("_MaxLength");
 
     private struct FindCueBallResult
     {
@@ -59,9 +61,10 @@ public class PathPredictorTrainingWheels : MonoBehaviour
 #endif
 
 
-    private void OnEnable()
+    private void Awake()
     {
-        _lineRenderer = GetComponent<LineRenderer>();
+        _lineRenderer = GetComponent<TrainingWheelsLineRenderer>();
+        UpdateMaxLength();
 
 #if DEBUG_TRAINING_WHEELS
         _cylinderMesh = UnityEngine.Resources.GetBuiltinResource<Mesh>("Cylinder.fbx");
@@ -82,7 +85,8 @@ public class PathPredictorTrainingWheels : MonoBehaviour
         {
             // still missing
             return;
-        };
+        }
+
         _cueTipTransform = _cueTip.transform;
         _cueTipMesh = _cueTip.mesh;
     }
@@ -90,15 +94,15 @@ public class PathPredictorTrainingWheels : MonoBehaviour
     private void FixedUpdate()
     {
         TryFindTableComponentsIfMissing();
-        
+
         _scaledBallRadius = TransformScalar(ballRadius);
         _scaledMaxHorizontalDistanceToCueBall = TransformScalar(maxHorizontalDistanceToCueBall);
         _scaledMaxVerticalDistanceToCueBall = TransformScalar(maxVerticalDistanceToCueBall);
         _scaledMaxCueBallRollDistance = TransformScalar(maxCueBallRollDistance);
 
         // Reset line renderer
-        _lineRenderer.positionCount = 0;
-        _lineRenderer.startWidth = _scaledBallRadius * 2;
+        _lineRenderer.Positions = new List<Vector3>().AsReadOnly();
+        _lineRenderer.width = _scaledBallRadius * 2;
 
         if (FindCueBall() is not { } findCueBallResult) return;
 
@@ -109,10 +113,7 @@ public class PathPredictorTrainingWheels : MonoBehaviour
         );
 
         // Update line renderer
-        _lineRenderer.positionCount = predictedPath.Length;
-        _lineRenderer.SetPositions(predictedPath);
-        _lineRenderer.material.SetFloat(Scale, TransformScalar(1.0f));
-        _lineRenderer.material.SetFloat(MaxLength, _scaledMaxCueBallRollDistance);
+        _lineRenderer.Positions = predictedPath.AsReadOnlyList();
     }
 
     private FindCueBallResult? FindCueBall()
@@ -287,6 +288,11 @@ public class PathPredictorTrainingWheels : MonoBehaviour
         }
 
         return points.ToArray();
+    }
+
+    public void UpdateMaxLength()
+    {
+        _lineRenderer.MaxLength = maxCueBallRollDistance;
     }
 
     private float TransformScalar(float scalar)
