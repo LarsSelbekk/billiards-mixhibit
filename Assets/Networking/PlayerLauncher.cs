@@ -1,7 +1,6 @@
 #nullable enable
 
 using System;
-using Unity.Collections;
 using Components;
 using System.Collections;
 using Unity.Netcode;
@@ -23,7 +22,7 @@ namespace Networking
         [SerializeField] private int recheckNotClient = 120;
         [SerializeField] private int delayedDisconnect = 60;
 
-        public event Action? OnConnect;
+        public event Action<StartType>? OnConnect;
         public event Action? OnDisconnect;
 
         private NetworkManager _networkManager = null!;
@@ -64,9 +63,9 @@ namespace Networking
 
             if (success)
             {
-                OnConnect?.Invoke();
+                OnConnect?.Invoke(startType);
                 Debug.Log($"Player launched successfully as {startType}");
-                
+
                 NetworkManager.Singleton.OnClientConnectedCallback += GameManager.ClientConnected;
             }
             else

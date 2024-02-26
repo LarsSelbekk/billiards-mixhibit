@@ -2,6 +2,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Threading;
 using MRIoT;
 using NaughtyAttributes;
 using TMPro;
@@ -29,6 +31,31 @@ namespace Networking
             public StartType editorStartType;
         }
 
+        public enum LobbyState
+        {
+            Lobby,
+            Client,
+            Server
+        }
+
+        public LobbyState CurrentLobbyState
+        {
+            get => _currentLobbyState;
+            private set
+            {
+                _currentLobbyState = value;
+                IsUIShown = _currentLobbyState is LobbyState.Lobby;
+                if (value is LobbyState.Server)
+                {
+                    ListenForClients();
+                }
+                else
+                {
+                    StopListeningForClients();
+                }
+            }
+        }
+
         private const string LastServerUrlPrefKey = "lastServerUrl";
 
         [SerializeField, Required] private PlayerLauncher playerLauncher = null!;
@@ -38,9 +65,13 @@ namespace Networking
         [SerializeField, Required] private IotNetworkProxy iotNetworkProxy = null!;
         [SerializeField, Required] private Toggle iotToggle = null!;
         [SerializeField] private AutoStartArgs autoStartArgs = null!;
+        [SerializeField] private LocalLobbyFinder? localLobbyFinder;
+        [SerializeField] private ServerList? serverList;
 
         private string _myIpAddress = null!;
-        private bool _isUIShown;
+        private CancellationTokenSource? _serverFinderCancellationTokenSource, _clientListenerCancellationTokenSource;
+        private LobbyState _currentLobbyState = LobbyState.Lobby;
+        private bool _isUIShown = true;
 
         private bool IsUIShown
         {
@@ -59,6 +90,15 @@ namespace Networking
                 foreach (var rayInteractor in rayInteractors)
                 {
                     rayInteractor.gameObject.SetActive(value);
+                }
+
+                if (value)
+                {
+                    ListenForServers();
+                }
+                else
+                {
+                    StopListeningForServers();
                 }
             }
         }
@@ -83,16 +123,54 @@ namespace Networking
         {
             serverUrlInputField.text = PlayerPrefs.GetString(LastServerUrlPrefKey);
             _myIpAddress = NetworkingUtils.GetLocalIPAddress();
-            myIpTextField.text = $"My IP: {_myIpAddress}";
+            myIpTextField.text = $"My IP:\n{_myIpAddress}";
 
-            playerLauncher.OnConnect += HideUI;
-            playerLauncher.OnDisconnect += ShowUI;
+            playerLauncher.OnConnect += startType => CurrentLobbyState = startType switch
+            {
+                StartType.Client => LobbyState.Client,
+                StartType.Host or StartType.Server => LobbyState.Server,
+                _ => throw new ArgumentOutOfRangeException(nameof(startType), startType, null)
+            };
+            playerLauncher.OnDisconnect += () => CurrentLobbyState = LobbyState.Lobby;
+
+            CurrentLobbyState = LobbyState.Lobby;
 
             if (autoStartArgs.autoStart)
             {
                 AutoLaunch();
-                HideUI();
             }
+        }
+
+
+        private void OnDisable()
+        {
+            StopListeningForClients();
+            StopListeningForServers();
+        }
+
+        private void OnDestroy()
+        {
+            PlayerPrefs.Save();
+        }
+
+        public void LaunchClient()
+        {
+            LaunchClient(serverUrlInputField.text);
+        }
+
+        public void LaunchClient(string serverUrl)
+        {
+            var hostAddress = serverUrl.Trim();
+            if (!playerLauncher.LaunchPlayerAs(StartType.Client, hostAddress)) return;
+
+            PlayerPrefs.SetString(LastServerUrlPrefKey, serverUrl.Trim());
+        }
+
+        public void LaunchHost()
+        {
+            iotNetworkProxy.SetEnableIot(iotToggle.isOn);
+
+            playerLauncher.LaunchPlayerAs(StartType.Host, _myIpAddress);
         }
 
         private void AutoLaunch()
@@ -113,45 +191,54 @@ namespace Networking
 
             playerLauncher.LaunchPlayerAs(
                 Application.isEditor ? autoStartArgs.editorStartType : autoStartArgs.deviceStartType,
-                autoStartArgs.hostAddress ?? _myIpAddress);
-         }
-
-        private void OnDestroy()
-        {
-            PlayerPrefs.Save();
+                autoStartArgs.hostAddress ?? _myIpAddress
+            );
         }
 
-        public void LaunchClient()
+        private async void ListenForServers()
         {
-            LaunchClient(serverUrlInputField.text);
-        }
-
-        public void LaunchClient(string serverUrl)
-        {
-            var hostAddress = serverUrl.Trim();
-            if (!playerLauncher.LaunchPlayerAs(StartType.Client, hostAddress)) return;
-
-            PlayerPrefs.SetString(LastServerUrlPrefKey, serverUrl.Trim());
-            HideUI();
-        }
-
-        public void LaunchHost()
-        {
-            iotNetworkProxy.SetEnableIot(iotToggle.isOn);
-            if (playerLauncher.LaunchPlayerAs(StartType.Host, _myIpAddress))
+            if (localLobbyFinder is null || _serverFinderCancellationTokenSource is not null) return;
+            _serverFinderCancellationTokenSource = new CancellationTokenSource();
+            if (serverList is null)
             {
-                HideUI();
+                throw new NullReferenceException($"{nameof(serverList)} is null, unable to show local lobbies");
             }
+
+            Action<IPAddress> callback = ip => LaunchClient(ip.ToString());
+            serverList.OnClickServer += callback;
+
+            await foreach (
+                var servers in
+                localLobbyFinder.Client.FindServers(_serverFinderCancellationTokenSource.Token)
+            )
+            {
+                serverList.Servers = servers;
+            }
+
+            serverList.OnClickServer -= callback;
         }
 
-        private void ShowUI()
+        private void ListenForClients()
         {
-            IsUIShown = true;
+            if (localLobbyFinder is null || _clientListenerCancellationTokenSource is not null) return;
+            _clientListenerCancellationTokenSource = new CancellationTokenSource();
+            localLobbyFinder.Server.StartRespondingToClientPings(_clientListenerCancellationTokenSource.Token);
         }
 
-        private void HideUI()
+        private void StopListeningForServers()
         {
-            IsUIShown = false;
+            if (_serverFinderCancellationTokenSource is null) return;
+            _serverFinderCancellationTokenSource.Cancel();
+            _serverFinderCancellationTokenSource.Dispose();
+            _serverFinderCancellationTokenSource = null;
+        }
+
+        private void StopListeningForClients()
+        {
+            if (_clientListenerCancellationTokenSource is null) return;
+            _clientListenerCancellationTokenSource.Cancel();
+            _clientListenerCancellationTokenSource.Dispose();
+            _clientListenerCancellationTokenSource = null;
         }
     }
 }

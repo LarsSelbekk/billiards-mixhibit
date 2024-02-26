@@ -1203,6 +1203,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 151754637653369062, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 151754637653369062, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1194812072214057751, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1269,7 +1277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1194812072214057751, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 1194812072214057751, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1303,6 +1311,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lobby Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4141710869723037627, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141710869723037627, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4483361809484037046, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
       propertyPath: m_ContentType
       value: 9
@@ -1319,6 +1335,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1209251042}
+    - target: {fileID: 7165889167328691714, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00005914329
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
