@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 3127728407087826080}
   m_Layer: 0
   m_Name: XR Interaction Manager
-  m_TagString: Untagged
+  m_TagString: XRInteractionManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

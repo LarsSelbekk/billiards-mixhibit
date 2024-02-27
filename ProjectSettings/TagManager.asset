@@ -16,6 +16,7 @@ TagManager:
   - TableSlate
   - WorldLockParent
   - ARSession
+  - XRInteractionManager
   layers:
   - Default
   - TransparentFX
