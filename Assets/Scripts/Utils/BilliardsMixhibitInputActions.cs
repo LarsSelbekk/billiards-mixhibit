@@ -2653,6 +2653,15 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Toggle Occlusion"",
+                    ""type"": ""Button"",
+                    ""id"": ""b668e36a-b38f-4799-9c52-6f62db59bfb2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -2829,6 +2838,50 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rotate Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09c79bb5-7de4-4c47-81d3-88bd51fa054b"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle Occlusion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Hold + Tap"",
+                    ""id"": ""6e382fc1-1308-40e2-bda3-a43b3d0ba62e"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle Occlusion"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Modifier"",
+                    ""id"": ""1ab0d825-fa64-44d0-aa27-2a9e376a7340"",
+                    ""path"": ""<Touchscreen>/touch0/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle Occlusion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Binding"",
+                    ""id"": ""3656d8dc-e43e-4a55-83e8-ffb682a3e100"",
+                    ""path"": ""<Touchscreen>/touch1/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Toggle Occlusion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -3008,6 +3061,7 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
         m_SpectatorView_Recenter = m_SpectatorView.FindAction("Recenter", throwIfNotFound: true);
         m_SpectatorView_MoveOrigin = m_SpectatorView.FindAction("Move Origin", throwIfNotFound: true);
         m_SpectatorView_RotateOrigin = m_SpectatorView.FindAction("Rotate Origin", throwIfNotFound: true);
+        m_SpectatorView_ToggleOcclusion = m_SpectatorView.FindAction("Toggle Occlusion", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -4126,6 +4180,7 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
     private readonly InputAction m_SpectatorView_Recenter;
     private readonly InputAction m_SpectatorView_MoveOrigin;
     private readonly InputAction m_SpectatorView_RotateOrigin;
+    private readonly InputAction m_SpectatorView_ToggleOcclusion;
     public struct SpectatorViewActions
     {
         private @BilliardsMixhibitInputActions m_Wrapper;
@@ -4133,6 +4188,7 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
         public InputAction @Recenter => m_Wrapper.m_SpectatorView_Recenter;
         public InputAction @MoveOrigin => m_Wrapper.m_SpectatorView_MoveOrigin;
         public InputAction @RotateOrigin => m_Wrapper.m_SpectatorView_RotateOrigin;
+        public InputAction @ToggleOcclusion => m_Wrapper.m_SpectatorView_ToggleOcclusion;
         public InputActionMap Get() { return m_Wrapper.m_SpectatorView; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -4151,6 +4207,9 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
             @RotateOrigin.started += instance.OnRotateOrigin;
             @RotateOrigin.performed += instance.OnRotateOrigin;
             @RotateOrigin.canceled += instance.OnRotateOrigin;
+            @ToggleOcclusion.started += instance.OnToggleOcclusion;
+            @ToggleOcclusion.performed += instance.OnToggleOcclusion;
+            @ToggleOcclusion.canceled += instance.OnToggleOcclusion;
         }
 
         private void UnregisterCallbacks(ISpectatorViewActions instance)
@@ -4164,6 +4223,9 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
             @RotateOrigin.started -= instance.OnRotateOrigin;
             @RotateOrigin.performed -= instance.OnRotateOrigin;
             @RotateOrigin.canceled -= instance.OnRotateOrigin;
+            @ToggleOcclusion.started -= instance.OnToggleOcclusion;
+            @ToggleOcclusion.performed -= instance.OnToggleOcclusion;
+            @ToggleOcclusion.canceled -= instance.OnToggleOcclusion;
         }
 
         public void RemoveCallbacks(ISpectatorViewActions instance)
@@ -4329,5 +4391,6 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
         void OnRecenter(InputAction.CallbackContext context);
         void OnMoveOrigin(InputAction.CallbackContext context);
         void OnRotateOrigin(InputAction.CallbackContext context);
+        void OnToggleOcclusion(InputAction.CallbackContext context);
     }
 }
