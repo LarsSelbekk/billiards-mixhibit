@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Attributes;
 using Unity.Netcode;
@@ -126,7 +127,16 @@ namespace Components
             for (var i = 0; i < tableReference.transform.childCount; i++)
             {
                 var referencePart = tableReference.transform.GetChild(i).gameObject;
-                var partPrefab = tableParts.First(o => o.name == referencePart.name);
+                GameObject partPrefab;
+                try
+                {
+                    partPrefab = tableParts.Single(o => o.name == referencePart.name);
+                }
+                catch (Exception)
+                {
+                    Debug.LogError($"[SVANESJO] failed to determine prefab for table reference part '{referencePart.name}'");
+                    throw;
+                }
                 var part = Instantiate(partPrefab, referencePart.transform.position, referencePart.transform.rotation);
                 heldObjects.Add(part);
                 part.transform.localScale = referencePart.transform.localScale;

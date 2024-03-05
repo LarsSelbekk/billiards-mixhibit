@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Components;
 using UnityEditor;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace Editor
                 return;
             }
 
-            var parts = new List<GameObject>();
+            var parts = new HashSet<GameObject>();
             var tableTransform = tableReference.transform;
             for (var i = 0; i < tableTransform.childCount; i++)
             {
