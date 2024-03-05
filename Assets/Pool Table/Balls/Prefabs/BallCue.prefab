@@ -21,10 +21,6 @@ PrefabInstance:
       value: CueBall
       objectReference: {fileID: 0}
     - target: {fileID: 3216892826011347897, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3216892826011347897, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -68,6 +64,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8f97e50ad21eeae499f89e2f90d09c36, type: 2}
+    - target: {fileID: 5953175500084549204, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2691204762
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: -5386067256029913594}
   - component: {fileID: -4620850111529231922}
   - component: {fileID: 283179286417347331}
-  - component: {fileID: 7613603780265070880}
-  - component: {fileID: 7074948771037746542}
+  - component: {fileID: 5498176753641033969}
+  - component: {fileID: 664902586288508318}
   m_Layer: 0
   m_Name: Chalk
   m_TagString: Untagged
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7074948771037746542}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeOwnershipRequester, Assembly-CSharp
         m_MethodName: RequestOwnership
         m_Mode: 1
@@ -325,7 +325,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &7613603780265070880
+--- !u!114 &5498176753641033969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -334,28 +334,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6198787342843146226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9613d19a4aafca44bd9bd86e29bc737, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bc11a920498445dbc9db8980c852ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 0
-  SyncScaleY: 0
-  SyncScaleZ: 0
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
-  InLocalSpace: 1
-  Interpolate: 1
-  SlerpPosition: 0
---- !u!114 &7074948771037746542
+  m_rigidbody: {fileID: 914725210282426886}
+  m_stateSync: {fileID: 664902586288508318}
+  m_grabInteractable: {fileID: 0}
+  IsPendingCommit: 0
+  IsConfirmed: 0
+  LastActiveFrame: 0
+--- !u!114 &664902586288508318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -364,6 +352,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6198787342843146226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af3b0df346d323549b779d3b7e924fb6, type: 3}
+  m_Script: {fileID: 11500000, guid: 383612e22ee94cb29f8cfbfece4bd60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_updateRate: 1
+  m_bufferFlushRate: 1

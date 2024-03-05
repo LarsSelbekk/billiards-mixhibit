@@ -17,8 +17,7 @@ GameObject:
   - component: {fileID: 4771804348449670141}
   - component: {fileID: -5157515689880088114}
   - component: {fileID: 5953175500084549204}
-  - component: {fileID: 5167607018828090370}
-  - component: {fileID: 8161464008990617723}
+  - component: {fileID: 4493979100452681775}
   m_Layer: 8
   m_Name: Ball
   m_TagString: Untagged
@@ -191,19 +190,7 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8161464008990617723}
-        m_TargetAssemblyTypeName: ChangeOwnershipRequester, Assembly-CSharp
-        m_MethodName: RequestOwnership
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -317,6 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2907ca92d2f5384dae03a745c5a3562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comeToRestAngularSpeedThreshold: 0.01
   slowdownAngularSpeedThreshold: 8
   slowdownPerSecond: 1.75
 --- !u!114 &-5157515689880088114
@@ -354,7 +342,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &5167607018828090370
+--- !u!114 &4493979100452681775
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -363,36 +351,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3216892826011347896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9613d19a4aafca44bd9bd86e29bc737, type: 3}
+  m_Script: {fileID: 11500000, guid: 383612e22ee94cb29f8cfbfece4bd60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 0
-  SyncScaleY: 0
-  SyncScaleZ: 0
-  PositionThreshold: 0
-  RotAngleThreshold: 0.00001
-  ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 1
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
-  InLocalSpace: 1
-  Interpolate: 1
-  SlerpPosition: 1
---- !u!114 &8161464008990617723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216892826011347896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af3b0df346d323549b779d3b7e924fb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  updateRate: 1
+  bufferFlushRate: 1
