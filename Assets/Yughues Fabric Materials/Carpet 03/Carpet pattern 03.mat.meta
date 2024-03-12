@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 7bf0e367ce03a4144bc2c480d9ae5913
+labels:
+- Fabric
+- Pattern
+- Carpet
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 13002
+  packageName: Yughues Free Fabric Materials
+  packageVersion: 1.1
+  assetPath: Assets/Yughues Fabric Materials/Carpet 03/Carpet pattern 03.mat
+  uploadId: 57783

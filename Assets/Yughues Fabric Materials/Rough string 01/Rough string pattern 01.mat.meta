@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: affe8420ea98e6140b81dcb49af842a6
+labels:
+- Carpet
+- Fabric
+- Pattern
+- Rough
+- String
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 13002
+  packageName: Yughues Free Fabric Materials
+  packageVersion: 1.1
+  assetPath: Assets/Yughues Fabric Materials/Rough string 01/Rough string pattern
+    01.mat
+  uploadId: 57783
