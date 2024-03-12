@@ -18,12 +18,12 @@ public class AROcclusionToggler : MonoBehaviour
 
     private void OnEnable()
     {
-        spectatorViewSetup.Input.SpectatorView.ToggleOcclusion.performed += OnOcclusionToggle;
+        spectatorViewSetup.Input.Mobile.ToggleOcclusion.performed += OnOcclusionToggle;
     }
 
     private void OnDisable()
     {
-        spectatorViewSetup.Input.SpectatorView.ToggleOcclusion.performed -= OnOcclusionToggle;
+        spectatorViewSetup.Input.Mobile.ToggleOcclusion.performed -= OnOcclusionToggle;
     }
 
     public void OnOcclusionToggle(InputAction.CallbackContext _)

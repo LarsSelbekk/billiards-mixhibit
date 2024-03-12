@@ -2778,7 +2778,187 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
             ]
         },
         {
-            ""name"": ""Spectator View"",
+            ""name"": ""Base Spectator View"",
+            ""id"": ""b0d376dd-53e1-4c57-aa69-f79f606eced9"",
+            ""actions"": [
+                {
+                    ""name"": ""Move Origin"",
+                    ""type"": ""Value"",
+                    ""id"": ""aec7a080-657a-44fe-9b6b-5fc7d03877e8"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotate Origin"",
+                    ""type"": ""Value"",
+                    ""id"": ""203db602-48b2-4f49-85bd-10f64114aeed"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""3D Vector"",
+                    ""id"": ""1f60f47d-c6c2-4664-9e89-50f8cbad851c"",
+                    ""path"": ""3DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Origin"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""f5407cf9-6fc6-46b5-8fff-3e92e56599c6"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""f2b14c0e-0a89-4f90-87e4-8a193e1ef63b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f4da7ffe-aad1-4060-9c30-d5d7c5b1a4ce"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1ebe0bda-dc17-42e4-8949-2c7ecb191bb7"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""forward"",
+                    ""id"": ""61d021bb-8b24-4daf-827e-95572c7724d6"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""backward"",
+                    ""id"": ""bda93ba4-0873-40f5-820a-334eae8db48f"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""3D Vector"",
+                    ""id"": ""f6b53a8d-97ff-4095-8df3-13e71c7e436b"",
+                    ""path"": ""3DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate Origin"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""b35d3432-cc1f-4d3f-9255-fbe018a8b873"",
+                    ""path"": ""<Keyboard>/pageUp"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e0fa2b6b-f81d-45dc-9bbb-ea6133ac49c6"",
+                    ""path"": ""<Keyboard>/pageDown"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""af7d3dea-4b86-46e3-a417-d29adc067d94"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f28b909d-48d8-472f-924f-7a85cb5343d5"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""forward"",
+                    ""id"": ""4edd9b1b-6f14-4443-b8a7-b58ff5b5ed5d"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""backward"",
+                    ""id"": ""2bf790d5-29e9-4508-bec8-72fb39219cb6"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate Origin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""Mobile"",
             ""id"": ""ef2168c4-8e54-4494-91d9-e90590f37cae"",
             ""actions"": [
                 {
@@ -2789,24 +2969,6 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Move Origin"",
-                    ""type"": ""Value"",
-                    ""id"": ""fad8fe88-10a6-4703-bd67-b6f3f5d910aa"",
-                    ""expectedControlType"": ""Vector3"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Rotate Origin"",
-                    ""type"": ""Value"",
-                    ""id"": ""43f40162-b334-4547-a5ae-b1d1d743beab"",
-                    ""expectedControlType"": ""Vector3"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Toggle Occlusion"",
@@ -2840,160 +3002,6 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
                     ""action"": ""Recenter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""3D Vector"",
-                    ""id"": ""58a8ccee-b693-462c-9d82-3748b52614f8"",
-                    ""path"": ""3DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move Origin"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""a7163932-2613-4d62-a644-27c030a5526b"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move Origin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""2f8e95d8-65f9-43e5-abe1-38f9e641ce58"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move Origin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""e31def1f-08a6-481f-86db-fd0a3d23d8f4"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move Origin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""a4cdc41a-3623-4e61-a0eb-158498f1a743"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move Origin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""forward"",
-                    ""id"": ""917c8341-6aaf-4b70-8b4e-410dd22e2332"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move Origin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""backward"",
-                    ""id"": ""5ff05e0c-cd4e-4eb7-ad80-9e25152b4979"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move Origin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""3D Vector"",
-                    ""id"": ""152587f9-e2f0-454f-b9c3-267fa6fe6f8c"",
-                    ""path"": ""3DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotate Origin"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""0424984b-88cb-4d20-9c7d-433e0c3c290d"",
-                    ""path"": ""<Keyboard>/pageUp"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotate Origin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""4c21e502-b80e-4dc6-9bde-f5bc29baf896"",
-                    ""path"": ""<Keyboard>/pageDown"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotate Origin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""2a1cebdb-df78-405d-9b92-85c41b25a282"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotate Origin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""225ef789-5aa8-4cd9-ae2e-401e031f0160"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotate Origin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""forward"",
-                    ""id"": ""21e0984c-6cb8-4bdb-a3e5-2d921fefc1a7"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotate Origin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""backward"",
-                    ""id"": ""15a01196-cc5c-4947-9098-97b519c67404"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotate Origin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -3210,12 +3218,14 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
         m_TouchscreenGestures_TwistStartPosition = m_TouchscreenGestures.FindAction("Twist Start Position", throwIfNotFound: true);
         m_TouchscreenGestures_TwistDeltaRotation = m_TouchscreenGestures.FindAction("Twist Delta Rotation", throwIfNotFound: true);
         m_TouchscreenGestures_ScreenTouchCount = m_TouchscreenGestures.FindAction("Screen Touch Count", throwIfNotFound: true);
-        // Spectator View
-        m_SpectatorView = asset.FindActionMap("Spectator View", throwIfNotFound: true);
-        m_SpectatorView_Recenter = m_SpectatorView.FindAction("Recenter", throwIfNotFound: true);
-        m_SpectatorView_MoveOrigin = m_SpectatorView.FindAction("Move Origin", throwIfNotFound: true);
-        m_SpectatorView_RotateOrigin = m_SpectatorView.FindAction("Rotate Origin", throwIfNotFound: true);
-        m_SpectatorView_ToggleOcclusion = m_SpectatorView.FindAction("Toggle Occlusion", throwIfNotFound: true);
+        // Base Spectator View
+        m_BaseSpectatorView = asset.FindActionMap("Base Spectator View", throwIfNotFound: true);
+        m_BaseSpectatorView_MoveOrigin = m_BaseSpectatorView.FindAction("Move Origin", throwIfNotFound: true);
+        m_BaseSpectatorView_RotateOrigin = m_BaseSpectatorView.FindAction("Rotate Origin", throwIfNotFound: true);
+        // Mobile
+        m_Mobile = asset.FindActionMap("Mobile", throwIfNotFound: true);
+        m_Mobile_Recenter = m_Mobile.FindAction("Recenter", throwIfNotFound: true);
+        m_Mobile_ToggleOcclusion = m_Mobile.FindAction("Toggle Occlusion", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -4328,75 +4338,113 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
     }
     public TouchscreenGesturesActions @TouchscreenGestures => new TouchscreenGesturesActions(this);
 
-    // Spectator View
-    private readonly InputActionMap m_SpectatorView;
-    private List<ISpectatorViewActions> m_SpectatorViewActionsCallbackInterfaces = new List<ISpectatorViewActions>();
-    private readonly InputAction m_SpectatorView_Recenter;
-    private readonly InputAction m_SpectatorView_MoveOrigin;
-    private readonly InputAction m_SpectatorView_RotateOrigin;
-    private readonly InputAction m_SpectatorView_ToggleOcclusion;
-    public struct SpectatorViewActions
+    // Base Spectator View
+    private readonly InputActionMap m_BaseSpectatorView;
+    private List<IBaseSpectatorViewActions> m_BaseSpectatorViewActionsCallbackInterfaces = new List<IBaseSpectatorViewActions>();
+    private readonly InputAction m_BaseSpectatorView_MoveOrigin;
+    private readonly InputAction m_BaseSpectatorView_RotateOrigin;
+    public struct BaseSpectatorViewActions
     {
         private @BilliardsMixhibitInputActions m_Wrapper;
-        public SpectatorViewActions(@BilliardsMixhibitInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Recenter => m_Wrapper.m_SpectatorView_Recenter;
-        public InputAction @MoveOrigin => m_Wrapper.m_SpectatorView_MoveOrigin;
-        public InputAction @RotateOrigin => m_Wrapper.m_SpectatorView_RotateOrigin;
-        public InputAction @ToggleOcclusion => m_Wrapper.m_SpectatorView_ToggleOcclusion;
-        public InputActionMap Get() { return m_Wrapper.m_SpectatorView; }
+        public BaseSpectatorViewActions(@BilliardsMixhibitInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MoveOrigin => m_Wrapper.m_BaseSpectatorView_MoveOrigin;
+        public InputAction @RotateOrigin => m_Wrapper.m_BaseSpectatorView_RotateOrigin;
+        public InputActionMap Get() { return m_Wrapper.m_BaseSpectatorView; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(SpectatorViewActions set) { return set.Get(); }
-        public void AddCallbacks(ISpectatorViewActions instance)
+        public static implicit operator InputActionMap(BaseSpectatorViewActions set) { return set.Get(); }
+        public void AddCallbacks(IBaseSpectatorViewActions instance)
         {
-            if (instance == null || m_Wrapper.m_SpectatorViewActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_SpectatorViewActionsCallbackInterfaces.Add(instance);
-            @Recenter.started += instance.OnRecenter;
-            @Recenter.performed += instance.OnRecenter;
-            @Recenter.canceled += instance.OnRecenter;
+            if (instance == null || m_Wrapper.m_BaseSpectatorViewActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_BaseSpectatorViewActionsCallbackInterfaces.Add(instance);
             @MoveOrigin.started += instance.OnMoveOrigin;
             @MoveOrigin.performed += instance.OnMoveOrigin;
             @MoveOrigin.canceled += instance.OnMoveOrigin;
             @RotateOrigin.started += instance.OnRotateOrigin;
             @RotateOrigin.performed += instance.OnRotateOrigin;
             @RotateOrigin.canceled += instance.OnRotateOrigin;
-            @ToggleOcclusion.started += instance.OnToggleOcclusion;
-            @ToggleOcclusion.performed += instance.OnToggleOcclusion;
-            @ToggleOcclusion.canceled += instance.OnToggleOcclusion;
         }
 
-        private void UnregisterCallbacks(ISpectatorViewActions instance)
+        private void UnregisterCallbacks(IBaseSpectatorViewActions instance)
         {
-            @Recenter.started -= instance.OnRecenter;
-            @Recenter.performed -= instance.OnRecenter;
-            @Recenter.canceled -= instance.OnRecenter;
             @MoveOrigin.started -= instance.OnMoveOrigin;
             @MoveOrigin.performed -= instance.OnMoveOrigin;
             @MoveOrigin.canceled -= instance.OnMoveOrigin;
             @RotateOrigin.started -= instance.OnRotateOrigin;
             @RotateOrigin.performed -= instance.OnRotateOrigin;
             @RotateOrigin.canceled -= instance.OnRotateOrigin;
+        }
+
+        public void RemoveCallbacks(IBaseSpectatorViewActions instance)
+        {
+            if (m_Wrapper.m_BaseSpectatorViewActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IBaseSpectatorViewActions instance)
+        {
+            foreach (var item in m_Wrapper.m_BaseSpectatorViewActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_BaseSpectatorViewActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public BaseSpectatorViewActions @BaseSpectatorView => new BaseSpectatorViewActions(this);
+
+    // Mobile
+    private readonly InputActionMap m_Mobile;
+    private List<IMobileActions> m_MobileActionsCallbackInterfaces = new List<IMobileActions>();
+    private readonly InputAction m_Mobile_Recenter;
+    private readonly InputAction m_Mobile_ToggleOcclusion;
+    public struct MobileActions
+    {
+        private @BilliardsMixhibitInputActions m_Wrapper;
+        public MobileActions(@BilliardsMixhibitInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Recenter => m_Wrapper.m_Mobile_Recenter;
+        public InputAction @ToggleOcclusion => m_Wrapper.m_Mobile_ToggleOcclusion;
+        public InputActionMap Get() { return m_Wrapper.m_Mobile; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MobileActions set) { return set.Get(); }
+        public void AddCallbacks(IMobileActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MobileActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MobileActionsCallbackInterfaces.Add(instance);
+            @Recenter.started += instance.OnRecenter;
+            @Recenter.performed += instance.OnRecenter;
+            @Recenter.canceled += instance.OnRecenter;
+            @ToggleOcclusion.started += instance.OnToggleOcclusion;
+            @ToggleOcclusion.performed += instance.OnToggleOcclusion;
+            @ToggleOcclusion.canceled += instance.OnToggleOcclusion;
+        }
+
+        private void UnregisterCallbacks(IMobileActions instance)
+        {
+            @Recenter.started -= instance.OnRecenter;
+            @Recenter.performed -= instance.OnRecenter;
+            @Recenter.canceled -= instance.OnRecenter;
             @ToggleOcclusion.started -= instance.OnToggleOcclusion;
             @ToggleOcclusion.performed -= instance.OnToggleOcclusion;
             @ToggleOcclusion.canceled -= instance.OnToggleOcclusion;
         }
 
-        public void RemoveCallbacks(ISpectatorViewActions instance)
+        public void RemoveCallbacks(IMobileActions instance)
         {
-            if (m_Wrapper.m_SpectatorViewActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_MobileActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(ISpectatorViewActions instance)
+        public void SetCallbacks(IMobileActions instance)
         {
-            foreach (var item in m_Wrapper.m_SpectatorViewActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_MobileActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_SpectatorViewActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_MobileActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public SpectatorViewActions @SpectatorView => new SpectatorViewActions(this);
+    public MobileActions @Mobile => new MobileActions(this);
     private int m_GenericXRControllerSchemeIndex = -1;
     public InputControlScheme GenericXRControllerScheme
     {
@@ -4540,11 +4588,14 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
         void OnTwistDeltaRotation(InputAction.CallbackContext context);
         void OnScreenTouchCount(InputAction.CallbackContext context);
     }
-    public interface ISpectatorViewActions
+    public interface IBaseSpectatorViewActions
     {
-        void OnRecenter(InputAction.CallbackContext context);
         void OnMoveOrigin(InputAction.CallbackContext context);
         void OnRotateOrigin(InputAction.CallbackContext context);
+    }
+    public interface IMobileActions
+    {
+        void OnRecenter(InputAction.CallbackContext context);
         void OnToggleOcclusion(InputAction.CallbackContext context);
     }
 }
