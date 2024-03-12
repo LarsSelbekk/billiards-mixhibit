@@ -36,12 +36,14 @@ public class TargetDeviceChanger
     {
         Hmd,
         Phone,
+        Computer,
     }
 
     private static readonly Dictionary<string, TargetType?> SceneTargetTypes = new()
     {
         { "Assets/Scenes/Billiards Mixhibit.unity", TargetType.Hmd },
         { "Assets/Scenes/Spectator View.unity", TargetType.Phone },
+        { "Assets/Scenes/ProjectatorView.unity", TargetType.Computer },
     };
 
     private static readonly List<Type> XRLoaderTypes = new() { typeof(OculusLoader), typeof(ARCoreLoader) };
@@ -77,10 +79,17 @@ public class TargetDeviceChanger
             case TargetType.Phone:
                 Debug.Log($"Setting target to phone because of switch to scene {newScene.name}");
                 ChangeToPhoneTarget();
+                SetBuildOutputFile(BuildTarget.Android, newScene);
                 break;
             case TargetType.Hmd:
                 Debug.Log($"Setting target to HMD because of switch to scene {newScene.name}");
                 ChangeToHmdTarget();
+                SetBuildOutputFile(BuildTarget.Android, newScene);
+                break;
+            case TargetType.Computer:
+                Debug.Log($"Setting target to computer because of switch to scene {newScene.name}");
+                ChangeToComputerTarget();
+                SetBuildOutputFile(BuildTarget.StandaloneWindows64, newScene);
                 break;
             default:
                 throw new SwitchExpressionException(
@@ -89,19 +98,25 @@ public class TargetDeviceChanger
         }
 
         SetBuildScene(newScene);
-        SetBuildOutputFile(newScene);
     }
 
     private static void ChangeToPhoneTarget()
     {
+        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
         PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.OpenGLES3 });
         ChangeXRLoader<ARCoreLoader>();
     }
 
     private static void ChangeToHmdTarget()
     {
+        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
         PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.Vulkan });
         ChangeXRLoader<OculusLoader>();
+    }
+
+    private static void ChangeToComputerTarget()
+    {
+        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
     }
 
     private static void SetBuildScene(Scene newScene)
@@ -118,16 +133,28 @@ public class TargetDeviceChanger
             .ToArray();
     }
 
-    private static void SetBuildOutputFile(Scene newScene)
+    private static void SetBuildOutputFile(BuildTarget buildTarget, Scene newScene)
     {
-        var oldPath = EditorUserBuildSettings.GetBuildLocation(BuildTarget.Android);
+        var oldPath = EditorUserBuildSettings.GetBuildLocation(buildTarget);
         var directoryName = Path.GetDirectoryName(oldPath) ?? "";
-        var fileName = newScene.name.Replace(" ", "-").ToLowerInvariant() + ".apk";
+        var extension = buildTarget switch
+        {
+            BuildTarget.Android => ".apk",
+            BuildTarget.StandaloneWindows or BuildTarget.StandaloneWindows64 => ".exe",
+            _ => throw new ArgumentOutOfRangeException(
+                nameof(buildTarget),
+                buildTarget,
+                "File extension for build target not defined"
+            )
+        };
+
+        
+        var fileName = newScene.name.Replace(" ", "-").ToLowerInvariant() + extension;
         var newPath = directoryName is null or "" ? fileName : Path.Combine(directoryName, fileName).Replace("\\", "/");
 
         if (oldPath == newPath) return;
 
-        EditorUserBuildSettings.SetBuildLocation(BuildTarget.Android, newPath);
+        EditorUserBuildSettings.SetBuildLocation(buildTarget, newPath);
     }
 
     private static void ChangeXRLoader<T>()
