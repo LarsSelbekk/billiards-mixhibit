@@ -1,4 +1,4 @@
-﻿#define DEBUG_AUTHORITY_COLORS
+﻿// #define DEBUG_AUTHORITY_COLORS
 // #define DEBUG_LOGS
 
 using System.Collections.Generic;
