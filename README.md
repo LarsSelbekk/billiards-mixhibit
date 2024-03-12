@@ -5,6 +5,12 @@ Computer Science students at the Norwegian University of Science and Technology 
 It is a billiards Mixed Reality exhibit for the science center [Vitensenteret i Trondheim](https://vitensenteret.com/),
 allowing youths to explore Mixed Reality in a playful and social environment.
 
+### Demo Tips
+
+- Avoid accidental menu button presses with "Long Press" mode.
+
+  `Settimgs > Devices > Controllers > "Long Press (Meta Button) to Pause"`
+
 ### Hacky modifications of [`UberPost.shader`](<Assets/XR Overrides/UberPost.shader>)
 The UberPost-shader has been modified to fix passthrough with post-processing. If passthrough is completely black, select [`CustomPostProcessData.asset`](Assets/Settings/CustomPostProcessData.asset) in the Inspector, set the Inspector to debug mode using the ellipsis button in the upper right corner, and make sure the `Uber Post PS` shader reference is set to the one in `Assets/XR Overrides/UberPost.shader`. The script is modified as described [here](https://communityforums.atmeta.com/t5/Unity-VR-Development/Passthrough-and-post-processing/m-p/1131527/highlight/true#M23353).
 
