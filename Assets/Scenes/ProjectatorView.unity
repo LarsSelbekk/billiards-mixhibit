@@ -622,14 +622,6 @@ PrefabInstance:
       propertyPath: iotNetworkProxy
       value: 
       objectReference: {fileID: 782628376}
-    - target: {fileID: 2043245771131728990, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
-      propertyPath: 'rayInteractors.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2043245771131728990, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
-      propertyPath: 'rayInteractors.Array.data[1]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3611874200621355065, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
       propertyPath: m_Name
       value: Lobby Manager
@@ -652,7 +644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7165889167328691714, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00014232034
+      value: 0.00000895005
       objectReference: {fileID: 0}
     - target: {fileID: 8360709649797149903, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
       propertyPath: m_AnchorMax.x

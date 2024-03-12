@@ -724,9 +724,7 @@ MonoBehaviour:
   playerLauncher: {fileID: 0}
   serverUrlInputField: {fileID: 19808736766757300}
   myIpTextField: {fileID: 3376481438428383152}
-  rayInteractors:
-  - {fileID: 0}
-  - {fileID: 0}
+  rayInteractors: []
   iotNetworkProxy: {fileID: 0}
   iotToggle: {fileID: 6233623762953626256}
   autoStartArgs:
