@@ -3048,6 +3048,56 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Projectator"",
+            ""id"": ""413c3ff3-1831-4100-9101-058488d6d865"",
+            ""actions"": [
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""140636f2-dfdc-4d85-bf22-6fdbd0f2204e"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""2329821f-6784-40f3-964f-77d7a8082e1c"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""c7727dee-97ae-4e82-9e43-968461ca701c"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""08ecf39c-1522-4f3b-9f1a-10af0d21a498"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -3226,6 +3276,9 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
         m_Mobile = asset.FindActionMap("Mobile", throwIfNotFound: true);
         m_Mobile_Recenter = m_Mobile.FindAction("Recenter", throwIfNotFound: true);
         m_Mobile_ToggleOcclusion = m_Mobile.FindAction("Toggle Occlusion", throwIfNotFound: true);
+        // Projectator
+        m_Projectator = asset.FindActionMap("Projectator", throwIfNotFound: true);
+        m_Projectator_Zoom = m_Projectator.FindAction("Zoom", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -4445,6 +4498,52 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
         }
     }
     public MobileActions @Mobile => new MobileActions(this);
+
+    // Projectator
+    private readonly InputActionMap m_Projectator;
+    private List<IProjectatorActions> m_ProjectatorActionsCallbackInterfaces = new List<IProjectatorActions>();
+    private readonly InputAction m_Projectator_Zoom;
+    public struct ProjectatorActions
+    {
+        private @BilliardsMixhibitInputActions m_Wrapper;
+        public ProjectatorActions(@BilliardsMixhibitInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Zoom => m_Wrapper.m_Projectator_Zoom;
+        public InputActionMap Get() { return m_Wrapper.m_Projectator; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ProjectatorActions set) { return set.Get(); }
+        public void AddCallbacks(IProjectatorActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ProjectatorActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ProjectatorActionsCallbackInterfaces.Add(instance);
+            @Zoom.started += instance.OnZoom;
+            @Zoom.performed += instance.OnZoom;
+            @Zoom.canceled += instance.OnZoom;
+        }
+
+        private void UnregisterCallbacks(IProjectatorActions instance)
+        {
+            @Zoom.started -= instance.OnZoom;
+            @Zoom.performed -= instance.OnZoom;
+            @Zoom.canceled -= instance.OnZoom;
+        }
+
+        public void RemoveCallbacks(IProjectatorActions instance)
+        {
+            if (m_Wrapper.m_ProjectatorActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IProjectatorActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ProjectatorActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ProjectatorActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ProjectatorActions @Projectator => new ProjectatorActions(this);
     private int m_GenericXRControllerSchemeIndex = -1;
     public InputControlScheme GenericXRControllerScheme
     {
@@ -4597,5 +4696,9 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
     {
         void OnRecenter(InputAction.CallbackContext context);
         void OnToggleOcclusion(InputAction.CallbackContext context);
+    }
+    public interface IProjectatorActions
+    {
+        void OnZoom(InputAction.CallbackContext context);
     }
 }

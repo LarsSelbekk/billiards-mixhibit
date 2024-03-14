@@ -571,6 +571,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2868565029589509493, guid: 2a575b98db1909d4fbc91a460b5b0bbd, type: 3}
+      propertyPath: isProjectorSpectatorView
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6665152152952462122, guid: 2a575b98db1909d4fbc91a460b5b0bbd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.754607
@@ -618,19 +622,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7008333498969927806, guid: 2a575b98db1909d4fbc91a460b5b0bbd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1293083128}
   m_SourcePrefab: {fileID: 100100000, guid: 2a575b98db1909d4fbc91a460b5b0bbd, type: 3}
 --- !u!114 &1293083126 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2868565029589509493, guid: 2a575b98db1909d4fbc91a460b5b0bbd, type: 3}
   m_PrefabInstance: {fileID: 1293083125}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1293083127}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3cc8151fa964b5581c5b37e4dcd9e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1293083127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7008333498969927806, guid: 2a575b98db1909d4fbc91a460b5b0bbd, type: 3}
+  m_PrefabInstance: {fileID: 1293083125}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1293083128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293083127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a534617cb878e40b8647aff3922872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spectatorViewSetup: {fileID: 1293083126}
+  speed: 0.01
 --- !u!1001 &1423874528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -777,7 +803,7 @@ PrefabInstance:
       objectReference: {fileID: 1276013777}
     - target: {fileID: 7165889167328691714, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000028681528
+      value: 0.00010054613
       objectReference: {fileID: 0}
     - target: {fileID: 8360709649797149903, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
       propertyPath: m_AnchorMax.x

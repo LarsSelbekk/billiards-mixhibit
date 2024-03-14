@@ -9,7 +9,7 @@ public class SpectatorViewSetup : MonoBehaviour
         // Awake or something.
         _input ??= new BilliardsMixhibitInputActions();
 
-    public bool isMobileSpectatorView;
+    public bool isMobileSpectatorView, isProjectorSpectatorView;
 
     private void OnEnable()
     {
@@ -21,10 +21,16 @@ public class SpectatorViewSetup : MonoBehaviour
             Input.XRIHead.Enable();
             Input.Mobile.Enable();
         }
+        if (isProjectorSpectatorView)
+        {
+            Input.Projectator.Enable();
+        }
+
     }
 
     private void OnDisable()
     {
+        Input.Projectator.Enable();
         Input.Mobile.Enable();
         Input.XRIHead.Disable();
         Input.XRIUI.Disable();
