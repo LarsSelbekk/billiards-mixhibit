@@ -1145,6 +1145,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 782628376}
     - target: {fileID: 2043245771131728990, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
+      propertyPath: rayInteractors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043245771131728990, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
       propertyPath: 'rayInteractors.Array.data[0]'
       value: 
       objectReference: {fileID: 55347377}
