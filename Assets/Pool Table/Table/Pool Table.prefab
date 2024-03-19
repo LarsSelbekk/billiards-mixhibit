@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 1461125317312713194}
   m_Layer: 7
   m_Name: Straightway
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 9079655930433677524}
   m_Layer: 7
   m_Name: Corner Hole
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 519810698733176264}
   m_Layer: 7
   m_Name: Corner Hole
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -664,7 +664,7 @@ GameObject:
   - component: {fileID: 9044980451269214963}
   m_Layer: 7
   m_Name: Corner Hole
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -901,7 +901,7 @@ GameObject:
   - component: {fileID: 5053956104220451103}
   m_Layer: 7
   m_Name: Center Hole
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 8176071939764199753}
   m_Layer: 7
   m_Name: Center Hole
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1091,7 +1091,7 @@ GameObject:
   - component: {fileID: 8173398393618192613}
   m_Layer: 7
   m_Name: Straightway
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1186,7 +1186,7 @@ GameObject:
   - component: {fileID: 1328263330723530430}
   m_Layer: 7
   m_Name: Corner Hole
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1281,7 +1281,7 @@ GameObject:
   - component: {fileID: 1085298194573485926}
   m_Layer: 7
   m_Name: Center Hole
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1449,6 +1449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 1179286744
+  InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1468,6 +1469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
   SyncPositionZ: 1
@@ -1632,7 +1634,7 @@ GameObject:
   - component: {fileID: 7626677192734650686}
   m_Layer: 7
   m_Name: Corner Hole
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1761,7 +1763,7 @@ GameObject:
   - component: {fileID: 2319730134565696933}
   m_Layer: 7
   m_Name: Straightway
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1997,7 +1999,7 @@ GameObject:
   - component: {fileID: 3931616731991383789}
   m_Layer: 7
   m_Name: Straightway
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2092,7 +2094,7 @@ GameObject:
   - component: {fileID: 2093052450387699296}
   m_Layer: 7
   m_Name: Center Hole
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2221,7 +2223,7 @@ GameObject:
   - component: {fileID: 8843456940225428662}
   m_Layer: 7
   m_Name: Corner Hole
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2316,7 +2318,7 @@ GameObject:
   - component: {fileID: 1442352785853973923}
   m_Layer: 7
   m_Name: Corner Hole
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2411,7 +2413,7 @@ GameObject:
   - component: {fileID: 189199157857014142}
   m_Layer: 7
   m_Name: Straightway
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2591,7 +2593,7 @@ GameObject:
   - component: {fileID: 6815292854089707727}
   m_Layer: 7
   m_Name: Straightway
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2686,7 +2688,7 @@ GameObject:
   - component: {fileID: 7483952949676717871}
   m_Layer: 7
   m_Name: Corner Hole
-  m_TagString: Untagged
+  m_TagString: RailBallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

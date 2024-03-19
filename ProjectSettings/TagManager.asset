@@ -17,6 +17,8 @@ TagManager:
   - WorldLockParent
   - ARSession
   - XRInteractionManager
+  - Ball
+  - RailBallCollider
   layers:
   - Default
   - TransparentFX
