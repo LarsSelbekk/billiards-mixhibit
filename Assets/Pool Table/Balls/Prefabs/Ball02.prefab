@@ -5,11 +5,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3216892826011347896, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
       propertyPath: m_Name
-      value: Ball2
+      value: Ball02
       objectReference: {fileID: 0}
     - target: {fileID: 3216892826011347897, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
       propertyPath: m_RootOrder
@@ -56,8 +57,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3216892826011347911, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 19ec92ae58f900c47b614698359a26c5, type: 2}
+    - target: {fileID: 5953175500084549204, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 534582601
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}

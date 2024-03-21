@@ -1,32 +1,29 @@
 // #define DEBUG_COLLISION_AUDIO
 
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = System.Random;
 
 [RequireComponent(typeof(AudioSource))]
 public class CollisionAudio : MonoBehaviour
 {
-    public AudioClip ballBallHitAudioClip, cueStickBallHitAudioClip, railBallHitAudioClip;
+    public AudioSource collisionAudioSource;
+    public List<AudioClip> ballBallHitAudioClips, cueStickBallHitAudioClips, railBallHitAudioClips;
     public AnimationCurve audioScale;
     public float maxVolumeVelocity;
 
-    private AudioSource _audioSource;
-
-    private void Start()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
-        var clip = collision.gameObject.tag switch
+        var clips = collision.gameObject.tag switch
         {
-            "CueStick" => cueStickBallHitAudioClip,
-            "Ball" or "CueBall" => ballBallHitAudioClip,
-            "RailBallCollider" or "TableSlate" => railBallHitAudioClip,
+            "CueStick" => cueStickBallHitAudioClips,
+            "Ball" or "CueBall" => ballBallHitAudioClips,
+            "RailBallCollider" or "TableSlate" or "Table" => railBallHitAudioClips,
             _ => null,
         };
 
-        if (clip == null)
+        if (clips == null || !clips.Any())
         {
 #if DEBUG_COLLISION_AUDIO
             Debug.Log($"Hit unknown tag {collision.gameObject.tag}", this);
@@ -39,8 +36,8 @@ public class CollisionAudio : MonoBehaviour
 #endif
 
         var scaledMaxVolumeVelocity = transform.InverseTransformVector(Vector3.forward * maxVolumeVelocity).magnitude;
-        _audioSource.PlayOneShot(
-            clip,
+        collisionAudioSource.PlayOneShot(
+            clips[new Random().Next(clips.Count)],
             Mathf.Clamp01(
                 audioScale.Evaluate(collision.relativeVelocity.magnitude / scaledMaxVolumeVelocity)
             )

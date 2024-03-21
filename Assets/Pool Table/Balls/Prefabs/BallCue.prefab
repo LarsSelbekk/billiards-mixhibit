@@ -8,6 +8,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1077600124631601178, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
+      propertyPath: maxVolumeVelocity
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1077600124631601178, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
+      propertyPath: pitchScale.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1077600124631601178, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
+      propertyPath: pitchScale.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1077600124631601178, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
+      propertyPath: pitchScale.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1077600124631601178, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
+      propertyPath: pitchScale.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1077600124631601178, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
+      propertyPath: pitchScale.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3216892826011347896, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
       propertyPath: m_Name
       value: BallCue
@@ -66,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8f97e50ad21eeae499f89e2f90d09c36, type: 2}
     - target: {fileID: 5953175500084549204, guid: 0f0333289c671224180eadd97ddfacd3, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 2691204762
+      value: 1513213831
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
