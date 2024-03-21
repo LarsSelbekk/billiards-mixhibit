@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 14691c451e07ff94cb94be3f44e72ab7
+timeCreated: 1458773460
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 59038
+  packageName: Classic Picture Frame
+  packageVersion: 1.0
+  assetPath: Assets/Classic Picture Frame/picture.prefab
+  uploadId: 109222

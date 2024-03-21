@@ -12,6 +12,14 @@ public class TableRelocator : MonoBehaviour
     private GameObject _tableAnchor;
     private OVRScenePlane _tableAnchorPlane;
 
+#if UNITY_EDITOR
+    private void Awake()
+    {
+        // don't use SSAs in editor
+        Destroy(this);
+    }
+#endif
+
     // Start is called before the first frame update
     private void Start()
     {

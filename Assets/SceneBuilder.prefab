@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 243871859
+  GlobalObjectIdHash: 2686229153
+  InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 0
   ActiveSceneSynchronization: 0
@@ -66,6 +67,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldLockParent: {fileID: 162234676798018935, guid: 13c767573198cc146901140fa8db61ba, type: 3}
+  wallArtPercentGap: 10
+  wallArtPercentWallPadding: 20
+  wallArtOutFromWallOffset: 0.01
+  minWallArtScale: 0.5
+  maxWallArtScale: 1
+  maxWallArtPlacementAttempts: 100
+  wallArtPieces:
+  - {fileID: 1939529515273582010, guid: e270e8f6ff3abe8439a57f7f4c637ae1, type: 3}
+  - {fileID: 1939529515273582010, guid: fa5f6a7dcbca9bd43a3658e2db27f9f3, type: 3}
+  - {fileID: 1939529515273582010, guid: 20746dab2e1fe1146b66a7b8a15a3bb4, type: 3}
+  - {fileID: 1939529515273582010, guid: 5f574d9e617aa8041924314dae4409ac, type: 3}
+  - {fileID: 1939529515273582010, guid: a44b478c8566ae4438962d80847e87df, type: 3}
+  - {fileID: 1939529515273582010, guid: 43f76f66ddf92da46865a12785a37393, type: 3}
+  - {fileID: 1939529515273582010, guid: ccfdf9429fbcdaa488d687376458c333, type: 3}
+  resetButtonYPosition: 1.5
+  resetButtonOutFromWallOffset: 0.1
   resetButton: {fileID: 8273211446339589601, guid: a397a485d45b09c4dbdfed06fbef5bd1, type: 3}
   tableHolder: {fileID: 7611338698995758149, guid: ec6eff33948f9224e9ab11bf3ba589b8, type: 3}
   tableReference: {fileID: 2030412564784014614, guid: c181a04973d20084fbb358ad2531bd4b, type: 3}

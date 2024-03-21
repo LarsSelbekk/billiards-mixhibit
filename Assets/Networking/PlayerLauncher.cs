@@ -49,7 +49,7 @@ namespace Networking
 
         public bool LaunchPlayerAs(StartType startType, string hostAddress)
         {
-            Debug.Log($"PlayerLauncher LaunchPlayerAs({startType}, {hostAddress})");
+            Debug.Log($"[SVANESJO] PlayerLauncher LaunchPlayerAs({startType}, {hostAddress})");
             ShutdownPlayer();
             _unityTransport.ConnectionData.Address = hostAddress;
 
@@ -64,7 +64,7 @@ namespace Networking
             if (success)
             {
                 OnConnect?.Invoke(startType);
-                Debug.Log($"Player launched successfully as {startType}");
+                Debug.Log($"[SVANESJO] Player launched successfully as {startType}");
 
                 NetworkManager.Singleton.OnClientConnectedCallback += GameManager.ClientConnected;
             }
@@ -79,12 +79,12 @@ namespace Networking
 
         private IEnumerator CheckConnection()
         {
-            Debug.Log("PlayerLauncher CheckConnection coroutine started");
+            Debug.Log("[SVANESJO] PlayerLauncher CheckConnection coroutine started");
             while (true)
             {
                 if (!_networkManager.IsClient)
                 {
-                    Debug.Log($"PlayerLauncher CheckConnection not a client... rechecking in {recheckNotClient} seconds");
+                    Debug.Log($"[SVANESJO] PlayerLauncher CheckConnection not a client... rechecking in {recheckNotClient} seconds");
                     yield return new WaitForSeconds(recheckNotClient);
                     continue;
                 }
@@ -92,19 +92,19 @@ namespace Networking
                 var connected = _networkManager.IsConnectedClient;
                 if (!connected)
                 {
-                    Debug.Log($"PlayerLauncher CheckConnection not connected, rechecking in {delayedDisconnect} seconds");
+                    Debug.Log($"[SVANESJO] PlayerLauncher CheckConnection not connected, rechecking in {delayedDisconnect} seconds");
                     yield return new WaitForSeconds(delayedDisconnect);
                     connected = _networkManager.IsConnectedClient;
                     if (!connected)
                     {
-                        Debug.Log("PlayerLauncher CheckConnection still not connected, returning to lobby");
+                        Debug.Log("[SVANESJO] PlayerLauncher CheckConnection still not connected, returning to lobby");
                         ShutdownPlayer();
                         continue;
                     }
                 }
                 else
                 {
-                    Debug.Log("PlayerLauncher CheckConnection connected, rechecking in 10 seconds");
+                    Debug.Log("[SVANESJO] PlayerLauncher CheckConnection connected, rechecking in 10 seconds");
                 }
 
                 yield return new WaitForSeconds(10);

@@ -31,6 +31,14 @@ namespace SSA
 
         private GameObject _worldLockParent;
 
+#if UNITY_EDITOR
+        private void Awake()
+        {
+            // don't use SSAs in editor
+            Destroy(this);
+        }
+#endif
+
         public override void OnNetworkSpawn()
         {
             if (!IsServer)
@@ -159,18 +167,15 @@ namespace SSA
 
         private void Update()
         {
-            if (!IsSpawned) return;
-            if (Time.time > _nextAlignTime)
+            if (!IsSpawned || Time.time < _nextAlignTime) return;
+            _nextAlignTime = Time.time + alignIntervalSeconds;
+            if (!_ssaReady)
             {
-                _nextAlignTime = Time.time + alignIntervalSeconds;
-                if (!_ssaReady)
-                {
-                    Debug.Log("[SVANESJO] ⏳ waiting for SSA ready ...");
-                    return;
-                }
-
-                AlignWorldToSSA();
+                Debug.Log("[SVANESJO] ⏳ waiting for SSA ready ...");
+                return;
             }
+
+            AlignWorldToSSA();
         }
 
         private void AlignWorldToSSA()

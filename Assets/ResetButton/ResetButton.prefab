@@ -5352,9 +5352,6 @@ GameObject:
   - component: {fileID: 3708237373407521638}
   - component: {fileID: 8362208647678218079}
   - component: {fileID: 3683420414320549588}
-  - component: {fileID: 1388336048364645556}
-  - component: {fileID: 8033669391064706986}
-  - component: {fileID: 7536880872482360089}
   m_Layer: 0
   m_Name: ResetButton
   m_TagString: Untagged
@@ -5724,7 +5721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2750837375
+  GlobalObjectIdHash: 2898399379
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -5776,48 +5773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb31b3b3ab008514ab9a80b029b95e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1388336048364645556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8273211446339589601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33f628a7d6a192e49ba9893928c2be50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resetButton: {fileID: 8273211446339589601}
-  resetButtonBoundsParent: {fileID: 0}
---- !u!114 &8033669391064706986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8273211446339589601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c60dafba122d7bd47b1fba1698179504, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  subjects:
-  - {fileID: 1388336048364645556}
---- !u!114 &7536880872482360089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8273211446339589601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05589ded7e0d05e4ea25b9aa865e7da5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  subjects:
-  - {fileID: 1388336048364645556}
 --- !u!1 &9197243075334879594
 GameObject:
   m_ObjectHideFlags: 0
