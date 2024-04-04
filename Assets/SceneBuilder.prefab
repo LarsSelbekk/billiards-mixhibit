@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2686229153
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 1161638241
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 0
   ActiveSceneSynchronization: 0
@@ -75,7 +74,6 @@ MonoBehaviour:
   maxWallArtPlacementAttempts: 100
   wallArtPieces:
   - {fileID: 1939529515273582010, guid: e270e8f6ff3abe8439a57f7f4c637ae1, type: 3}
-  - {fileID: 1939529515273582010, guid: fa5f6a7dcbca9bd43a3658e2db27f9f3, type: 3}
   - {fileID: 1939529515273582010, guid: 20746dab2e1fe1146b66a7b8a15a3bb4, type: 3}
   - {fileID: 1939529515273582010, guid: 5f574d9e617aa8041924314dae4409ac, type: 3}
   - {fileID: 1939529515273582010, guid: a44b478c8566ae4438962d80847e87df, type: 3}
