@@ -581,6 +581,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Training Wheels
       objectReference: {fileID: 0}
+    - target: {fileID: 5668290336698634722, guid: efb710870488ec14a9f0e8a05f5603f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
