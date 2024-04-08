@@ -528,7 +528,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 1
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -656,7 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spectatorViewSetup: {fileID: 1293083126}
-  speed: 0.01
+  speed: 0.005
 --- !u!1001 &1423874528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -803,7 +803,7 @@ PrefabInstance:
       objectReference: {fileID: 1276013777}
     - target: {fileID: 7165889167328691714, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00010054613
+      value: 0.00013519442
       objectReference: {fileID: 0}
     - target: {fileID: 8360709649797149903, guid: e0ee10923ace7e342ba53b34eb1c0ce5, type: 3}
       propertyPath: m_AnchorMax.x

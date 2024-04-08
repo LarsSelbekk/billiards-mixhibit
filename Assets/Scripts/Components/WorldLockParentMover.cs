@@ -25,8 +25,8 @@ public class WorldLockParentMover : MonoBehaviour
     {
         if (_movementVector == Vector3.zero && _rotationVector == Vector3.zero) return;
         if (!EnsureWorldLockParentAvailable()) return;
-        _worldLockParent.transform.Translate(_movementVector * movementSpeed);
-        _worldLockParent.transform.Rotate(_rotationVector * rotationSpeed);
+        _worldLockParent.transform.position += _movementVector * movementSpeed;
+        _worldLockParent.transform.eulerAngles +=_rotationVector * rotationSpeed;
     }
 
     public void OnMoveOrigin(InputAction.CallbackContext context)

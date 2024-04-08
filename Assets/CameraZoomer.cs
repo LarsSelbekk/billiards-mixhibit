@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class CameraZoomer : MonoBehaviour
 {
     public SpectatorViewSetup spectatorViewSetup;
-    public float speed = 0.01f;
+    public float speed = 0.005f;
 
     private float _actuation;
     private Camera _mainCamera;
