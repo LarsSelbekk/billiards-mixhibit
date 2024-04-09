@@ -452,7 +452,6 @@ GameObject:
   - component: {fileID: 7832305740485764734}
   - component: {fileID: 2028917018992166986}
   - component: {fileID: 5342118771363964281}
-  - component: {fileID: 1316990227463855547}
   - component: {fileID: 3026465196195267222}
   m_Layer: 0
   m_Name: Triangle
@@ -751,24 +750,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &1316990227463855547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6097799285801467369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bc11a920498445dbc9db8980c852ae5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_rigidbody: {fileID: 7832305740485764734}
-  m_stateSync: {fileID: 3026465196195267222}
-  m_grabInteractable: {fileID: 0}
-  IsPendingCommit: 0
-  IsConfirmed: 0
-  LastActiveFrame: 0
 --- !u!114 &3026465196195267222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,8 +762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383612e22ee94cb29f8cfbfece4bd60e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_updateRate: 1
-  m_bufferFlushRate: 1
+  updateRate: 1
+  bufferFlushRate: 1
 --- !u!1 &7641402000994919935
 GameObject:
   m_ObjectHideFlags: 0
