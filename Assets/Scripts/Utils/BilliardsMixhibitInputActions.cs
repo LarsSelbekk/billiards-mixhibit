@@ -2892,7 +2892,7 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
                 {
                     ""name"": ""up"",
                     ""id"": ""b35d3432-cc1f-4d3f-9255-fbe018a8b873"",
-                    ""path"": ""<Keyboard>/pageUp"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2903,7 +2903,7 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
                 {
                     ""name"": ""down"",
                     ""id"": ""e0fa2b6b-f81d-45dc-9bbb-ea6133ac49c6"",
-                    ""path"": ""<Keyboard>/pageDown"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2914,7 +2914,7 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
                 {
                     ""name"": ""left"",
                     ""id"": ""af7d3dea-4b86-46e3-a417-d29adc067d94"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2925,7 +2925,7 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
                 {
                     ""name"": ""right"",
                     ""id"": ""f28b909d-48d8-472f-924f-7a85cb5343d5"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2936,7 +2936,7 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
                 {
                     ""name"": ""forward"",
                     ""id"": ""4edd9b1b-6f14-4443-b8a7-b58ff5b5ed5d"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/pageUp"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2947,7 +2947,7 @@ public partial class @BilliardsMixhibitInputActions: IInputActionCollection2, ID
                 {
                     ""name"": ""backward"",
                     ""id"": ""2bf790d5-29e9-4508-bec8-72fb39219cb6"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/pageDown"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
