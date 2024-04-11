@@ -31,6 +31,7 @@ public class HoverOnlyInteractable : MonoBehaviour, IXRHoverInteractable
 
     private void Awake()
     {
+        // TODO: disable when there's none found/not XR
         _xrInteractionManager = GameObject.FindWithTag("XRInteractionManager").GetComponent<XRInteractionManager>();
     }
 
