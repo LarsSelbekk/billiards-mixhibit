@@ -123,8 +123,8 @@ namespace Networking
                 return;
             }
 
-            _grabInteractable.selectEntered.AddListener(_ => OnGrabObject());
-            _grabInteractable.selectExited.AddListener(_ => OnReleaseObject());
+            _grabInteractable.firstSelectEntered.AddListener(_ => OnGrabObject());
+            _grabInteractable.lastSelectExited.AddListener(_ => OnReleaseObject());
 
             _isGrabbable = true;
 
