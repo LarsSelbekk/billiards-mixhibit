@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8135375298870285452}
   - component: {fileID: 4246780355417078207}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Vertex Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5998226353021538304}
   - component: {fileID: 8472114783328097770}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Side Vertex Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3323261265214487727}
   - component: {fileID: 6870358116992876713}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Side Vertex Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4200816350966575447}
   - component: {fileID: 5684797288529010017}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Vertex Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6721980906543745786}
   - component: {fileID: 8337886763326919666}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Side Vertex Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6926764736128489446}
   - component: {fileID: 523407273959365900}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Side Vertex Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7027450707940179772}
   - component: {fileID: 7519184786745557753}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Side Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6723105826166318964}
   - component: {fileID: 3882638719065898355}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Side Vertex Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 2028917018992166986}
   - component: {fileID: 5342118771363964281}
   - component: {fileID: 3026465196195267222}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4380884281307845314}
   - component: {fileID: 5923412940367333993}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Vertex Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -829,7 +829,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1954759082283929808}
   - component: {fileID: 3985018203940566930}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Side Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -882,7 +882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4808793502681078165}
   - component: {fileID: 305905254024115558}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Side Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -935,7 +935,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1092593297994786279}
   - component: {fileID: 8216423064282523096}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Side Vertex Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

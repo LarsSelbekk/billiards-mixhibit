@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -4620850111529231922}
   - component: {fileID: 283179286417347331}
   - component: {fileID: 664902586288508318}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Chalk
   m_TagString: Untagged
   m_Icon: {fileID: 0}

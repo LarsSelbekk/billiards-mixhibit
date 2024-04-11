@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4008169149769528743}
   - component: {fileID: 5993495980703494453}
   - component: {fileID: 2649118256091470390}
-  m_Layer: 3
+  m_Layer: 12
   m_Name: ScenePlaneCollider
   m_TagString: SceneAnchor
   m_Icon: {fileID: 0}

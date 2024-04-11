@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1551971289139832243}
   - component: {fileID: 6143490211631554507}
   - component: {fileID: 707116767816046476}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Non-Dominant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 1094235468372932206}
   - component: {fileID: 789157645165364612}
   - component: {fileID: 6046662177886675116}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Dominant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,8 @@ GameObject:
   - component: {fileID: 9124118921515952877}
   - component: {fileID: 5762759892492435321}
   - component: {fileID: 2582866239993685477}
-  m_Layer: 0
+  - component: {fileID: 5340470369044844204}
+  m_Layer: 13
   m_Name: Cue Stick
   m_TagString: CueStick
   m_Icon: {fileID: 0}
@@ -782,7 +783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1018207114
+  GlobalObjectIdHash: 3471630266
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -804,6 +805,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateRate: 1
   bufferFlushRate: 1
+--- !u!114 &5340470369044844204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4313180098087592122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0f253299125b94ea7f372149029f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partialClipLayerName: PartialClipCueStick
 --- !u!1 &4651959803918098539
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,7 +830,7 @@ GameObject:
   - component: {fileID: 7511433808756695124}
   - component: {fileID: 5911481623729658674}
   - component: {fileID: 7050342747978844913}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,7 +935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8032106379947763107}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -953,7 +967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2810197427638645651}
   - component: {fileID: 8164019854537555777}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Grab Indicators
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1036,7 +1050,7 @@ GameObject:
   - component: {fileID: 1858835432943992135}
   - component: {fileID: 6313618847495180475}
   - component: {fileID: 5396409650348657378}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Tip
   m_TagString: CueTip
   m_Icon: {fileID: 0}
@@ -1144,7 +1158,7 @@ GameObject:
   - component: {fileID: 7465536548245584489}
   - component: {fileID: 1633409526848502216}
   - component: {fileID: 5507464906386998577}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1249,7 +1263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 208250301156721938}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}

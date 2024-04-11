@@ -1,7 +1,7 @@
 ﻿// #define DEBUG_AUTHORITY_COLORS
 // #define DEBUG_LOGS
 
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
@@ -22,6 +22,9 @@ namespace Networking
     [RequireComponent(typeof(Rigidbody))]
     public class ObjectStateSync : NetworkBehaviour
     {
+        public bool IsGrabbedOnNetwork => GrabberClientId != Authority.NoClientID;
+        public event Action<bool> IsGrabbedOnNetworkChanged;
+
         private struct ObjectStateUpdate : INetworkSerializable
         {
             public bool IsGrabbed;
@@ -91,9 +94,18 @@ namespace Networking
         private ulong _authorityClientId = Authority.NoClientID;
         private ulong _grabberClientId = Authority.NoClientID;
 
-        private bool IsGrabbedByLocalClient => _grabberClientId == NetworkManager.LocalClientId;
+        private ulong GrabberClientId
+        {
+            get => _grabberClientId;
+            set
+            {
+                if (_grabberClientId == value) return;
+                _grabberClientId = value;
+                IsGrabbedOnNetworkChanged?.Invoke(IsGrabbedOnNetwork);
+            }
+        }
 
-        private bool IsGrabbedOnNetwork => _grabberClientId != Authority.NoClientID;
+        private bool IsGrabbedByLocalClient => GrabberClientId == NetworkManager.LocalClientId;
 
         private readonly CircularBuffer<ObjectPacket> _jitterBuffer = new(64);
 
@@ -148,12 +160,12 @@ namespace Networking
             _ownershipTimestamp = default;
             _authoritySequence = default;
             _authorityClientId = Authority.NoClientID;
-            _grabberClientId = Authority.NoClientID;
+            GrabberClientId = Authority.NoClientID;
         }
 
         private void TakeOwnershipOfObjectFromGrab()
         {
-            _grabberClientId = NetworkManager.LocalClientId;
+            GrabberClientId = NetworkManager.LocalClientId;
             _ownershipSequence++;
             _ownershipTimestamp = _frameCount;
             _authorityClientId = NetworkManager.LocalClientId;
@@ -197,7 +209,7 @@ namespace Networking
 
         private void OnReleaseObject()
         {
-            _grabberClientId = Authority.NoClientID;
+            GrabberClientId = Authority.NoClientID;
             _ownershipTimestamp = _frameCount;
         }
 
@@ -438,7 +450,7 @@ namespace Networking
 
             var update = packet.StateUpdate;
 
-            _grabberClientId = update.IsGrabbed ? packet.AuthorityClientId : Authority.NoClientID;
+            GrabberClientId = update.IsGrabbed ? packet.AuthorityClientId : Authority.NoClientID;
 
             var parentTransform = transform.parent;
 
