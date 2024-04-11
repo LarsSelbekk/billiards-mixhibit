@@ -18,6 +18,7 @@ namespace Networking.Player
         public Material clientMaterial;
 
         private readonly NetworkVariable<PlayerType> _playerType = new(PlayerType.Client);
+        private readonly NetworkVariable<bool> _playerHidden = new();
 
         public override void OnNetworkSpawn()
         {
@@ -29,13 +30,17 @@ namespace Networking.Player
                 return;
             }
 
-            RegisterPlayerTypeServerRpc(IsHost ? PlayerType.Host : IsServer ? PlayerType.Server : PlayerType.Client);
+            RegisterPlayerServerRpc(
+                IsHost ? PlayerType.Host : IsServer ? PlayerType.Server : PlayerType.Client,
+                !OVRManager.isHmdPresent
+            );
         }
 
         [ServerRpc(RequireOwnership = false)]
-        void RegisterPlayerTypeServerRpc(PlayerType playerType)
+        void RegisterPlayerServerRpc(PlayerType playerType, bool playerHidden)
         {
             _playerType.Value = playerType;
+            _playerHidden.Value = playerHidden;
             PaintPlayerClientRpc();
         }
 
@@ -58,6 +63,7 @@ namespace Networking.Player
             };
             foreach (var mr in GetComponentsInChildren<MeshRenderer>())
             {
+                mr.enabled = !_playerHidden.Value;
                 mr.SetMaterials(materials);
             }
         }
