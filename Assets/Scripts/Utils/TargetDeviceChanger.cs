@@ -102,21 +102,21 @@ public class TargetDeviceChanger
 
     private static void ChangeToPhoneTarget()
     {
-        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+        SwitchBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
         PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.OpenGLES3 });
         ChangeXRLoader<ARCoreLoader>();
     }
 
     private static void ChangeToHmdTarget()
     {
-        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+        SwitchBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
         PlayerSettings.SetGraphicsAPIs(BuildTarget.Android, new[] { GraphicsDeviceType.Vulkan });
         ChangeXRLoader<OculusLoader>();
     }
 
     private static void ChangeToComputerTarget()
     {
-        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
+        SwitchBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
     }
 
     private static void SetBuildScene(Scene newScene)
@@ -196,6 +196,15 @@ public class TargetDeviceChanger
             }
         }
     }
+    private static void SwitchBuildTarget(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
+    {
+        if (!EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget))
+        {
+            Debug.LogError($"Failed to switch build target to {buildTargetGroup}.{buildTarget}");
+        }
+
+    }
+
 }
 
 #endif
